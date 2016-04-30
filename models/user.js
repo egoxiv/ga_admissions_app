@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Cohort = require('./cohort');
 
 var userSchema = new mongoose.Schema({
   firstName: String,
@@ -12,8 +13,8 @@ var userSchema = new mongoose.Schema({
     'applicant',
     'student',
     'instructor',
-    'admissions',
-    'admin'
+    'admissions', //can change applicant to student
+    'admin' //can add or remove anyone and change anyone's role
   ]},
   application: {
     status: String,
@@ -32,8 +33,13 @@ var userSchema = new mongoose.Schema({
       //any addditional fields instructor fills out
     }
   },
-  cohort: String,
+  cohort: {type: mongoose.Schema.Types.ObjectId, ref: 'Cohort'}
 });
+
+//search users by role
+userSchema.statics.findByRole = function(role, cb){
+  return this.find({role: role}, cb);
+};
 
 
 
