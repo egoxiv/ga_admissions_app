@@ -1,11 +1,12 @@
 var User = require ('../models/user');
+var Cohort = require ('../models/cohort');
 var mongoose = require('mongoose');
 var controller = {};
 
 controller.index = function(req, res){
-	User.find({instructor: req.body.instructor, role: 'student'})
-		.then(function(users){
-			res.send(users);
+	Cohort.find({instructors:"5724e37b9074afc4285ebd70"})
+		.then(function(cohorts){
+			res.send(cohorts);
 		})
 		.catch(function(err){
 			return err;
