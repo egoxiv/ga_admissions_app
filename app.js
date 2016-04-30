@@ -1,8 +1,10 @@
 var express    = require('express');
+var path       = require('path');
 var logger     = require('morgan');
 var bodyParser = require('body-parser');
 var session    = require('express-session');
 var app        = express();
+var db         = require('./config/db');
 
 app.set('view engine', 'ejs');
 app.use( express.static(__dirname + '/public') );
