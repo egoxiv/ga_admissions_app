@@ -8,15 +8,16 @@ var db         = require('./config/db');
 var instructorRoutes = require('./routes/instructor');
 app.set('views', path.join(__dirname + 'views'));
 app.set('view engine', 'ejs');
+app.use( express.static(__dirname + '/public') );
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({
-  secret: 'unicorns',
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(session({ secret: 'unicorns', resave: false, saveUninitialized: false }));
+
+app.get('/sign-up', function(req, res) {
+  res.render('signup/signup');
+});
 
 app.use('/instructors', instructorRoutes);
 var port = process.env.PORT || 3000;
