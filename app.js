@@ -4,9 +4,6 @@ var bodyParser = require('body-parser');
 var session    = require('express-session');
 var app        = express();
 
-// app.set('views', __dirname + '/public');
-// app.set('view engine', 'ejs');
-
 app.set('view engine', 'ejs');
 app.use( express.static(__dirname + '/public') );
 
