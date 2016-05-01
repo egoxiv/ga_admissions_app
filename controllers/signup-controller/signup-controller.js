@@ -1,6 +1,10 @@
 var signUpController = {};
 
 signUpController.index = function(req, res) {
+  var welcome = {
+    headline: 'Get more info',
+  };
+  message = welcome.headline;
   res.render('signup/signup');
 };
 
