@@ -1,1 +1,6 @@
-console.log('it works!');
+$(function(){
+  $('#submit').on('click', function() {
+    console.log('click');
+  });
+
+});

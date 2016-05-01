@@ -1,12 +1,51 @@
 <html>
 <head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
   <link rel="stylesheet" type="text/css" href="signup/styles/styles.css">
   <title>Student Signup</title>
 </head>
 <body>
+  <div class="container">
 
+    <div class="row">
+      <h1 class="col-md-12"><%= message %></h1>
+    </div>
 
+    <div class="row">
+      <p class="col-md-12">Sign in with GitHub goes here</p>
+    </div>
 
-<script src="signup/js/index.js"></script>
+    <div class="row">
+      <p class="col-md-12">Or, create an account</p>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="email" class="form-control" id="name" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label for="email-address">Email address</label>
+      <input type="email" class="form-control" id="email-address" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password">
+    </div>
+    <div class="form-group">
+      <label for="password-confirm">Confirm password</label>
+      <input type="password" class="form-control" id="password-confirm" placeholder="Confirm Password">
+    </div>
+    <button type="submit" class="btn btn-success" id="submit">Submit</button>
+
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="signup/js/index.js"></script>
 </body>
 </html>
