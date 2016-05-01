@@ -16,5 +16,4 @@ signUpController.edit = function(req, res) {};
 
 signUpController.destroy = function(req, res) {};
 
-
 module.exports = signUpController;

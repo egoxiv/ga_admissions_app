@@ -1,1 +1,4 @@
-console.log('it works!');
+$(function(){
+  console.log(jQuery);
+
+});
