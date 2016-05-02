@@ -3,14 +3,19 @@ var signUpController = {};
 signUpController.index = function(req, res) {
   var welcome = {
     headline: 'Get more info',
+    inputs: ['Name', 'Email', 'Password']
   };
   message = welcome.headline;
+  inputValues = welcome.inputs;
   res.render('signup/signup');
 };
 
-signUpController.new = function(req, res) {};
+signUpController.create = function(req, res) {
+  // console.log(req.body);
+  console.log(res.body);
+};
 
-signUpController.create = function(req, res) {};
+signUpController.new = function(req, res) {};
 
 signUpController.update = function(req, res) {};
 
