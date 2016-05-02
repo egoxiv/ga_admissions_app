@@ -7,18 +7,21 @@ var app        = express();
 var db         = require('./config/db');
 
 // Routes
-var signUpRoute = require('./routes/signup-routes/signup-routes');
+var submitRoute = require('./routes/submit-routes/submit-routes');
 
 app.set('view engine', 'ejs');
-app.use( express.static(__dirname + '/public') );
-
+app.use( express.static(path.join(__dirname + '/public')));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'unicorns', resave: false, saveUninitialized: false }));
 
-app.use('/sign-up', signUpRoute);
+app.get('/', function(req, res) {
+  res.render('welcome/welcome');
+});
+
+app.use('/submits', submitRoute);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
