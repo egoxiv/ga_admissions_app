@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+	<title>General Assembly Admissions - Instructor Portal</title>
+</head>
+<body>
+	<h1>General Assembly Admissions - Student Access</h1>
+	<div>
+		<% if(student != undefined){ %>
+			<h2>Student: <%= student.name %></h2>
+			<ul>
+				<li><b><%= cohort %></b></li>
+				<li>Status: <%= student.role %></li>
+				<li>Email: <%= student.email %></li>
+				<li>Github: <a href="<%= student.github %>"><%= student.github %></a></li>
+				
+			</ul>
+			<a href="/instructor">Back</a> <br/>
+			<a href="/instructor/logout">logout</a>
+		<% } else { %>
+			<h2>An error has occured...</h2>
+			<a href="/instructor">Back</a>
+		<% } %>
+	</div>
+
+</body>
+</html>

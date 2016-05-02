@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 var Cohort = require('./cohort');
 
 var userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
+  name: String,
   email: String,
+  access_token: String,
   phone: String,
   city: String,
   pictureUrl: String,
@@ -30,6 +30,7 @@ var userSchema = new mongoose.Schema({
       attitude: String,
       professionalism: String,
       motivation: String,
+      experience: String,
       //any addditional fields instructor fills out
     }
   },
