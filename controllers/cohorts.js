@@ -5,7 +5,8 @@ var cohorts = {};
 cohorts.index = function(req, res){
   Cohort.find({}, function(err, classes){
     if(err) return res.json(err);
-    res.json(classes);
+    things = classes;
+    res.render('cohorts/index');
   });
 };
 

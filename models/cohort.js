@@ -6,6 +6,8 @@ var cohortSchema = new mongoose.Schema({
   number: Number,
   city: String,
   campus: String,
+  start: Date,
+  end: Date,
   instructors: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   students: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 });

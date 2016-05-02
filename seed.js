@@ -20,16 +20,28 @@ User.remove({})
     })
     .then(function(users){
         var cohort = new Cohort();
-        cohort.program ='WDI';
-        cohort.campus='SM';
+        cohort.program = 'WDI';
+        cohort.campus = 'SM';
         cohort.number = 22;
-        cohort.city='Santa Monica, CA';
+        cohort.city = 'Santa Monica, CA';
+        cohort.start = new Date('March 7, 2016');
+        cohort.end = new Date('May 27, 2016');
         users.forEach(function(user){
             user.cohort = cohort.id;
             user.save();
             if (user.role==='instructor') cohort.instructors.push(user);
             else if (user.role==='student') cohort.students.push(user);
         });
+        return cohort.save();
+    })
+    .then(function(){
+        var cohort = new Cohort();
+        cohort.program = 'WDI';
+        cohort.campus = 'SM';
+        cohort.number = 23;
+        cohort.city = 'Santa Monica, CA';
+        cohort.start = new Date('May 2, 2016');
+        cohort.end = new Date('July 22, 2016');
         return cohort.save();
     })
     .catch(function(err){

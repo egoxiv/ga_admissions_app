@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cohorts Index</title>
+</head>
+<body>
+  <% things.forEach(function(cohort){ %>
+    <p><%= cohort.name() %></p>
+    <li><%= cohort.instructors.length %>/3 Instructors</li>
+    <li><%= cohort.students.length %>/20 Students</li>
+    <li>Start: <%= cohort.start.toDateString() %></li>
+    <li>End: <%= cohort.end.toDateString() %></li>
+  <% }) %>
+</body>
+</html>
