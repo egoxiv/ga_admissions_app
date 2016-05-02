@@ -10,6 +10,10 @@ cohorts.index = function(req, res){
   });
 };
 
+cohorts.new = function(req, res){
+  res.render('cohorts/new');
+};
+
 cohorts.show = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     if(err) return res.json(err);

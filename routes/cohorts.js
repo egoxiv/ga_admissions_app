@@ -4,6 +4,8 @@ var cohorts = require('../controllers/cohorts');
 
 router.get('/', cohorts.index);
 
+router.get('/new', cohorts.new);
+
 router.get('/:id', cohorts.show);
 
 
