@@ -2,8 +2,7 @@ var mongoose = require('mongoose');
 var Cohort = require('./cohort');
 
 var userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
+  name: String,
   email: String,
   phone: String,
   city: String,
