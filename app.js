@@ -7,7 +7,7 @@ var app        = express();
 var db         = require('./config/db');
 
 // Routes
-var signUpRoute = require('./routes/signup-routes/signup-routes.js');
+var signUpRoute = require('./routes/signup-routes/signup-routes');
 
 app.set('view engine', 'ejs');
 app.use( express.static(__dirname + '/public') );

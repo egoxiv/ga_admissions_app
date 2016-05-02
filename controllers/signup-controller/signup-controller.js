@@ -3,8 +3,10 @@ var signUpController = {};
 signUpController.index = function(req, res) {
   var welcome = {
     headline: 'Get more info',
+    inputs: ['Name', 'Email', 'Password']
   };
   message = welcome.headline;
+  inputValues = welcome.inputs;
   res.render('signup/signup');
 };
 
