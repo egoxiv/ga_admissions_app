@@ -1,6 +1,8 @@
 var db = require('./config/db');
 var Cohort = require('./models/cohort');
 var User = require('./models/user');
+
+
 User.remove({})
     .then(function(){
         return Cohort.remove();
@@ -23,6 +25,8 @@ User.remove({})
         cohort.number = 22;
         cohort.city='Santa Monica, CA';
         users.forEach(function(user){
+            user.cohort = cohort.id;
+            user.save();
             if (user.role==='instructor') cohort.instructors.push(user);
             else if (user.role==='student') cohort.students.push(user);
         });

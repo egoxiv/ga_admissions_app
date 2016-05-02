@@ -8,6 +8,7 @@ var db         = require('./config/db');
 
 // Routes
 var signUpRoute = require('./routes/signup-routes/signup-routes');
+var cohortsRoute = require('./routes/cohorts');
 
 app.set('view engine', 'ejs');
 app.use( express.static(__dirname + '/public') );
@@ -19,6 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'unicorns', resave: false, saveUninitialized: false }));
 
 app.use('/sign-up', signUpRoute);
+
+app.use('/cohorts', cohortsRoute);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
