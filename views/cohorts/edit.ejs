@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cohort Edit Page</title>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>Edit <%= section.name() %></h1>
+
+  <div class="form-group">
+    <label>Program:</label>
+    <input type="text" id="program" value="<%= section.program %>">
+  </div>
+
+  <div class="form-group">
+    <label>City:</label>
+    <input type="text" id="city" value="<%= section.city %>">
+  </div>
+
+  <div class="form-group">
+    <label>Campus:</label>
+    <input type="text" id="campus" value="<%= section.campus %>">
+  </div>
+
+  <div class="form-group">
+    <label>Number:</label>
+    <input type="number" id="number" value="<%= section.number %>">
+  </div>
+
+  <div class="form-group">
+    <label>Start date:</label>
+    <input type="text" id="start" value="<%= section.startDate() %>">
+  </div>
+
+  <div class="form-group">
+    <label>End date:</label>
+    <input type="text" id="end" value="<%= section.endDate() %>">
+  </div>
+
+  <button id="edit-cohort">Submit</button>
+
+  <script src="/cohorts/js/edit.js"></script>
+</body>
+</html>

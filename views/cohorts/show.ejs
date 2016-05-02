@@ -5,6 +5,8 @@
 </head>
 <body>
   <h1><%= section.name() %></h1>
+  <p>Start: <%= section.startDate() %></p>
+  <p>End: <%= section.endDate() %></p>
   <ul>Instructors:
     <% section.instructors.forEach(function(instructor){ %>
       <li><%= instructor.name %></li>
@@ -15,6 +17,8 @@
       <li><%= student.name %></li>
     <% }) %>
   </ul>
+
+  <a href="/cohorts/<%= section.id %>/edit">Edit this cohort</a>
   <a href="/cohorts/">Back to index</a>
 </body>
 </html>

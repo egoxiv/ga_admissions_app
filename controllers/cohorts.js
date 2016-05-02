@@ -14,6 +14,10 @@ cohorts.new = function(req, res){
   res.render('cohorts/new');
 };
 
+cohorts.create = function(req, res){
+  var cohort = new Cohort();
+};
+
 cohorts.show = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     if(err) return res.json(err);
@@ -22,13 +26,25 @@ cohorts.show = function(req, res){
         throw err;
       }
       cohort.populate('students', function(err){
-        if(err){
-          throw err;
-        }
+        if(err) return res.json(err);
         section = cohort;
         res.render('cohorts/show');
       });
     });
+  });
+};
+
+cohorts.edit = function(req, res){
+  Cohort.findById(req.params.id, function(err, cohort){
+    if(err) return res.json(err);
+    section = cohort;
+    res.render('cohorts/edit');
+  });
+};
+
+cohorts.update = function(req, res){
+  Cohort.findById(req.params.id, function(err, cohort){
+    if(err) return res.json(err);
   });
 };
 

@@ -17,6 +17,16 @@ cohortSchema.methods.name = function(){
   return title;
 };
 
+cohortSchema.methods.startDate = function(){
+  var day = this.start.toDateString();
+  return day.substring(4);
+};
+
+cohortSchema.methods.endDate = function(){
+  var day = this.end.toDateString();
+  return day.substring(4);
+};
+
 var Cohort = mongoose.model('Cohort', cohortSchema);
 
 module.exports = Cohort;
