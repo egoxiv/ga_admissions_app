@@ -9,9 +9,9 @@ $(function(){
         console.log('SUCCESS');
         console.log(data);
       },
-      error: function(err) {
+      error: function(error) {
         console.log('FAIL');
-        console.log(err);
+        console.log(error);
       }
     });
 

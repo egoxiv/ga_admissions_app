@@ -7,30 +7,8 @@
   <title>Student Signup</title>
 </head>
 <body>
-  <div class="container">
 
-    <div class="row">
-      <h1 class="col-md-12"><%= message %></h1>
-    </div>
 
-    <div class="row">
-      <p class="col-md-12">Sign in with GitHub goes here</p>
-    </div>
-
-    <div class="row">
-      <p class="col-md-12">Or, create an account</p>
-    </div>
-
-    <% inputValues.forEach(function(value) { %>
-      <div class="form-group">
-        <label for="<%= value.toLowerCase() %>"><%= value %></label>
-        <input type="<%= value.toLowerCase() %>" class="form-control" id="<%= value.toLowerCase() %>" placeholder="<%= value %>">
-    </div>
-    <% }) %>
-
-    <button type="submit" class="btn btn-success" id="submit">Submit</button>
-
-  </div>
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
