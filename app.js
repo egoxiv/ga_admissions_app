@@ -12,7 +12,7 @@ var instructorRoutes = require('./routes/instructors');
 app.set('views', path.join(__dirname + '/views'));
 
 // Routes
-var signUpRoute = require('./routes/signup-routes/signup-routes.js');
+var signUpRoute = require('./routes/signup-routes/signup-routes');
 
 app.set('view engine', 'ejs');
 app.use( express.static(__dirname + '/public') );

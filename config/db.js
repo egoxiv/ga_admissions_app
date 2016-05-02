@@ -3,8 +3,9 @@ var mongoose = require('mongoose');
 var mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/ga_admissions_app';
 
 mongoose.connect(mongoUrl, function(err){
-  if(err){
-    throw err;
+  if(err instanceof Error){
+    // throw err;
+    console.log(err);
   }
   console.log('database connected');
 });
