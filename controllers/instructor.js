@@ -47,7 +47,6 @@ controller.show = function(req, res){
 		});
 };
 controller.edit = function(req, res){
-
 };
 
 controller.logout = function(req,res){

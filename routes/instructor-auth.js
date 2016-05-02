@@ -9,14 +9,4 @@ router.route('/')
 router.route('/callback')
 	.get(instructorController.callback);
 
-
-router.route('/:student')
-	.get(instructorController.show);
-
-
-router.route('/:student/evaluate')
-	.get(instructorController.edit);
-
-
-
 module.exports = router;
