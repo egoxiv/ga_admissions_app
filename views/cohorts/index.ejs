@@ -5,7 +5,7 @@
 </head>
 <body>
   <% things.forEach(function(cohort){ %>
-    <p><%= cohort.name() %></p>
+    <p><a href="/cohorts/<%= cohort._id %>"><%= cohort.name() %></a></p>
     <li><%= cohort.instructors.length %>/3 Instructors</li>
     <li><%= cohort.students.length %>/20 Students</li>
     <li>Start: <%= cohort.start.toDateString() %></li>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= section.name() %></title>
+</head>
+<body>
+  <h1><%= section.name() %></h1>
+  <ul>Instructors:
+    <% section.instructors.forEach(function(instructor){ %>
+      <li><%= instructor.name %></li>
+    <% }) %>
+  </ul>
+  <ul>Students:
+    <% section.students.forEach(function(student){ %>
+      <li><%= student.name %></li>
+    <% }) %>
+  </ul>
+</body>
+</html>

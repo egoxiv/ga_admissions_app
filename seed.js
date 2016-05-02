@@ -10,7 +10,7 @@ User.remove({})
     .then(function(){
         return User.create([
             {name:'Phil Lamplugh', email:'philco@ga.com',github:'https://github.com/phlco', role:'instructor' },
-            {firstName:'Kate', lastName:'Wood', email:'katewood611@gmail.com',github:'https://github.com/KateWood', role:'instructor' },
+            {name:'Kate Wood', email:'katewood611@gmail.com',github:'https://github.com/KateWood', role:'instructor' },
             {name:'Matt Gutierrez', email:'matthew.gutierrez@generalassemb.ly',github:'https://github.com/fatchicken007', role:'instructor' },
             {name:'Matt Parvinsmith', email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role:'student' },
             {name:'Christina Regis', email:'christina.freeze@gmail.com',github:'https://github.com/christina-regis', role:'student' },
@@ -27,10 +27,10 @@ User.remove({})
         cohort.start = new Date('March 7, 2016');
         cohort.end = new Date('May 27, 2016');
         users.forEach(function(user){
-            user.cohort = cohort.id;
+            user.cohort = cohort._id;
             user.save();
-            if (user.role==='instructor') cohort.instructors.push(user);
-            else if (user.role==='student') cohort.students.push(user);
+            if (user.role==='instructor') cohort.instructors.push(user._id);
+            else if (user.role==='student') cohort.students.push(user._id);
         });
         return cohort.save();
     })

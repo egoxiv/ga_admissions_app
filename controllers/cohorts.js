@@ -10,4 +10,22 @@ cohorts.index = function(req, res){
   });
 };
 
+cohorts.show = function(req, res){
+  Cohort.findById(req.params.id, function(err, cohort){
+    if(err) return res.json(err);
+    cohort.populate('instructors', function(err){
+      if(err){
+        throw err;
+      }
+      cohort.populate('students', function(err){
+        if(err){
+          throw err;
+        }
+        section = cohort;
+        res.render('cohorts/show');
+      });
+    });
+  });
+};
+
 module.exports = cohorts;
