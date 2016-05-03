@@ -5,21 +5,23 @@ var bodyParser = require('body-parser');
 var session    = require('express-session');
 var app        = express();
 var db         = require('./config/db');
-var passport = require('passport');
+var methodOverride = require('method-override');
 
-var authRoutes = require('./routes/auth_route');
-var instructorRoutes = require('./routes/instructors');
-app.set('views', path.join(__dirname + '/views'));
+//override post methods on forms
+app.use(methodOverride('_method'));
 
 // Routes
 
 
 var userRoutes = require('./routes/user-routes/user-routes');
+var cohortsRoute = require('./routes/cohorts');
+var passport = require('passport');
+var authRoutes = require('./routes/auth_route');
 var submitRoute          = require('./routes/submit-routes/submit-routes');
 var studentRoutes        = require('./routes/student-routes/student');
 var instructorAuthRoutes = require('./routes/auth_route');
-var instructorRoutes     = require('./routes/instructors');
 
+app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'ejs');
 app.use( express.static(path.join(__dirname + '/public')));
 
@@ -44,6 +46,8 @@ app.use('/instructor', instructorRoutes);
 app.use('/user', userRoutes);
 
 app.use('/auth/github', authRoutes);
+
+app.use('/cohorts', cohortsRoute);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {

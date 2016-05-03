@@ -25,6 +25,8 @@ User.remove({})
 		cohort.campus='SM';
 		cohort.number = 22;
 		cohort.city='Santa Monica, CA';
+    cohort.start = new Date('March 7, 2016');
+    cohort.end = new Date('May 27, 2016');
 		users.forEach(function(user){
 			user.cohort = cohort.id;
 			user.save();
