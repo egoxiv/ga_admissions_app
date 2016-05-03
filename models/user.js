@@ -40,6 +40,7 @@ var userSchema = new mongoose.Schema({
       timeCommit: booleanNotesSchema,
       experience: notesSchema,
       attitude: notesSchema,
+      wpm: notesSchema,
       skill: notesSchema,
       hasMac:booleanNotesSchema,
       overall: notesSchema,
