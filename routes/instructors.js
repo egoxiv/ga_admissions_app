@@ -4,7 +4,7 @@ var instructorController = require('../controllers/instructor.js');
 
 router.route('/')
 	.get(instructorController.index)
-	.post(instructorController.update);
+	.post(require('connect-ensure-login').ensureLoggedIn('/instructor'),instructorController.update);
 
 router.route('/logout')
 	.get(instructorController.logout);
