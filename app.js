@@ -14,7 +14,7 @@ app.set('views', path.join(__dirname + '/views'));
 // Routes
 var submitRoute          = require('./routes/submit-routes/submit-routes');
 var studentRoutes        = require('./routes/student-routes/student');
-var instructorAuthRoutes = require('./routes/instructor-auth');
+var instructorAuthRoutes = require('./routes/auth_route');
 var instructorRoutes     = require('./routes/instructors');
 
 app.set('view engine', 'ejs');
