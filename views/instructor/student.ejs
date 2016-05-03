@@ -9,12 +9,14 @@
 	<div>
 		<% if(student != undefined){ %>
 			<h2>Student: <%= student.name %></h2>
+			<% if(!student.application.instructorEvaluation.completed) {%>
+				<p>This prospective student has not been evaluated yet!</p>
+			<% } %>
 			<ul>
 				<li><b><%= cohort %></b></li>
 				<li>Status: <%= student.role %></li>
 				<li>Email: <%= student.email %></li>
 				<li>Github: <a href="<%= student.github %>"><%= student.github %></a></li>
-				
 			</ul>
 			Evaluate <a href="/instructor/students/<%= student.id %>/evaluate"><%= student.name %></a> <br/>
 			<a href="/instructor">Back</a> <br/>

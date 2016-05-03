@@ -46,10 +46,11 @@ controller.update = function(req, res){
 			student.application.instructorEvaluation.skill = {rating: parseInt(req.body.skill), notes: req.body.skill_notes};
 			student.application.instructorEvaluation.hasMac = {rating: req.body.have_mac, notes: req.body.mac_notes};
 			student.application.instructorEvaluation.overall = {rating: parseInt(req.body.overall), notes: req.body.overall_notes};
+			student.application.instructorEvaluation.completed = true;
 			return student.save();
 		})
 		.then(function(student){
-			require('../config/nodemailer')(req.user.email,"Student Evaluated",student.name + " has been evaluated by "+req.user.name+"." ,"<h2>" + student.name + " has been evaluated by "+req.user.name+".</h2>");
+			require('../config/nodemailer')(req.user.email,"Student Evaluated",student.name + " has been evaluated by "+req.user.name+"." ,"<p>" + student.name + " has been evaluated by "+req.user.name+".</p>");
 			res.redirect('/instructor/students/'+req.body.student_id);
 		})
 		.catch(function(err){
