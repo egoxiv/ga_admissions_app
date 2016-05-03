@@ -6,7 +6,15 @@
 </head>
 <body>
 
-  <h1>Student Profile</h1>
+  <div class="container">
+
+    <h1>Student Profile</h1>
+    <p>Name: <%= student.name %></p>
+    <p>Email: <a href="mailto:<%= student.email %>"><%= student.email %></a></p>
+    <p><a href="<%= student.github %>">GitHub</a></p>
+    <p><a href="/">Go back</a></p>
+
+  </div>
 
 </body>
 </html>
