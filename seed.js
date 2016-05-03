@@ -15,7 +15,7 @@ User.remove({})
 			{name:'Matthew Parvinsmith', email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role:'student' },
 			{name:'Christina Regis', email:'christina.freeze@gmail.com',github:'https://github.com/christina-regis', role:'student' },
 			{name:'Evan Washington', email:'enavy04@gmail.com',github:'https://github.com/Navyvet1125', role:'student' },
-			{name:'Erik Gomez', email:'ego.xiv@gmail.com',github:'https://github.com/egoxiv', role:'student' },
+			{name:'Erik Gomez', email:'ego.xiv@gmail.com',github:'https://github.com/egoxiv', role:'instructor', avatar: 'http://cdn1-www.dogtime.com/assets/uploads/gallery/30-impossibly-cute-puppies/impossibly-cute-puppy-2.jpg' },
 			]);
 	})
 	.then(function(users){
