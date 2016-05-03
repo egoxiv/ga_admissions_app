@@ -11,19 +11,36 @@ var methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
 // Routes
-var signUpRoute = require('./routes/signup-routes/signup-routes');
 var cohortsRoute = require('./routes/cohorts');
+var passport = require('passport');
+var authRoutes = require('./routes/auth_route');
+var submitRoute          = require('./routes/submit-routes/submit-routes');
+var studentRoutes        = require('./routes/student-routes/student');
+var instructorAuthRoutes = require('./routes/auth_route');
 
+app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'ejs');
-app.use( express.static(__dirname + '/public') );
-
+app.use( express.static(path.join(__dirname + '/public')));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: 'unicorns', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use('/sign-up', signUpRoute);
+
+app.get('/', function(req, res) {
+  res.render('welcome/welcome');
+});
+
+app.use('/submits', submitRoute);
+
+app.use('/student', studentRoutes);
+
+app.use('/instructor', instructorRoutes);
+
+app.use('/auth/github', authRoutes);
 
 app.use('/cohorts', cohortsRoute);
 
