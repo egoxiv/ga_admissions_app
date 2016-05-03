@@ -23,7 +23,7 @@ var userSchema = new mongoose.Schema({
   instructor: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   admissions: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   role: {type: 'String', enum: [
-    'applicant',
+    // 'applicant',
     'student',
     'instructor',
     'admissions', //can change applicant to student
