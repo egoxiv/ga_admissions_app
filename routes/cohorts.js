@@ -8,6 +8,8 @@ router.post('/', cohorts.create);
 
 router.get('/new', cohorts.new);
 
+router.get('/api/:id', cohorts.api);
+
 router.get('/:id', cohorts.show);
 
 router.put('/:id', cohorts.update);
