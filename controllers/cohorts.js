@@ -15,6 +15,7 @@ cohorts.new = function(req, res){
 };
 
 cohorts.create = function(req, res){
+  console.log(req.body)
   var cohort = new Cohort();
   cohort.program = req.body.program;
   cohort.city = req.body.city;
@@ -28,13 +29,10 @@ cohorts.create = function(req, res){
         biggest = section.number;
       }
     });
-    console.log(biggest);
     cohort.number = biggest + 1;
     cohort.save(function(err){
       if(err) return res.json(err);
-      console.log('saved!');
-      //redirect not working
-      res.redirect('/cohorts');
+      res.redirect('/cohorts/' + cohort._id);
     });
   });
 };

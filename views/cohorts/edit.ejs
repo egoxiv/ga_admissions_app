@@ -8,37 +8,39 @@
 <body>
   <h1>Edit <%= section.name() %></h1>
 
-  <div class="form-group">
-    <label>Program:</label>
-    <input type="text" id="program" value="<%= section.program %>">
-  </div>
+  <form method="post" action="/cohorts/<%= section._id %>?_method=PUT">
+    <div class="form-group">
+      <label>Program:</label>
+      <input type="text" name="program" value="<%= section.program %>">
+    </div>
 
-  <div class="form-group">
-    <label>City:</label>
-    <input type="text" id="city" value="<%= section.city %>">
-  </div>
+    <div class="form-group">
+      <label>City:</label>
+      <input type="text" name="city" value="<%= section.city %>">
+    </div>
 
-  <div class="form-group">
-    <label>Campus:</label>
-    <input type="text" id="campus" value="<%= section.campus %>">
-  </div>
+    <div class="form-group">
+      <label>Campus:</label>
+      <input type="text" name="campus" value="<%= section.campus %>">
+    </div>
 
-  <div class="form-group">
-    <label>Number:</label>
-    <input type="number" id="number" value="<%= section.number %>">
-  </div>
+    <div class="form-group">
+      <label>Number:</label>
+      <input type="number" name="number" value="<%= section.number %>">
+    </div>
 
-  <div class="form-group">
-    <label>Start date:</label>
-    <input type="text" id="start" value="<%= section.startDate() %>">
-  </div>
+    <div class="form-group">
+      <label>Start date:</label>
+      <input type="text" name="start" value="<%= section.startDate() %>">
+    </div>
 
-  <div class="form-group">
-    <label>End date:</label>
-    <input type="text" id="end" value="<%= section.endDate() %>">
-  </div>
+    <div class="form-group">
+      <label>End date:</label>
+      <input type="text" name="end" value="<%= section.endDate() %>">
+    </div>
 
-  <button id="edit-cohort">Submit</button>
+    <button id="edit-cohort">Submit</button>
+  </form>
 
   <script src="/cohorts/js/edit.js"></script>
 </body>

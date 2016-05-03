@@ -5,6 +5,10 @@ var bodyParser = require('body-parser');
 var session    = require('express-session');
 var app        = express();
 var db         = require('./config/db');
+var methodOverride = require('method-override');
+
+//override post methods on forms
+app.use(methodOverride('_method'));
 
 // Routes
 var signUpRoute = require('./routes/signup-routes/signup-routes');
