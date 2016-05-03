@@ -12,11 +12,10 @@ var instructorRoutes = require('./routes/instructors');
 app.set('views', path.join(__dirname + '/views'));
 
 // Routes
-var signUpRoute = require('./routes/signup-routes/signup-routes');
+var submitRoute = require('./routes/submit-routes/submit-routes');
 
 app.set('view engine', 'ejs');
-app.use( express.static(__dirname + '/public') );
-
+app.use( express.static(path.join(__dirname + '/public')));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -26,7 +25,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use('/sign-up', signUpRoute);
+app.get('/', function(req, res) {
+  res.render('welcome/welcome');
+});
+
+app.use('/submits', submitRoute);
 
 // app.get('/instructor', function(req,res){
 
