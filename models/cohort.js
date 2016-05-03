@@ -9,9 +9,6 @@ var cohortSchema = new mongoose.Schema({
   instructors: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   students: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 });
-
-
-
 var Cohort = mongoose.model('Cohort', cohortSchema);
 
 module.exports = Cohort;

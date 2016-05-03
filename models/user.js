@@ -1,14 +1,27 @@
 var mongoose = require('mongoose');
 var Cohort = require('./cohort');
 
+var notesSchema = new mongoose.Schema({
+  rating: Number,
+  notes: String
+});
+var booleanNotesSchema = new mongoose.Schema({
+  rating: Boolean,
+  notes: String
+});
+
+
+
 var userSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
+  name: String,
   email: String,
+  ga_email: String,
+  access_token: String,
   phone: String,
   city: String,
   pictureUrl: String,
   github: String,
+  avatar: String,
   role: {type: 'String', enum: [
     'applicant',
     'student',
@@ -25,11 +38,17 @@ var userSchema = new mongoose.Schema({
     fieldInterest: String, //Why do they want to enroll in that program?
     websiteRepoUrl: String, //link to github repo for application assignment
     instructorEvaluation: {
-      rating: Number,
-      commited: Boolean,
-      attitude: String,
-      professionalism: String,
-      motivation: String,
+      onTime: booleanNotesSchema,
+      professionalism: notesSchema,
+      motivation: notesSchema,
+      commitment: notesSchema,
+      timeCommit: booleanNotesSchema,
+      experience: notesSchema,
+      attitude: notesSchema,
+      skill: notesSchema,
+      hasMac:booleanNotesSchema,
+      overall: notesSchema,
+
       //any addditional fields instructor fills out
     }
   },
