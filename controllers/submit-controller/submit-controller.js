@@ -1,19 +1,18 @@
+// Student.find({})
+var User       = require ('../../models/user');
+var passport   = require('passport');
+require('../../config/passport-github')(passport);
+
 var submitController = {};
 
+submitController.github = passport.authenticate('github', {scope: 'email'});
+submitController.callback=passport.authenticate('github', {successRedirect: '/instructor', failureRedirect:'/instructor'});
+
 submitController.index = function(req, res) {
-  var welcome = {
-    headline: 'Get more info',
-    inputs: ['Name', 'Email', 'Password']
-  };
-  message = welcome.headline;
-  inputValues = welcome.inputs;
   res.render('submit/submit');
 };
 
-submitController.create = function(req, res) {
-  // console.log(req.body);
-  console.log(res.body);
-};
+submitController.create = function(req, res) {};
 
 submitController.new = function(req, res) {};
 
