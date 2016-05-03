@@ -10,8 +10,6 @@ var booleanNotesSchema = new mongoose.Schema({
   notes: String
 });
 
-
-
 var userSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -21,8 +19,10 @@ var userSchema = new mongoose.Schema({
   city: String,
   github: String,
   avatar: String,
+  instructor: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  admissions: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   role: {type: 'String', enum: [
-    'applicant',
+    // 'applicant',
     'student',
     'instructor',
     'admissions', //can change applicant to student
@@ -47,7 +47,7 @@ var userSchema = new mongoose.Schema({
       skill: notesSchema,
       hasMac:booleanNotesSchema,
       overall: notesSchema,
-
+      completed: {type: Boolean, default: false}
       //any addditional fields instructor fills out
     }
   },
@@ -58,9 +58,6 @@ var userSchema = new mongoose.Schema({
 userSchema.statics.findByRole = function(role, cb){
   return this.find({role: role}, cb);
 };
-
-
-
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;

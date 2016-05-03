@@ -3,10 +3,9 @@ var userController = {};
 
 userController.index = function(req, res){
     User.find({role: 'student'}, function(err, users){
-      if(err){
-       throw err;
-     }
-      res.json(users);
+      for (var i = 0; i <= ; i++) {
+        Things[i]
+      }
     });
 };
 
