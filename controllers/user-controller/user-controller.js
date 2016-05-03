@@ -2,7 +2,7 @@ var User = require ('../../models/user');
 var userController = {};
 
 userController.index = function(req, res){
-    User.find({role: 'student'}, function(err, users){
+    User.find({role: 'student', 'application.status': 'enrolled'}, function(err, users){
       if(err){
        throw err;
      }

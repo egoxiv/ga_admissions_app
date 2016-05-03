@@ -29,7 +29,7 @@ var userSchema = new mongoose.Schema({
     'admin' //can add or remove anyone and change anyone's role
   ]},
   application: {
-    status: String,
+    status:{type: String, enum:['new applicant','pre evaluation', 'evaluated','enrolled','N/A'], default:'new applicant'},
     city: String,
     campus: String,
     program: String,

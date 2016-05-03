@@ -6,7 +6,9 @@
 </head>
 <body>
   <% users.forEach(function(user){ %>
-   <div> <%= user %></div>
+   <div >
+    <img src="<%= user.avatar %>"> <p><%= user.name %></p>
+    </div>
   <% }) %>
 </body>
 </html>
