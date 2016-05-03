@@ -7,12 +7,14 @@ var app        = express();
 var db         = require('./config/db');
 var passport = require('passport');
 
+var authRoutes = require('./routes/auth_route');
+var instructorRoutes = require('./routes/instructors');
 app.set('views', path.join(__dirname + '/views'));
 
 // Routes
 var submitRoute          = require('./routes/submit-routes/submit-routes');
 var studentRoutes        = require('./routes/student-routes/student');
-var instructorAuthRoutes = require('./routes/instructor-auth');
+var instructorAuthRoutes = require('./routes/auth_route');
 var instructorRoutes     = require('./routes/instructors');
 
 app.set('view engine', 'ejs');
@@ -36,7 +38,7 @@ app.use('/student', studentRoutes);
 
 app.use('/instructor', instructorRoutes);
 
-app.use('/auth/github', instructorAuthRoutes);
+app.use('/auth/github', authRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
