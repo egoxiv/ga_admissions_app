@@ -33,8 +33,6 @@ controller.index = function(req,res){
 };
 
 controller.update = function(req, res){
-	// res.send(req.body);
-	console.log(req.body.student_id);
 	User.findById(req.body.student_id)
 		.then(function(student){
 			console.log(student);
@@ -50,8 +48,8 @@ controller.update = function(req, res){
 			student.application.instructorEvaluation.overall = {rating: parseInt(req.body.overall), notes: req.body.overall_notes};
 			return student.save();
 		})
-		.then(function(user){
-			console.log(user.application.instructorEvaluation);
+		.then(function(student){
+			require('../config/nodemailer')(req.user.email,"Student Evaluated",student.name + " has been evaluated by "+req.user.name+"." ,"<h2>" + student.name + " has been evaluated by "+req.user.name+".</h2>");
 			res.redirect('/instructor/students/'+req.body.student_id);
 		})
 		.catch(function(err){
