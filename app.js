@@ -5,14 +5,17 @@ var bodyParser = require('body-parser');
 var session    = require('express-session');
 var app        = express();
 var db         = require('./config/db');
-
 var passport = require('passport');
+
 var authRoutes = require('./routes/auth_route');
 var instructorRoutes = require('./routes/instructors');
 app.set('views', path.join(__dirname + '/views'));
 
 // Routes
-var submitRoute = require('./routes/submit-routes/submit-routes');
+var submitRoute          = require('./routes/submit-routes/submit-routes');
+var studentRoutes        = require('./routes/student-routes/student');
+var instructorAuthRoutes = require('./routes/instructor-auth');
+var instructorRoutes     = require('./routes/instructors');
 
 app.set('view engine', 'ejs');
 app.use( express.static(path.join(__dirname + '/public')));
@@ -30,6 +33,8 @@ app.get('/', function(req, res) {
 });
 
 app.use('/submits', submitRoute);
+
+app.use('/student', studentRoutes);
 
 app.use('/instructor', instructorRoutes);
 
