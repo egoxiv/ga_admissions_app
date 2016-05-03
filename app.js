@@ -13,6 +13,7 @@ app.set('views', path.join(__dirname + '/views'));
 
 // Routes
 var submitRoute = require('./routes/submit-routes/submit-routes');
+var userRoutes = require('./routes/user-routes/user-routes');
 
 app.set('view engine', 'ejs');
 app.use( express.static(path.join(__dirname + '/public')));
@@ -32,6 +33,8 @@ app.get('/', function(req, res) {
 app.use('/submits', submitRoute);
 
 app.use('/instructor', instructorRoutes);
+
+app.use('/user', userRoutes);
 
 app.use('/auth/github', instructorAuthRoutes);
 
