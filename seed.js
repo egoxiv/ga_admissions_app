@@ -34,16 +34,6 @@ User.remove({})
     });
     return cohort.save();
   })
-  .then(function(){
-    var cohort = new Cohort();
-    cohort.program = 'WDI';
-    cohort.campus = 'SM';
-    cohort.number = 23;
-    cohort.city = 'Santa Monica, CA';
-    cohort.start = new Date('May 2, 2016');
-    cohort.end = new Date('July 22, 2016');
-    return cohort.save();
-  })
   .catch(function(err){
     console.log(err);
     return err;
