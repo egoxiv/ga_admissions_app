@@ -10,9 +10,9 @@ router.route('/callback')
 		console.log('The user is a ' + req.user.role);
 		switch(req.user.role){
 			case 'instructor':res.redirect('/instructor');
-			break;
+  			break;
 			case 'student':res.redirect('/student');
-			break;
+  			break;
 			default: res.redirect('/');
 		}
 	});

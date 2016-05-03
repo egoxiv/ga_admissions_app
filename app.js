@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var session    = require('express-session');
 var app        = express();
 var db         = require('./config/db');
+var passport   = require('passport');
 var methodOverride = require('method-override');
 
 //override post methods on forms
