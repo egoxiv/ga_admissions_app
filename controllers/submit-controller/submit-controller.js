@@ -9,6 +9,7 @@ submitController.github = passport.authenticate('github', {scope: 'email'});
 submitController.callback=passport.authenticate('github', {successRedirect: '/instructor', failureRedirect:'/instructor'});
 
 submitController.index = function(req, res) {
+
   res.render('submit/submit');
 };
 

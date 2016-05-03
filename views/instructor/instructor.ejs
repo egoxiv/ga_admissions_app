@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+	<% include ../partials/head %>
 	<title>General Assembly Admissions - Instructor Portal</title>
 </head>
 <body>
-	<h1>General Assembly Admissions - Instructor Portal</h1>
-	<div>
-		<% if(user != undefined){ %>
-			<h2>Welcome <%= user.name %></h2>
-			<% if(cohorts){ %>
-				<h3>cohorts</h3>
-				<ul>
-					<% for(var item in cohorts){ %>
-					<li>
-						<%= cohorts[item].name %>
-						<ul>
-							<% cohorts[item].students.forEach(function(student){ %>
-								<li><a href ="/instructor/students/<%= student.id %>"><%= student.name %></a></li>
-							<% }) %>
-						</ul>
-					</li>
-					<% } %>
-				</ul>
+	<div class="container">
+
+		<h1>General Assembly Admissions - Instructor Portal</h1>
+		<div>
+			<% if(user != undefined){ %>
+				<h2>Welcome <%= user.name %></h2>
+				<% if(cohorts){ %>
+					<h3>cohorts</h3>
+					<ul>
+						<% for(var item in cohorts){ %>
+						<li>
+							<%= cohorts[item].name %>
+							<ul>
+								<% cohorts[item].students.forEach(function(student){ %>
+									<li><a href ="/instructor/students/<%= student.id %>"><%= student.name %></a></li>
+								<% }) %>
+							</ul>
+						</li>
+						<% } %>
+					</ul>
+				<% } %>
+				<a href="/instructor/logout">logout</a>
+			<% } else { %>
+				<h2>Login with Github to begin...</h2>
+				<a href="/auth/github">Login</a>
 			<% } %>
-			<a href="/instructor/logout">logout</a>
-		<% } else { %>
-			<h2>Login with Github to begin...</h2>
-			<a href="/auth/github">Login</a>
-		<% } %>
+		</div>
 	</div>
 
 </body>

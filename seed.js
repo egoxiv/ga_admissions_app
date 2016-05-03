@@ -2,7 +2,6 @@ var db = require('./config/db');
 var Cohort = require('./models/cohort');
 var User = require('./models/user');
 
-
 User.remove({})
 	.then(function(){
 		return Cohort.remove();
@@ -16,7 +15,6 @@ User.remove({})
 			{name:'Christina Regis', email:'christina.freeze@gmail.com',github:'https://github.com/christina-regis', role:'instructor' },
 			{name:'Evan Washington', email:'enavy04@gmail.com',github:'https://github.com/Navyvet1125', role:'student', avatar: 'http://images.shibashake.com/wp-content/blogs.dir/7/files/2012/03/375757_10150889470687524_800937523_12981704_1473609087_n-520x346.jpg', 'application.status': 'enrolled' },
 			{name:'Erik Gomez', email:'ego.xiv@gmail.com',github:'https://github.com/egoxiv', role:'student', avatar: 'http://www.pawderosa.com/images/puppies.jpg', 'application.status': 'enrolled' },
-
 			]);
 	})
 	.then(function(users){
@@ -43,3 +41,5 @@ User.remove({})
 		console.log(results);
 		process.exit();
 	});
+
+
