@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= section.name() %></title>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1><%= section.name() %></h1>
+  <p>Start: <%= section.startDate() %></p>
+  <p>End: <%= section.endDate() %></p>
+
+  <p>Instructors:</p>
+  <div id="instructors"></div>
+
+  <p>Students:</p>
+  <div id="students"></div>
+
+  <a href="/cohorts/<%= section.id %>/edit">Edit this cohort</a>
+  <a href="/cohorts/">Back to index</a>
+
+  <div class="hidden" id="cohort-id"><%= section._id %></div>
+  <script src="/cohorts/js/show.js"></script>
+</body>
+</html>
+
+<style>
+.hidden{
+  display: none;
+}
+</style>

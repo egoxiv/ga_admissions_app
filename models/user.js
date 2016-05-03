@@ -26,6 +26,7 @@ var userSchema = new mongoose.Schema({
     // 'applicant',
     'student',
     'instructor',
+    'frontlines',
     'admissions', //can change applicant to student
     'admin' //can add or remove anyone and change anyone's role
   ]},
