@@ -2,12 +2,21 @@ var User = require ('../../models/user');
 var userController = {};
 
 userController.index = function(req, res){
-  User.find({}, function(err, users){
-    if(err){
-      throw err;
-    }
-    res.json(users);
-  });
+    User.find({role: 'student'}, function(err, users){
+      if(err){
+       throw err;
+     }
+      res.json(users);
+    });
 };
 
+
+// userController.index = function(req, res){
+//   User.find({}, function(err, users){
+//     if(err){
+//       throw err;
+//     }
+//     res.json(users);
+//   });
+// };
 module.exports = userController;
