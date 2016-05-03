@@ -16,7 +16,7 @@ router.put('/:id', cohorts.update);
 
 router.get('/:id/edit', cohorts.edit);
 
-router.get('/:id/remove-person', cohorts.removePerson);
+router.get('/:id/remove-instructor', cohorts.removeInstructor);
 
 
 module.exports = router;

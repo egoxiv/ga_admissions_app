@@ -27,6 +27,21 @@ cohortSchema.methods.endDate = function(){
   return day.substring(4);
 };
 
+cohortSchema.methods.removeInstructor = function(id){
+  var cohort = this;
+  User.findById(id, function(err, instructor){
+    if(err) throw err;
+    var index = cohort.instructors.indexOf(id);
+    cohort.instructors.splice(index, 1);
+    instructor.cohort = null;
+    instructor.save(function(err){
+      if(err) throw err;
+      console.log('bah-leeted');
+      return cohort.save();
+    });
+  });
+};
+
 var Cohort = mongoose.model('Cohort', cohortSchema);
 
 module.exports = Cohort;

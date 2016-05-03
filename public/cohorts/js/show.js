@@ -3,12 +3,17 @@ console.log('hello from show.js');
 var id = $('#cohort-id').text();
 
 $('body').on('click', '.remove-button', function(){
-  console.log($(this).parent().text());
-  var tooMuchText = $(this)
+  var litag = $(this).parent();
+  console.log(litag.text());
+  var data = $(this).closest('li').data();
+  console.log(data.id);
   $.ajax({
-    url: '/cohorts/' + id + 'remove-person',
+    url: '/cohorts/' + id + '/remove-instructor',
     data: {
-
+      instructorId: data.id,
+    },
+    success: function(){
+      litag.hide();
     }
   });
 });
@@ -28,6 +33,7 @@ var populateInstructor = function(){
       data.instructors.forEach(function(instructor){
         var $litag = $('<li>');
         $litag.text(instructor.name);
+        $litag.data({id: instructor._id});
         addRemoveButton($litag);
         $('#instructors').append($litag);
       });

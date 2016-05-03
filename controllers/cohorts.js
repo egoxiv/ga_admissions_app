@@ -79,8 +79,12 @@ cohorts.update = function(req, res){
   });
 };
 
-cohorts.removePerson = function(req, res){
-
+cohorts.removeInstructor = function(req, res){
+  Cohort.findById(req.params.id, function(err, cohort){
+    cohort.removeInstructor(req.query.instructorId);
+    console.log('removed');
+    res.json({message: 'deleted'});
+  });
 };
 
 cohorts.api = function(req, res){
