@@ -20,8 +20,8 @@ var userSchema = new mongoose.Schema({
   pictureUrl: String,
   github: String,
   avatar: String,
-  instructor: userSchema,
-  admissions: userSchema,
+  instructor: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  admissions: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   role: {type: 'String', enum: [
     'applicant',
     'student',
