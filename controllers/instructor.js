@@ -1,6 +1,6 @@
-var User = require ('../models/user');
-var Cohort = require ('../models/cohort');
-var passport = require('passport');
+var User       = require ('../models/user');
+var Cohort     = require ('../models/cohort');
+var passport   = require('passport');
 var db         = require('../config/db');
 require('../config/passport-github')(passport);
 
