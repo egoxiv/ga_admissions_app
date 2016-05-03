@@ -52,5 +52,3 @@ User.remove({})
     console.log(results);
     process.exit();
   });
-
->>>>>>> 08b194aec9be6b55e8b57a050ac093d2085af300
