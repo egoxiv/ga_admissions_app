@@ -35,7 +35,6 @@ var passportGithub = function(passport){
 				.catch(function(err){
 					throw err;
 				});
-
 		});
 	}));
 };
