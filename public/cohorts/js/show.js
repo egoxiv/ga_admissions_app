@@ -1,20 +1,23 @@
 console.log('hello from show.js');
 
-var id = $('.hidden').text();
+var id = $('#cohort-id').text();
 
-var removePerson = function(){
-  console.log('clicked');
-  $(this).closest('.li').remove();
-};
+$('body').on('click', '.remove-button', function(){
+  console.log($(this).parent().text());
+  var tooMuchText = $(this)
+  $.ajax({
+    url: '/cohorts/' + id + 'remove-person',
+    data: {
+
+    }
+  });
+});
 
 var addRemoveButton = function(element){
   var $button = $('<button>');
-  $button.attr('id', 'remove-button');
+  $button.addClass('remove-button');
   $button.text('Remove from cohort');
   element.append($button);
-  $button.on('click', function(){
-    removePerson();
-  });
 };
 
 var populateInstructor = function(){
@@ -24,7 +27,6 @@ var populateInstructor = function(){
       $('#instructors').html('');
       data.instructors.forEach(function(instructor){
         var $litag = $('<li>');
-        $litag.addClass('li');
         $litag.text(instructor.name);
         addRemoveButton($litag);
         $('#instructors').append($litag);
@@ -49,3 +51,4 @@ var populateStudent = function(){
 
 populateInstructor();
 populateStudent();
+

@@ -32,6 +32,7 @@ cohorts.create = function(req, res){
     cohort.number = biggest + 1;
     cohort.save(function(err){
       if(err) return res.json(err);
+      console.log('saved!');
       //redirect not working
       res.redirect('/cohorts');
     });
@@ -76,6 +77,10 @@ cohorts.update = function(req, res){
       res.redirect('/cohorts/' + cohort._id);
     });
   });
+};
+
+cohorts.removePerson = function(req, res){
+
 };
 
 cohorts.api = function(req, res){
