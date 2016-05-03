@@ -23,8 +23,7 @@ var passportGithub = function(passport){
 			User.findOne({'email': profile._json.email})
 				.then(function(user){
 					if(user){
-						if (user.role === 'instructor') return user;
-						else return null;
+						return user;
 					}
 					else{
 						return null;
