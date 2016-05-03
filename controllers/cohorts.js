@@ -15,7 +15,6 @@ cohorts.new = function(req, res){
 };
 
 cohorts.create = function(req, res){
-  console.log(req.body)
   var cohort = new Cohort();
   cohort.program = req.body.program;
   cohort.city = req.body.city;
@@ -80,7 +79,13 @@ cohorts.update = function(req, res){
 cohorts.removeInstructor = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     cohort.removeInstructor(req.query.instructorId);
-    console.log('removed');
+    res.json({message: 'deleted'});
+  });
+};
+
+cohorts.removeStudent = function(req, res){
+  Cohort.findById(req.params.id, function(err, cohort){
+    cohort.removeStudent(req.query.studentId);
     res.json({message: 'deleted'});
   });
 };

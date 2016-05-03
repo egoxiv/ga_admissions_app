@@ -36,7 +36,20 @@ cohortSchema.methods.removeInstructor = function(id){
     instructor.cohort = null;
     instructor.save(function(err){
       if(err) throw err;
-      console.log('bah-leeted');
+      return cohort.save();
+    });
+  });
+};
+
+cohortSchema.methods.removeStudent = function(id){
+  var cohort = this;
+  User.findById(id, function(err, student){
+    if(err) throw err;
+    var index = cohort.students.indexOf(id);
+    cohort.students.splice(index, 1);
+    student.cohort = null;
+    student.save(function(err){
+      if(err) throw err;
       return cohort.save();
     });
   });
