@@ -12,9 +12,9 @@ User.remove({})
 			{name:'Phil Lamplugh', email:'philco@ga.com',github:'https://github.com/phlco', role:'instructor' },
 			{name:'Kate Wood', email:'katewood611@gmail.com',github:'https://github.com/KateWood', role:'instructor' },
 			{name:'Matt Gutierrez', email:'matthew.gutierrez@generalassemb.ly',github:'https://github.com/fatchicken007', role:'instructor' },
-			{name:'Matthew Parvinsmith', email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role:'student' },
+			{name:'Matthew Parvinsmith', email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role:'student', avatar: 'https://s-media-cache-ak0.pinimg.com/736x/9b/d5/c9/9bd5c957b749031cc24291824276623b.jpg', 'application.status': 'enrolled'},
 			{name:'Christina Regis', email:'christina.freeze@gmail.com',github:'https://github.com/christina-regis', role:'instructor' },
-			{name:'Evan Washington', email:'enavy04@gmail.com',github:'https://github.com/Navyvet1125', role:'student' },
+			{name:'Evan Washington', email:'enavy04@gmail.com',github:'https://github.com/Navyvet1125', role:'student', avatar: 'http://images.shibashake.com/wp-content/blogs.dir/7/files/2012/03/375757_10150889470687524_800937523_12981704_1473609087_n-520x346.jpg', 'application.status': 'enrolled' },
 			{name:'Erik Gomez', email:'ego.xiv@gmail.com',github:'https://github.com/egoxiv', role:'student', avatar: 'http://www.pawderosa.com/images/puppies.jpg', 'application.status': 'enrolled' },
 
 			]);
