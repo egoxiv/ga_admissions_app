@@ -4,8 +4,7 @@ var mongoUrl = process.env.MONGO_URL || 'mongodb://localhost:27017/ga_admissions
 
 mongoose.connect(mongoUrl, function(err){
   if(err){
-    // throw err;
-    console.log(err);
+    throw err;
   }
   console.log('database connected');
 });
