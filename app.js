@@ -31,12 +31,10 @@ app.get('/', function(req, res) {
 
 app.use('/submits', submitRoute);
 
-// app.get('/instructor', function(req,res){
-
-// 	res.render('instructor', {user:req.user});
-// });
 app.use('/instructor', instructorRoutes);
+
 app.use('/auth/github', instructorAuthRoutes);
+
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log('Magic on:' + port);
