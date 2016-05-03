@@ -26,8 +26,17 @@ var passportGithub = function(passport){
 						return user;
 					}
 					else{
-						// console.log();
-						return null;
+						console.log(profile);
+						var newUser = new User();
+						newUser.access_token =access_token;
+						newUser.name =profile._json.name;
+						newUser.email =profile._json.email;
+						newUser.github = profile._json.url;
+						newUser.city = profile._json.location;
+						newUser.avatar =profile._json.avatar_url;
+						newUser.role='student';
+						newUser.student_status= 'new applicant';
+						return newUser.save();
 					}
 				})
 				.then(function(user){

@@ -36,6 +36,8 @@ controller.update = function(req, res){
 	User.findById(req.body.student_id)
 		.then(function(student){
 			console.log(student);
+			student.application.status = 'evaluated';
+			student.application.instructorEvaluation.whyGA = req.body.why_ga;
 			student.application.instructorEvaluation.onTime = {rating: req.body.on_time, notes: req.body.on_time_notes};
 			student.application.instructorEvaluation.professionalism = {rating: parseInt(req.body.professionalism), notes: req.body.professionalism_notes};
 			student.application.instructorEvaluation.motivation = {rating: parseInt(req.body.motivated), notes: req.body.motivated_notes};

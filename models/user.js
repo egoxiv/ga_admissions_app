@@ -17,27 +17,22 @@ var userSchema = new mongoose.Schema({
   access_token: String,
   phone: String,
   city: String,
-  pictureUrl: String,
   github: String,
   avatar: String,
   instructor: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   admissions: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   role: {type: 'String', enum: [
-    // 'applicant',
     'student',
     'instructor',
     'admissions', //can change applicant to student
     'admin' //can add or remove anyone and change anyone's role
   ]},
   application: {
-    status: String,
-    city: String,
+    status:{type: String, enum:['new applicant','pre evaluation', 'evaluated','enrolled','N/A'], default:'new applicant'},
     campus: String,
-    program: String,
-    whyGA: String, //Why did they choose GA?
-    fieldInterest: String, //Why do they want to enroll in that program?
-    websiteRepoUrl: String, //link to github repo for application assignment
+    program: {type: String, default:'WDI'},
     instructorEvaluation: {
+      whyGA: String, //Why did they choose GA?
       onTime: booleanNotesSchema,
       professionalism: notesSchema,
       motivation: notesSchema,
