@@ -3,19 +3,11 @@ var userController = {};
 
 userController.index = function(req, res){
     User.find({role: 'student'}, function(err, users){
-      for (var i = 0; i <= ; i++) {
-        Things[i]
-      }
+      if(err){
+       throw err;
+     }
+      res.render('user/user', {users: users});
     });
 };
 
-
-// userController.index = function(req, res){
-//   User.find({}, function(err, users){
-//     if(err){
-//       throw err;
-//     }
-//     res.json(users);
-//   });
-// };
 module.exports = userController;
