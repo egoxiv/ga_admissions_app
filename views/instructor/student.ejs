@@ -5,8 +5,29 @@
 	<title>General Assembly Admissions - Instructor Portal</title>
 </head>
 <body>
-	<h1>General Assembly Admissions - Student Access</h1>
-
-
-</body>
+<div class="container">
+​
+  	<h1>General Assembly Admissions - Student Access</h1>
+    <div>
+      <% if(student != undefined){ %>
+        <h2>Student: <%= student.name %></h2>
+        <% if(!student.application.instructorEvaluation.completed) {%>
+          <p>This prospective student has not been evaluated yet!</p>
+      <% } %>
+        <ul>
+          <li><b><%= cohort %></b></li>
+          <li>Status: <%= student.role %></li>
+          <li>Email: <%= student.email %></li>
+          <li>Github: <a href="<%= student.github %>"><%= student.github %></a></li>
+        </ul>
+        <p>Evaluate <a href="/instructor/students/<%= student.id %>/evaluate"><%= student.name %></a></p>
+        <a href="/instructor">Back</a> <br/>
+        <a href="/student/logout">logout</a>
+      <% } else { %>
+        <h2>An error has occured...</h2>
+        <a href="/instructor">Back</a>
+      <% } %>
+    </div>
+​
+  </div></body>
 </html>
