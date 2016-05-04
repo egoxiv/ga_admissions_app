@@ -9,13 +9,18 @@
 <body>
 
   <div class="container">
-
-    <h1>Student Profile</h1>
-    <img src="<%= student.avatar %>">
-    <p>Name: <%= student.name %></p>
-    <p>Email: <a href="mailto:<%= student.email %>"><%= student.email %></a></p>
-    <p><a href="<%= student.github %>">GitHub</a></p>
-    <p><a href="/">Go back</a></p>
+	<% if(student != undefined){ %>
+		<h1>Student Profile</h1>
+	    <img src="<%= student.avatar %>">
+	    <p>Name: <%= student.name %></p>
+	    <p>Email: <a href="mailto:<%= student.email %>"><%= student.email %></a></p>
+	    <p><a href="<%= student.github %>">GitHub</a></p>
+	    <p><a href="/">Go back</a></p>
+		<a href="/student/logout">logout</a>
+	<% } else { %>
+		<h2>Login with Github to begin...</h2>
+		<a href="/auth/github">Login</a>
+	<% } %>
 
   </div>
 
