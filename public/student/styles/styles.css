@@ -1,8 +1,13 @@
+body {
+  text-align: center;
+}
+
 .btn-github {
   color: #fff;
   background-color: #444;
   border-color: rgba(0,0,0,0.2);
   width: 200px;
+  margin: 0 auto;
 }
 
 .btn-github:hover {
@@ -28,4 +33,12 @@
   font-size: 1.6em;
   text-align: center;
   border-right: 1px solid rgba(0,0,0,0.2);
+}
+
+img {
+  max-width: 300px;
+}
+
+h1 {
+  font-size: 4em;
 }
