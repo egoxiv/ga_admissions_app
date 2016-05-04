@@ -2,19 +2,45 @@
 <html>
 <head>
 	<title>General Assembly Admissions - Admissions Portal</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<h2>New Applicants</h2>
 	<ul>
 		<% students.forEach(function(student){ %>
-			<li><%= student.name %></li>
+			<li>
+			<i><%= student.name %></i> Instructor:
+				<select id="<%= student.id %>">
+  					<option value="add">Add Instructor:</option>
+					<% instructors.forEach(function(instuctor){ %>
+  						<option value="<%= instuctor.id %>"><%= instuctor.name %></option>
+					<% }) %>
+				</select>
+				<input type="date" class="date-picker"/>
+				<button>update</button>
+			</li>
 		<% }) %>
 		
 	</ul>
+	
+	<h2>Instructors</h2>
+	
 	<ul>
 		<% instructors.forEach(function(instuctor){ %>
 			<li><%= instuctor.name %></li>
 		<% }) %>
 		
 	</ul>
+	
+	<h2>Admissions</h2>
+	<ul>
+		<% admissions.forEach(function(admiss){ %>
+			<li><%= admiss.name %></li>
+		<% }) %>
+		
+	</ul>
+	<script type="text/javascript" src="/admissions/js/main.js"></script>
 </body>
 </html>
