@@ -99,12 +99,13 @@ $('#add-instructor-button').on('click', function(event){
       name: $('#new-instructor').val()
     },
     success: function(data){
-      $('#new-instructor').val('');
-      populateInstructor();
-    },
-    failure: function(data){
-      $('#error').text('That instructor either already has a cohort assigned to them or they do not exist.');
-      $('#error').show();
+      if(data.error){
+        $('#error').text(data.error);
+        $('#error').show();
+      } else {
+        $('#new-instructor').val('');
+        populateInstructor();
+      }
     }
   });
 });
@@ -117,12 +118,13 @@ $('#add-student-button').on('click', function(event){
       name: $('#new-student').val()
     },
     success: function(data){
-      $('#new-student').val('');
-      populateStudent();
-    },
-    failure: function(data){
-      $('#error').text('That student either already has a cohort assigned to them or they do not exist.');
-      $('#error').show();
+      if(data.error){
+        $('#error').text(data.error);
+        $('#error').show();
+      } else {
+        $('#new-student').val('');
+        populateStudent();
+      }
     }
   });
 });
