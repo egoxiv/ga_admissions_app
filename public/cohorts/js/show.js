@@ -7,30 +7,30 @@ $('body').on('click', 'button', function(){
 });
 
 $('body').on('click', '.remove-instructor-button', function(){
-  var litag = $(this).parent();
-  var data = $(this).closest('li').data();
+  var trtag = $(this).parent().parent();
+  var data = $(this).closest('td').data();
   $.ajax({
     url: '/cohorts/' + id + '/remove-instructor',
     data: {
       instructorId: data.id,
     },
     success: function(){
-      litag.hide();
+      trtag.hide();
       $('#add-instructor').show();
     }
   });
 });
 
 $('body').on('click', '.remove-student-button', function(){
-  var litag = $(this).parent();
-  var data = $(this).closest('li').data();
+  var trtag = $(this).parent().parent();
+  var data = $(this).closest('td').data();
   $.ajax({
     url: '/cohorts/' + id + '/remove-student',
     data: {
       studentId: data.id,
     },
     success: function(){
-      litag.hide();
+      trtag.hide();
       $('#add-student').show();
     }
   });
@@ -56,11 +56,15 @@ var populateInstructor = function(){
     success: function(data){
       $('#instructors').html('');
       data.instructors.forEach(function(instructor){
-        var $litag = $('<li>');
-        $litag.text(instructor.name);
-        $litag.data({id: instructor._id});
-        addInstructorRemoveButton($litag);
-        $('#instructors').append($litag);
+        var $trtag = $('<tr>');
+        var $tdtag1 = $('<td>');
+        var $tdtag2 = $('<td>');
+        $tdtag1.text(instructor.name);
+        $tdtag2.data({id: instructor._id});
+        addInstructorRemoveButton($tdtag2);
+        $trtag.append($tdtag1);
+        $trtag.append($tdtag2);
+        $('#instructors').append($trtag);
       });
       if(data.instructors.length >= 3){
         $('#add-instructor').hide();
@@ -75,11 +79,15 @@ var populateStudent = function(){
     success: function(data){
       $('#students').html('');
       data.students.forEach(function(student){
-        var $litag = $('<li>');
-        $litag.text(student.name);
-        $litag.data({id: student._id});
-        addStudentRemoveButton($litag);
-        $('#students').append($litag);
+        var $trtag = $('<tr>');
+        var $tdtag1 = $('<td>');
+        var $tdtag2 = $('<td>');
+        $tdtag1.text(student.name);
+        $tdtag2.data({id: student._id});
+        addStudentRemoveButton($tdtag2);
+        $trtag.append($tdtag1);
+        $trtag.append($tdtag2);
+        $('#students').append($trtag);
       });
       if(data.students.length >= 20){
         $('#add-student').hide();
