@@ -33,6 +33,7 @@ var userSchema = new mongoose.Schema({
     campus: String,
     program: {type: String, default:'WDI'},
     instructorEvaluation: {
+      dateAndTime :Date,
       whyGA: String, //Why did they choose GA?
       onTime: booleanNotesSchema,
       professionalism: notesSchema,
