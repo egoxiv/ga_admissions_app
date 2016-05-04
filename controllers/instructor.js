@@ -56,8 +56,8 @@ controller.update = function(req, res){
 		.catch(function(err){
 			throw err;
 		});
-
 };
+
 controller.show = function(req, res){
 	if(req.user.role !== 'instructor') res.redirect('/student');
 	var results;
@@ -71,6 +71,7 @@ controller.show = function(req, res){
 			res.render('instructor/student',{student:results, cohort: cohortName});
 		});
 };
+
 controller.edit = function(req, res){
 	if(req.user.role !== 'instructor') res.redirect('/student');
 	var results;

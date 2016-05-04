@@ -44,7 +44,7 @@ var userSchema = new mongoose.Schema({
       attitude: notesSchema,
       wpm: notesSchema,
       skill: notesSchema,
-      hasMac:booleanNotesSchema,
+      hasMac: booleanNotesSchema,
       overall: notesSchema,
       completed: {type: Boolean, default: false}
       //any addditional fields instructor fills out

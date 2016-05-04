@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<% include ../partials/head %>
 	<title>General Assembly Admissions - Admissions Portal</title>
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<h2>New Applicants</h2>
@@ -22,25 +20,24 @@
 				<button>update</button>
 			</li>
 		<% }) %>
-		
+
 	</ul>
-	
+
 	<h2>Instructors</h2>
-	
+
 	<ul>
 		<% instructors.forEach(function(instuctor){ %>
 			<li><%= instuctor.name %></li>
 		<% }) %>
-		
 	</ul>
-	
+
 	<h2>Admissions</h2>
 	<ul>
 		<% admissions.forEach(function(admiss){ %>
 			<li><%= admiss.name %></li>
 		<% }) %>
-		
 	</ul>
+	<a href="/admissions/status">View status</a>
 	<script type="text/javascript" src="/admissions/js/main.js"></script>
 </body>
 </html>
