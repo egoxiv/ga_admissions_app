@@ -7,10 +7,6 @@ require('../config/passport-github')(passport);
 // var mongoose = require('mongoose');
 var controller = {};
 
-controller.github = passport.authenticate('github', {scope: 'email'});
-controller.callback=passport.authenticate('github', {successRedirect: '/instructor', failureRedirect:'/instructor'});
-
-
 controller.index = function(req,res){
 if(req.user !== undefined && req.user.role !=='instructor') res.redirect('/student');
 	var cohortList={};
@@ -92,7 +88,7 @@ controller.edit = function(req, res){
 
 controller.logout = function(req,res){
 	req.logout();
-	res.redirect('/instructor');
+	res.redirect('/');
 };
 
 module.exports = controller;

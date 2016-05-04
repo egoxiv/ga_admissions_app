@@ -30,16 +30,15 @@ app.use(session({ secret: 'unicorns', resave: false, saveUninitialized: false })
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.get('/', function(req, res) {
   res.render('welcome/welcome');
 });
 
-app.use('/submits', submitRoute);
-
 app.use('/student', studentRoutes);
 
 app.use('/instructor', instructorRoutes);
+
+app.use('/admissions', admissionsRoutes);
 
 app.use('/auth/github', authRoutes);
 
