@@ -16,7 +16,6 @@ var mailer = function(userTo, subject, body, htmlBody){
      text: body, // plaintext body
      html: htmlBody // html body
   };
-
   // send mail with defined transport object
   smtpTransport.sendMail(mailOptions, function(error, response){
      if(error){
@@ -24,7 +23,6 @@ var mailer = function(userTo, subject, body, htmlBody){
      }else{
          console.log("Message sent: " + response.message);
      }
-
      // if you don't want to use this transport object anymore, uncomment following line
      //smtpTransport.close(); // shut down the connection pool, no more messages
   });
