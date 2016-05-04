@@ -2,6 +2,10 @@ console.log('hello from show.js');
 
 var id = $('#cohort-id').text();
 
+$('body').on('click', 'button', function(){
+  $('#error').hide();
+});
+
 $('body').on('click', '.remove-instructor-button', function(){
   var litag = $(this).parent();
   var data = $(this).closest('li').data();
@@ -12,6 +16,7 @@ $('body').on('click', '.remove-instructor-button', function(){
     },
     success: function(){
       litag.hide();
+      $('#add-instructor').show();
     }
   });
 });
@@ -26,6 +31,7 @@ $('body').on('click', '.remove-student-button', function(){
     },
     success: function(){
       litag.hide();
+      $('#add-student').show();
     }
   });
 });
@@ -56,6 +62,9 @@ var populateInstructor = function(){
         addInstructorRemoveButton($litag);
         $('#instructors').append($litag);
       });
+      if(data.instructors.length >= 3){
+        $('#add-instructor').hide();
+      }
     }
   });
 };
@@ -72,10 +81,64 @@ var populateStudent = function(){
         addStudentRemoveButton($litag);
         $('#students').append($litag);
       });
+      if(data.students.length >= 20){
+        $('#add-student').hide();
+      }
     }
   });
 };
 
 populateInstructor();
 populateStudent();
+
+$('#add-instructor-button').on('click', function(event){
+  $.ajax({
+    method: 'put',
+    url: '/cohorts/' + id + '/add-instructor',
+    data: {
+      name: $('#new-instructor').val()
+    },
+    success: function(data){
+      $('#new-instructor').val('');
+      populateInstructor();
+    },
+    failure: function(data){
+      $('#error').text('That instructor either already has a cohort assigned to them or they do not exist.');
+      $('#error').show();
+    }
+  });
+});
+
+$('#add-student-button').on('click', function(event){
+  $.ajax({
+    method: 'put',
+    url: '/cohorts/' + id + '/add-student',
+    data: {
+      name: $('#new-student').val()
+    },
+    success: function(data){
+      $('#new-student').val('');
+      populateStudent();
+    },
+    failure: function(data){
+      $('#error').text('That student either already has a cohort assigned to them or they do not exist.');
+      $('#error').show();
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

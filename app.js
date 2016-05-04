@@ -1,11 +1,11 @@
-var express    = require('express');
-var path       = require('path');
-var logger     = require('morgan');
-var bodyParser = require('body-parser');
-var session    = require('express-session');
-var app        = express();
-var db         = require('./config/db');
-var passport   = require('passport');
+var express        = require('express');
+var path           = require('path');
+var logger         = require('morgan');
+var bodyParser     = require('body-parser');
+var session        = require('express-session');
+var app            = express();
+var db             = require('./config/db');
+var passport       = require('passport');
 var methodOverride = require('method-override');
 
 //override post methods on forms
@@ -21,8 +21,8 @@ var admissionsRoutes 	 = require('./routes/admissions');
 
 app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'ejs');
-app.use( express.static(path.join(__dirname + '/public')));
 
+app.use( express.static(path.join(__dirname + '/public')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,15 +30,14 @@ app.use(session({ secret: 'unicorns', resave: false, saveUninitialized: false })
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.get('/', function(req, res) {
   res.render('welcome/welcome');
 });
 
-
 app.use('/student', studentRoutes);
 
 app.use('/instructor', instructorRoutes);
+
 app.use('/admissions', admissionsRoutes);
 
 app.use('/auth', authRoutes);

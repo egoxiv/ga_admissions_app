@@ -2,6 +2,7 @@
 <html>
 <head>
 	<% include ../partials/head %>
+	<link rel="stylesheet" type="text/css" href="/instructor/styles/styles.css">
 	<title>General Assembly Admissions - Instructor Portal</title>
 </head>
 <body>
@@ -19,7 +20,8 @@
 				<a href="/instructor/logout">logout</a>
 			<% } else { %>
 				<h2>Login with Github to begin...</h2>
-				<a href="/auth/github">Login</a>
+				<a href="/auth/github" class="btn btn-block btn-social btn-github btn-md">
+		      <i class="fa fa-github"></i> Sign in with GitHub</a>
 			<% } %>
 		</div>
 	</div>
