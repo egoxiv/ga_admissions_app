@@ -1,16 +1,48 @@
 var User = require('../models/user');
 var GithubStrategy = require('passport-github').Strategy;
+var GoogleStrategy = require('passport-google-oauth2').Strategy;
+
 
 var passportGithub = function(passport){
 	passport.serializeUser( function(user,done){
 		done(null,user._id);
 	});
 	passport.deserializeUser(function(id,done){
-		User.findById(id, function(err,user){
-			console.log('deserializing user...');
+		var newId;
+		if(typeof id!=='string') newId = id[0]._id;
+		else newId = id;
+		console.log(newId);
+		User.findById(newId, function(err,user){
+			console.log('deserializing user...',user);
 			done(err, user);
 		});
 	});
+
+  passport.use('google', new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: 'http://127.0.0.1:3000/auth/google/callback',
+    passReqToCallback: true,
+  }, function(request, accessToken, refreshToken, profile, done){
+        console.log('This is where we are!!!');
+        console.log(profile.emails[0].value);
+        User.findOne({'ga_email': profile.emails[0].value}, function(err, user){
+          if (err) return done(err);
+          if (user) {
+            return done(null, user);
+          }
+          else {
+            var newUser = new User();
+            newUser.access_token = access_token;
+            newUser.name = profile.displayName;
+            newUser.save(function(err){
+              if (err)
+                throw err;
+              return done(null, newUser);
+            });
+          }
+        });
+  }));
 
 	passport.use('github', new GithubStrategy({
 		clientID: process.env.GITHUB_API_KEY,
@@ -48,6 +80,8 @@ var passportGithub = function(passport){
 				});
 		});
 	}));
+
+
 };
 
 module.exports = passportGithub;

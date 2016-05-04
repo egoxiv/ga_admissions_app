@@ -2,7 +2,7 @@ var User       = require ('../models/user');
 var Cohort     = require ('../models/cohort');
 var passport   = require('passport');
 var db         = require('../config/db');
-require('../config/passport-github')(passport);
+require('../config/passport')(passport);
 
 // var mongoose = require('mongoose');
 var controller = {};
@@ -89,7 +89,16 @@ controller.logout = function(req,res){
 };
 
 controller.evaluated.index= function(req,res){};
-controller.evaluated.show= function(req,res){};
+
+controller.evaluated.show= function(req,res){  //  Status: In /admissions user can click on 'View status' and then be routed to /admissions/status which will run controller.status and render a list of all students with 'application.status': 'evaluated', if any errors are caught in catch and rendered as JSON.
+  User.find({role: 'student', 'application.status':'evaluated'})
+    .then(function(student) {
+      res.render('admissions/status', {student: student});
+    }).catch(function(error) {
+      res.json({ error: error });
+    });
+};
+
 controller.evaluated.update= function(req,res){};
 controller.evaluated.delete= function(req,res){};
 

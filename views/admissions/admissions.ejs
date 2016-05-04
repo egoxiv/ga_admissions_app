@@ -7,52 +7,58 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h2>New Applicants</h2>
-	<ul>
-		<% students.forEach(function(student){ %>
-			<li>
-			<i><%= student.name %></i> Instructor:
-				<select id="<%= student.id %>">
-  					<option value="add">Add Instructor:</option>
-					<% instructors.forEach(function(instuctor){ %>
-  						<option value="<%= instuctor.id %>"><%= instuctor.name %></option>
-					<% }) %>
-				</select>
-				Time:
-				<select class="time">
-  					<option value="10:00">10:00</option>
-  					<option value="10:30">10:30</option>
-  					<option value="11:00">11:00</option>
-  					<option value="11:30">11:30</option>
-  					<option value="2:30">2:30</option>
-  					<option value="3:00">3:00</option>
-  					<option value="3:30">3:30</option>
-  					<option value="4:00">4:00</option>
-  					<option value="4:30">4:30</option>
-				</select>
-				<input type="date" class="date-picker"/>
-				<button>update</button>
-			</li>
-		<% }) %>
+	<% if(user != undefined){ %>
+		<h1><%= user.name %></h1>
+		<h2>New Applicants</h2>
+		<ul>
+			<% students.forEach(function(student){ %>
+				<li>
+				<i><%= student.name %></i> Instructor:
+					<select id="<%= student.id %>">
+	  					<option value="add">Add Instructor:</option>
+						<% instructors.forEach(function(instuctor){ %>
+	  						<option value="<%= instuctor.id %>"><%= instuctor.name %></option>
+						<% }) %>
+					</select>
+					Time:
+					<select class="time">
+	  					<option value="10:00">10:00</option>
+	  					<option value="10:30">10:30</option>
+	  					<option value="11:00">11:00</option>
+	  					<option value="11:30">11:30</option>
+	  					<option value="2:30">2:30</option>
+	  					<option value="3:00">3:00</option>
+	  					<option value="3:30">3:30</option>
+	  					<option value="4:00">4:00</option>
+	  					<option value="4:30">4:30</option>
+					</select>
+					<input type="date" class="date-picker"/>
+					<button>update</button>
+				</li>
+			<% }) %>
+			
+		</ul>
 		
-	</ul>
-	
-	<h2>Instructors</h2>
-	
-	<ul>
-		<% instructors.forEach(function(instuctor){ %>
-			<li><%= instuctor.name %></li>
-		<% }) %>
+		<h2>Instructors</h2>
 		
-	</ul>
-	
-	<h2>Admissions</h2>
-	<ul>
-		<% admissions.forEach(function(admiss){ %>
-			<li><%= admiss.name %></li>
-		<% }) %>
+		<ul>
+			<% instructors.forEach(function(instuctor){ %>
+				<li><%= instuctor.name %></li>
+			<% }) %>
+			
+		</ul>
 		
-	</ul>
-	<script type="text/javascript" src="/admissions/js/main.js"></script>
+		<h2>Admissions</h2>
+		<ul>
+			<% admissions.forEach(function(admiss){ %>
+				<li><%= admiss.name %></li>
+			<% }) %>
+			
+		</ul>
+		<a href="/admissions/logout">logout</a>
+		<script type="text/javascript" src="/admissions/js/main.js"></script>
+	<% } else { %>
+		<a href="/auth/google" class="btn btn-default">Admissions</a>
+	<% } %>
 </body>
 </html>

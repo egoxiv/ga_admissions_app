@@ -10,8 +10,8 @@ var controller = {};
 
 
 controller.index = function(req,res){
-if(req.user === undefined) res.redirect('/');
-if(req.user !== undefined && req.user.role !=='admissions') res.redirect('/');
+// if(req.user === undefined) res.redirect('/');
+// if(req.user !== undefined && req.user.role !=='admissions') res.redirect('/');
 	console.log(req.user);
 	var newApplicants;
 	var currentInstructors;
