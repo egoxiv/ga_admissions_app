@@ -93,7 +93,7 @@ cohorts.removeStudent = function(req, res){
 cohorts.addInstructor = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     if(err) return res.json(err);
-    User.findOne({name: req.body.name, role: 'instructor'}, function(err, instructor){
+    User.searchNameAndRole(req.body.name, 'instructor', function(err, instructor){
       if(err) {
         return res.json({error: err});
       } else if(!instructor){
@@ -111,7 +111,7 @@ cohorts.addInstructor = function(req, res){
 cohorts.addStudent = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     if(err) return res.json(err);
-    User.findOne({name: req.body.name, role: 'student'}, function(err, student){
+    User.searchNameAndRole(req.body.name, 'student', function(err, student){
       if(err) {
         return res.json({error: err});
       } else if (!student){
