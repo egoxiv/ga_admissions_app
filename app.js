@@ -15,7 +15,6 @@ app.use(methodOverride('_method'));
 var cohortsRoute         = require('./routes/cohorts');
 var passport             = require('passport');
 var authRoutes           = require('./routes/auth_route');
-var submitRoute          = require('./routes/submit-routes/submit-routes');
 var studentRoutes        = require('./routes/student-routes/student');
 var instructorRoutes     = require('./routes/instructors');
 
@@ -34,8 +33,6 @@ app.use(passport.session());
 app.get('/', function(req, res) {
   res.render('welcome/welcome');
 });
-
-app.use('/submits', submitRoute);
 
 app.use('/student', studentRoutes);
 

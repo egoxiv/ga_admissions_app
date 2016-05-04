@@ -12,6 +12,7 @@ $('body').on('click', '.remove-instructor-button', function(){
     },
     success: function(){
       litag.hide();
+      $('#add-instructor').show();
     }
   });
 });
@@ -26,6 +27,7 @@ $('body').on('click', '.remove-student-button', function(){
     },
     success: function(){
       litag.hide();
+      $('#add-student').show();
     }
   });
 });
@@ -56,8 +58,8 @@ var populateInstructor = function(){
         addInstructorRemoveButton($litag);
         $('#instructors').append($litag);
       });
-      if(data.instructors.length < 3){
-        //make an add-instructor button
+      if(data.instructors.length >= 3){
+        $('#add-instructor').hide();
       }
     }
   });
@@ -75,8 +77,8 @@ var populateStudent = function(){
         addStudentRemoveButton($litag);
         $('#students').append($litag);
       });
-      if(data.students.length < 20){
-        // make an add-student button
+      if(data.students.length >= 20){
+        $('#add-student').hide();
       }
     }
   });
@@ -84,4 +86,47 @@ var populateStudent = function(){
 
 populateInstructor();
 populateStudent();
+
+$('#add-instructor-button').on('click', function(event){
+  $.ajax({
+    method: 'put',
+    url: '/cohorts/' + id + '/add-instructor',
+    data: {
+      name: $('#new-instructor').val()
+    },
+    success: function(data){
+      $('#new-instructor').val('');
+      populateInstructor();
+    }
+  });
+});
+
+$('#add-student-button').on('click', function(event){
+  $.ajax({
+    method: 'put',
+    url: '/cohorts/' + id + '/add-student',
+    data: {
+      name: $('#new-student').val()
+    },
+    success: function(data){
+      $('#new-student').val('');
+      populateStudent();
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -11,10 +11,16 @@
   <p>End: <%= section.endDate() %></p>
 
   <p>Instructors:</p>
-  <div id="instructors"></div>
+  <ul id="instructors"></ul>
+  <div id="add-instructor">
+    <input type="text" id="new-instructor"><button id="add-instructor-button">Add Instructor</button>
+  </div>
 
   <p>Students:</p>
-  <div id="students"></div>
+  <ul id="students"></ul>
+  <div id="add-student">
+    <input type="text" id="new-student"><button id="add-student-button">Add Student</button>
+  </div>
 
   <a href="/cohorts/<%= section.id %>/edit">Edit this cohort</a>
   <a href="/cohorts/">Back to index</a>
