@@ -56,6 +56,9 @@ var populateInstructor = function(){
         addInstructorRemoveButton($litag);
         $('#instructors').append($litag);
       });
+      if(data.instructors.length < 3){
+        //make an add-instructor button
+      }
     }
   });
 };
@@ -72,6 +75,9 @@ var populateStudent = function(){
         addStudentRemoveButton($litag);
         $('#students').append($litag);
       });
+      if(data.students.length < 20){
+        // make an add-student button
+      }
     }
   });
 };
