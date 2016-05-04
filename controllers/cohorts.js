@@ -93,12 +93,16 @@ cohorts.removeStudent = function(req, res){
 cohorts.addInstructor = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     if(err) return res.json(err);
-    User.findOne({name: req.body.name, role: 'instructor'}, function(err, instructor){
+    User.searchNameAndRole(req.body.name, 'instructor', function(err, instructor){
       if(err) {
-        return res.json(err);
+        return res.json({error: err});
+      } else if(!instructor){
+        return res.json({error: req.body.name + ' could not be found.'});
       } else if(!instructor.cohort){
         cohort.addInstructor(instructor);
         res.json(cohort);
+      } else {
+        res.json({error: 'That instructor has already been assigned to a cohort.'});
       }
     });
   });
@@ -107,14 +111,16 @@ cohorts.addInstructor = function(req, res){
 cohorts.addStudent = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     if(err) return res.json(err);
-    User.findOne({name: req.body.name, role: 'student'}, function(err, student){
+    User.searchNameAndRole(req.body.name, 'student', function(err, student){
       if(err) {
-        return res.json(err);
+        return res.json({error: err});
       } else if (!student){
-        return res.json(err);
+        return res.json({error: req.body.name + ' could not be found.'});
       } else if(!student.cohort){
         cohort.addStudent(student);
         res.json(cohort);
+      } else {
+        res.json({error: 'That student has already been assigned to a cohort.'});
       }
     });
   });
@@ -123,15 +129,15 @@ cohorts.addStudent = function(req, res){
 cohorts.api = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     if(err){
-      throw err;
+      return res.json({error: err});
     }
     cohort.populate('instructors', function(err){
       if(err){
-        throw err;
+        return res.json({error: err});
       }
       cohort.populate('students', function(err){
         if(err){
-          throw err;
+          return res.json({error: err});
         }
         res.json(cohort);
       });

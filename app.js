@@ -17,7 +17,7 @@ var passport             = require('passport');
 var authRoutes           = require('./routes/auth_route');
 var studentRoutes        = require('./routes/student-routes/student');
 var instructorRoutes     = require('./routes/instructors');
-var admissionsRoutes 	 = require('./routes/admissions');
+var admissionsRoutes     = require('./routes/admissions');
 
 app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'ejs');
