@@ -1,7 +1,7 @@
 var User = require('../models/user.js');
-var GoogleStrategy = require('passport-google').Strategy;
+var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
-module.exports = function(passport){
+var passportGoogle = function(passport){
   passport.serializeUser(function(user, done){
     done(null, user.id);
   });
@@ -14,11 +14,29 @@ module.exports = function(passport){
   });
 
   passport.use('google', new GoogleStrategy({
-    clientID: process.env.GMAIL_API_KEY,
-    clientSecret: process.env.GMAIL_SECRET_KEY,
-    callbackURL: 'http://localhost:3000/auth/facebook/callback',
-    enableProof: true,
-    profileFields: ['name', 'emails']
-  }))
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: 'http://localhost:3000/auth/google/callback',
+    passReqToCallback: true,
+  }, function(request, accessToken, refreshToken, profile, done){
+        User.find({'email': profile.email}, function(err, user){
+          if (err) return done(err);
+          if (user) {
+            return done(null, user);
+          }
+          else {
+            var newUser = new User();
+            newUser.access_token = access_token;
+            newUser.name = profile.displayName;
+            newUser.save(function(err){
+              if (err)
+                throw err;
+              return done(null, newUser);
+            });
+          }
+        });
+  }));
 
-}
+};
+
+module.exports = passportGoogle;
