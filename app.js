@@ -41,7 +41,7 @@ app.use('/student', studentRoutes);
 app.use('/instructor', instructorRoutes);
 app.use('/admissions', admissionsRoutes);
 
-app.use('/auth/github', authRoutes);
+app.use('/auth', authRoutes);
 
 app.use('/cohorts', cohortsRoute);
 
