@@ -22,7 +22,6 @@ var userSchema = new mongoose.Schema({
   instructor: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   admissions: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   role: {type: 'String', enum: [
-    // 'applicant',
     'student',
     'instructor',
     'frontlines',
@@ -31,13 +30,10 @@ var userSchema = new mongoose.Schema({
   ]},
   application: {
     status:{type: String, enum:['new applicant','pre evaluation', 'evaluated','enrolled','N/A'], default:'new applicant'},
-    city: String,
     campus: String,
-    program: String,
-    whyGA: String, //Why did they choose GA?
-    fieldInterest: String, //Why do they want to enroll in that program?
-    websiteRepoUrl: String, //link to github repo for application assignment
+    program: {type: String, default:'WDI'},
     instructorEvaluation: {
+      whyGA: String, //Why did they choose GA?
       onTime: booleanNotesSchema,
       professionalism: notesSchema,
       motivation: notesSchema,
@@ -45,6 +41,7 @@ var userSchema = new mongoose.Schema({
       timeCommit: booleanNotesSchema,
       experience: notesSchema,
       attitude: notesSchema,
+      wpm: notesSchema,
       skill: notesSchema,
       hasMac:booleanNotesSchema,
       overall: notesSchema,
