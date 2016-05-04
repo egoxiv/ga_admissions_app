@@ -5,10 +5,8 @@ var router = express.Router();
 var submitController = require('../../controllers/submit-controller/submit-controller.js');
 
 router.route('/')
-  .get(submitController.index);
-
-router.route('/logout')
-  .get(instructorController.logout);
+  .get(submitController.index)
+  .post(submitController.create);
 
 
 module.exports = router;
