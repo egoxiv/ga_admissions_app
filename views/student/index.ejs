@@ -9,6 +9,7 @@
 <body>
 
   <div class="container">
+
 	<% if(student != undefined){ %>
 		<h1>Student Profile</h1>
 	    <img src="<%= student.avatar %>">
@@ -18,8 +19,10 @@
 	    <p><a href="/">Go back</a></p>
 		<a href="/student/logout">logout</a>
 	<% } else { %>
-		<h2>Login with Github to begin...</h2>
-		<a href="/auth/github">Login</a>
+		<h1>Click to begin</h1>
+    <a href="/auth/github" class="btn btn-block btn-social btn-github btn-md">
+      <i class="fa fa-github"></i> Sign in with GitHub</a>
+		<!-- <a href="/auth/github">Login</a> -->
 	<% } %>
 
   </div>
