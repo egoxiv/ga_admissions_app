@@ -2,7 +2,6 @@ var db = require('./config/db');
 var Cohort = require('./models/cohort');
 var User = require('./models/user');
 
-
 User.remove({})
 	.then(function(){
     	return Cohort.remove();
@@ -33,17 +32,8 @@ User.remove({})
 	        else if (user.role==='student') cohort.students.push(user._id);
 	    });
     	return cohort.save();
-  })
-  // .then(function(){
-  //   var cohort = new Cohort();
-  //   cohort.program = 'WDI';
-  //   cohort.campus = 'SM';
-  //   cohort.number = 23;
-  //   cohort.city = 'Santa Monica, CA';
-  //   cohort.start = new Date('May 2, 2016');
-  //   cohort.end = new Date('July 22, 2016');
-  //   return cohort.save();
-  // })
+	})
+
   .catch(function(err){
     console.log(err);
     return err;

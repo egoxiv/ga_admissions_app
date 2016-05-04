@@ -12,7 +12,7 @@ controller.callback=passport.authenticate('github', {successRedirect: '/instruct
 
 
 controller.index = function(req,res){
-	if(req.user !== undefined && req.user.role !=='instructor') res.redirect('/student');
+if(req.user !== undefined && req.user.role !=='instructor') res.redirect('/student');
 	var cohortList={};
 	Cohort.find({instructors: req.user})
 	.then(function(cohorts){

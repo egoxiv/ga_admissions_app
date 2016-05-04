@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+	<% include ../partials/head %>
 	<title>General Assembly Admissions - Instructor Portal</title>
 </head>
 <body>
-<div class="container">
-​
+
+  <div class="container">
+
   	<h1>General Assembly Admissions - Student Access</h1>
     <div>
       <% if(student != undefined){ %>
@@ -22,12 +23,13 @@
         </ul>
         <p>Evaluate <a href="/instructor/students/<%= student.id %>/evaluate"><%= student.name %></a></p>
         <a href="/instructor">Back</a> <br/>
-        <a href="/student/logout">logout</a>
+        <a href="/instructor/logout">logout</a>
       <% } else { %>
         <h2>An error has occured...</h2>
         <a href="/instructor">Back</a>
       <% } %>
     </div>
-​
-  </div></body>
+  </div>
+
+</body>
 </html>
