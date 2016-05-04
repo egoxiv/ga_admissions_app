@@ -16,6 +16,7 @@ $(document).ready(function(){
 
 	
 	$('body').on('click','button',function(){
+		console.log($(this).parent().serialize());
 		var student = $(this).prev().prev().attr('id');
 		var instructor = $(this).prev().prev().val();
 		var dateAndTime = $(this).prev().val();
@@ -24,7 +25,7 @@ $(document).ready(function(){
 			ids.instructor =instructor;
 			ids.student = student;
 			ids.time = dateAndTime;
-			console.log(ids);
+			// console.log(ids);
 			$.ajax({
 				method: "POST",
 				data: ids,

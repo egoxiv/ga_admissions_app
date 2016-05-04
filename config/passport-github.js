@@ -15,6 +15,7 @@ var passportGithub = function(passport){
 	passport.use('github', new GithubStrategy({
 		clientID: process.env.GITHUB_API_KEY,
 		clientSecret: process.env.GITHUB_API_SECRET,
+		// callbackURL: process.env.APP_URL+"/auth/github/callback",
 		callbackURL: "http://127.0.0.1:3000/auth/github/callback",
 		enableProof: true,
 		profileFields: ['name', 'email']
