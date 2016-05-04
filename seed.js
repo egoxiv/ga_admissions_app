@@ -14,7 +14,7 @@ User.remove({})
           {name:'Matt Parvinsmith', email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role: 'student' },
           {name:'Christina Regis', email:'christina.freeze@gmail.com',github:'https://github.com/christina-regis', role:'student' },
           {name:'Evan Washington', email:'enavy04@gmail.com',github:'https://github.com/Navyvet1125', role:'instructor' },
-          {name:'Erik Gomez', email:'ego.xiv@gmail.com',github:'https://github.com/egoxiv', role:'student' },
+          {name:'Erik Gomez', email:'ego.xiv@gmail.com',github:'https://github.com/egoxiv', role:'instructor' },
         ]);
   })
   .then(function(users){
