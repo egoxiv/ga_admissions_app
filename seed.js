@@ -13,7 +13,7 @@ User.remove({})
 	        {name:'Matt Gutierrez', email:'matthew.gutierrez@generalassemb.ly',github:'https://github.com/fatchicken007', role:'instructor' },
 	        {name:'Matt Parvinsmith', email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role: 'student' },
 	        {name:'Christina Regis', email:'christina.freeze@gmail.com',github:'https://github.com/christina-regis', role:'student' },
-	        // {name:'Evan Washington', email:'enavy04@gmail.com',github:'https://github.com/Navyvet1125', role:'instructor' },
+	        {name:'Evan Washington', email:'enavy04@gmail.com',github:'https://github.com/Navyvet1125', role:'admissions' },
 	        {name:'Erik Gomez', email:'ego.xiv@gmail.com',github:'https://github.com/egoxiv', role:'student' },
         ]);
 	})

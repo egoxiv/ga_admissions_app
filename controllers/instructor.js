@@ -88,7 +88,7 @@ controller.edit = function(req, res){
 
 controller.logout = function(req,res){
 	req.logout();
-	res.redirect('/instructor');
+	res.redirect('/');
 };
 
 module.exports = controller;

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>General Assembly Admissions - Admissions Portal</title>
+</head>
+<body>
+	<ul>
+		<% students.forEach(function(student){ %>
+			<li><%= student.name %></li>
+		<% }) %>
+		
+	</ul>
+	<ul>
+		<% instructors.forEach(function(instuctor){ %>
+			<li><%= instuctor.name %></li>
+		<% }) %>
+		
+	</ul>
+</body>
+</html>
