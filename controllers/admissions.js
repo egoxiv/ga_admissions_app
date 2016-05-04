@@ -1,11 +1,15 @@
 var User       = require ('../models/user');
 var Cohort     = require ('../models/cohort');
-var passport   = require('passport');
+// var passport   = require('passport');
 var db         = require('../config/db');
-require('../config/passport-github')(passport);
+// require('../config/passport-github')(passport);
 
 // var mongoose = require('mongoose');
 var controller = {};
+
+controller.github = passport.authenticate('google', {scope: 'email'});
+controller.callback=passport.authenticate('google', {successRedirect: '/instructor', failureRedirect:'/instructor'});
+
 
 controller.index = function(req,res){
 if(req.user !== undefined && req.user.role !=='instructor') res.redirect('/student');

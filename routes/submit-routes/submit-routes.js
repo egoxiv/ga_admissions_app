@@ -6,9 +6,6 @@ var submitController = require('../../controllers/submit-controller/submit-contr
 
 router.route('/')
   .get(submitController.index);
-
-router.route('/logout')
-  .get(instructorController.logout);
-
+  
 
 module.exports = router;
