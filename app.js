@@ -35,11 +35,11 @@ app.get('/', function(req, res) {
   res.render('welcome/welcome');
 });
 
-app.use('/submits', submitRoute);
 
 app.use('/student', studentRoutes);
 
 app.use('/instructor', instructorRoutes);
+app.use('/admissions', admissionsRoutes);
 
 app.use('/auth/github', authRoutes);
 
