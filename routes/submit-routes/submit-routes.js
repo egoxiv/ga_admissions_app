@@ -8,7 +8,7 @@ router.route('/')
   .get(submitController.index);
 
 router.route('/logout')
-  .get(instructorController.logout);
+  .get(submitController.logout);
 
 
 module.exports = router;
