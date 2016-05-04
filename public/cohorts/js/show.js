@@ -2,6 +2,10 @@ console.log('hello from show.js');
 
 var id = $('#cohort-id').text();
 
+$('body').on('click', 'button', function(){
+  $('#error').hide();
+});
+
 $('body').on('click', '.remove-instructor-button', function(){
   var litag = $(this).parent();
   var data = $(this).closest('li').data();
@@ -97,6 +101,10 @@ $('#add-instructor-button').on('click', function(event){
     success: function(data){
       $('#new-instructor').val('');
       populateInstructor();
+    },
+    failure: function(data){
+      $('#error').text('That instructor either already has a cohort assigned to them or they do not exist.');
+      $('#error').show();
     }
   });
 });
@@ -111,6 +119,10 @@ $('#add-student-button').on('click', function(event){
     success: function(data){
       $('#new-student').val('');
       populateStudent();
+    },
+    failure: function(data){
+      $('#error').text('That student either already has a cohort assigned to them or they do not exist.');
+      $('#error').show();
     }
   });
 });

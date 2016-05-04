@@ -94,9 +94,12 @@ cohorts.addInstructor = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     if(err) return res.json(err);
     User.findOne({name: req.body.name, role: 'instructor'}, function(err, instructor){
-      if(err) return res.json(err);
-      cohort.addInstructor(instructor);
-      res.json(cohort);
+      if(err) {
+        return res.json(err);
+      } else if(!instructor.cohort){
+        cohort.addInstructor(instructor);
+        res.json(cohort);
+      }
     });
   });
 };
@@ -105,9 +108,14 @@ cohorts.addStudent = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     if(err) return res.json(err);
     User.findOne({name: req.body.name, role: 'student'}, function(err, student){
-      if(err) return res.json(err);
-      cohort.addStudent(student);
-      res.json(cohort);
+      if(err) {
+        return res.json(err);
+      } else if (!student){
+        return res.json(err);
+      } else if(!student.cohort){
+        cohort.addStudent(student);
+        res.json(cohort);
+      }
     });
   });
 };
