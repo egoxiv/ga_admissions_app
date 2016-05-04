@@ -15,9 +15,9 @@ app.use(methodOverride('_method'));
 var cohortsRoute         = require('./routes/cohorts');
 var passport             = require('passport');
 var authRoutes           = require('./routes/auth_route');
-var submitRoute          = require('./routes/submit-routes/submit-routes');
 var studentRoutes        = require('./routes/student-routes/student');
 var instructorRoutes     = require('./routes/instructors');
+var admissionsRoutes 	 = require('./routes/admissions');
 
 app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'ejs');

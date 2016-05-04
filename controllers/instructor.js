@@ -6,23 +6,13 @@ require('../config/passport-github')(passport);
 
 // var mongoose = require('mongoose');
 var controller = {};
+controller.evaluated ={};
 
 controller.index = function(req,res){
 if(req.user !== undefined && req.user.role !=='instructor') res.redirect('/student');
-	var cohortList={};
-	Cohort.find({instructors: req.user})
-	.then(function(cohorts){
-		cohorts.forEach(function(cohort){
-			cohortList[cohort.id] = {name:cohort.program+'-'+cohort.campus+'-'+cohort.number, students:[] };
-		});
-		return User.find({cohort: {$in: cohorts}, role:'student'});
-	})
+	User.find({instructor: req.user, role:'student','application.status':'pre evaluation'})
 	.then(function(students){
-		students.forEach(function(student){
-			cohortList[student.cohort].students.push(student);
-		});
-		console.log(cohortList);
-		res.render('instructor/instructor', {user:req.user, cohorts:cohortList});
+		res.render('instructor/instructor', {user:req.user, students:students});
 	})
 	.catch(function(err) {
 		throw err;
@@ -30,6 +20,7 @@ if(req.user !== undefined && req.user.role !=='instructor') res.redirect('/stude
 };
 
 controller.update = function(req, res){
+	var currentStudent;
 	User.findById(req.body.student_id)
 		.then(function(student){
 			console.log(student);
@@ -50,7 +41,12 @@ controller.update = function(req, res){
 			return student.save();
 		})
 		.then(function(student){
-			require('../config/nodemailer')(req.user.email,"Student Evaluated",student.name + " has been evaluated by "+req.user.name+"." ,"<p>" + student.name + " has been evaluated by "+req.user.name+".</p>");
+			currentStudent = student;
+			return User.findById(student.admissions);
+		})
+		.then(function(admissions){
+			var admissionsEmail =req.user.email; //When ready, set to admissions.ga_email;
+			require('../config/nodemailer')(admissionsEmail,"Student Evaluated",currentStudent.name + " has been evaluated by "+req.user.name+"." ,"<p>" + currentStudent.name + " has been evaluated by "+req.user.name+".</p>");
 			res.redirect('/instructor/students/'+req.body.student_id);
 		})
 		.catch(function(err){
@@ -71,6 +67,7 @@ controller.show = function(req, res){
 			res.render('instructor/student',{student:results, cohort: cohortName});
 		});
 };
+
 controller.edit = function(req, res){
 	if(req.user.role !== 'instructor') res.redirect('/student');
 	var results;
@@ -90,5 +87,10 @@ controller.logout = function(req,res){
 	req.logout();
 	res.redirect('/');
 };
+
+controller.evaluated.index= function(req,res){};
+controller.evaluated.show= function(req,res){};
+controller.evaluated.update= function(req,res){};
+controller.evaluated.delete= function(req,res){};
 
 module.exports = controller;
