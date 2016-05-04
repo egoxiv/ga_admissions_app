@@ -12,6 +12,7 @@ controller.callback=passport.authenticate('github', {successRedirect: '/instruct
 
 
 controller.index = function(req,res){
+if(req.user !== undefined && req.user.role !=='instructor') res.redirect('/student');
 	var cohortList={};
 	Cohort.find({instructors: req.user})
 	.then(function(cohorts){
@@ -36,16 +37,19 @@ controller.update = function(req, res){
 	User.findById(req.body.student_id)
 		.then(function(student){
 			console.log(student);
+			student.application.status = 'evaluated';
+			student.application.instructorEvaluation.whyGA = req.body.why_ga;
 			student.application.instructorEvaluation.onTime = {rating: req.body.on_time, notes: req.body.on_time_notes};
-			student.application.instructorEvaluation.professionalism = {rating: parseInt(req.body.professionalism), notes: req.body.professionalism_notes};
-			student.application.instructorEvaluation.motivation = {rating: parseInt(req.body.motivated), notes: req.body.motivated_notes};
-			student.application.instructorEvaluation.commitment = {rating: parseInt(req.body.commitment), notes: req.body.commitment_notes};
+			student.application.instructorEvaluation.professionalism = {rating: req.body.professionalism, notes: req.body.professionalism_notes};
+			student.application.instructorEvaluation.motivation = {rating: req.body.motivated, notes: req.body.motivated_notes};
+			student.application.instructorEvaluation.commitment = {rating: req.body.commitment, notes: req.body.commitment_notes};
 			student.application.instructorEvaluation.timeCommit = {rating: req.body.can_commit, notes: req.body.can_commit_notes};
-			student.application.instructorEvaluation.experience = {rating: parseInt(req.body.experienced), notes: req.body.experienced_notes};
-			student.application.instructorEvaluation.attitude = {rating: parseInt(req.body.attitude), notes: req.body.attitude_notes};
-			student.application.instructorEvaluation.skill = {rating: parseInt(req.body.skill), notes: req.body.skill_notes};
+			student.application.instructorEvaluation.experience = {rating: req.body.experienced, notes: req.body.experienced_notes};
+			student.application.instructorEvaluation.attitude = {rating: req.body.attitude, notes: req.body.attitude_notes};
+			student.application.instructorEvaluation.skill = {rating: req.body.skill, notes: req.body.skill_notes};
+			student.application.instructorEvaluation.wpm = {rating: req.body.wpm, notes: req.body.wpm_notes};
 			student.application.instructorEvaluation.hasMac = {rating: req.body.have_mac, notes: req.body.mac_notes};
-			student.application.instructorEvaluation.overall = {rating: parseInt(req.body.overall), notes: req.body.overall_notes};
+			student.application.instructorEvaluation.overall = {rating: req.body.overall, notes: req.body.overall_notes};
 			student.application.instructorEvaluation.completed = true;
 			return student.save();
 		})
@@ -59,6 +63,7 @@ controller.update = function(req, res){
 
 };
 controller.show = function(req, res){
+	if(req.user.role !== 'instructor') res.redirect('/student');
 	var results;
 	User.findById(req.params.id)
 		.then(function(student){
@@ -71,6 +76,7 @@ controller.show = function(req, res){
 		});
 };
 controller.edit = function(req, res){
+	if(req.user.role !== 'instructor') res.redirect('/student');
 	var results;
 	User.findById(req.params.id)
 		.then(function(student){
