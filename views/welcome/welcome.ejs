@@ -26,6 +26,10 @@
         Admissions
       </button>
 
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#frontlinesModal">
+        Frontlines
+      </button>
+
       <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -77,7 +81,26 @@
               <p>Login to view prospective students information</p>
               <a href="/auth/github" class="btn btn-block btn-social btn-github btn-md">
                 <i class="fa fa-github"></i> Sign in with GitHub</a>
+              <a href="/auth/google" class="btn btn-default">Admissions</a> <!-- add google sign in -->
             </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="frontlinesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Frontlines</h4>
+            </div>
+            <div class="modal-body">
+              <p>View students at your campus</p>
+              <a href="/user" class="btn btn-default">Frontlines</a>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <!-- <button type="button" class="btn btn-primary">Save changes</button> -->

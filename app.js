@@ -7,6 +7,8 @@ var app            = express();
 var db             = require('./config/db');
 var passport       = require('passport');
 var methodOverride = require('method-override');
+var passportGoogle = require('passport-google-oauth2');
+
 
 //override post methods on forms
 app.use(methodOverride('_method'));
@@ -18,6 +20,7 @@ var authRoutes       = require('./routes/auth_route');
 var studentRoutes    = require('./routes/student-routes/student');
 var instructorRoutes = require('./routes/instructors');
 var admissionsRoutes = require('./routes/admissions.js');
+var userRoutes = require('./routes/user-routes/user-routes');
 
 app.set('views', path.join(__dirname + '/views'));
 app.set('view engine', 'ejs');
@@ -37,6 +40,8 @@ app.get('/', function(req, res) {
 app.use('/student', studentRoutes);
 
 app.use('/instructor', instructorRoutes);
+
+app.use('/user', userRoutes);
 
 app.use('/admissions', admissionsRoutes);
 
