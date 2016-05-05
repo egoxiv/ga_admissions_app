@@ -3,6 +3,7 @@ var Cohort = require('./models/cohort');
 var User = require('./models/user');
 
 User.remove({})
+
 	.then(function(){
     	return Cohort.remove();
 	})
