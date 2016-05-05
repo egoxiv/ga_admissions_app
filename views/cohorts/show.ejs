@@ -6,29 +6,35 @@
   <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 </head>
 <body>
-  <h1><%= section.name() %></h1>
-  <p>Start: <%= section.startDate() %></p>
-  <p>End: <%= section.endDate() %></p>
+  <% if(user.role === 'admissions'){ %>
+    <h1><%= section.name() %></h1>
+    <p>Start: <%= section.startDate() %></p>
+    <p>End: <%= section.endDate() %></p>
 
-  <div id="error"></div>
+    <div id="error"></div>
 
-  <p>Instructors:</p>
-  <table id="instructors"></table>
+    <p>Instructors:</p>
+    <table id="instructors"></table>
 
-  <div id="add-instructor">
-    <input type="text" id="new-instructor"><button id="add-instructor-button">Add Instructor</button>
-  </div>
+    <div id="add-instructor">
+      <input type="text" id="new-instructor"><button id="add-instructor-button">Add Instructor</button>
+    </div>
 
-  <p>Students:</p>
-  <table id="students"></table>
-  <div id="add-student">
-    <input type="text" id="new-student"><button id="add-student-button">Add Student</button>
-  </div>
+    <p>Students:</p>
+    <table id="students"></table>
+    <div id="add-student">
+      <input type="text" id="new-student"><button id="add-student-button">Add Student</button>
+    </div>
 
-  <a href="/cohorts/<%= section.id %>/edit">Edit this cohort</a>
-  <a href="/cohorts/">Back to index</a>
+    <a href="/cohorts/<%= section.id %>/edit">Edit this cohort</a>
+    <a href="/cohorts/">Back to index</a>
 
-  <div class="hidden" id="cohort-id"><%= section._id %></div>
+    <div class="hidden" id="cohort-id"><%= section._id %></div>
+  <% } else { %>
+    <h1>Access Denied</h1>
+    <p>You don't have permission to view this page.</p>
+  <% } %>
+
   <script src="/cohorts/js/show.js"></script>
 </body>
 </html>
