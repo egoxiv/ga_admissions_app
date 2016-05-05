@@ -2,6 +2,7 @@
 <html>
 <head>
 	<% include ../partials/head %>
+	<script type="text/javascript" src="/admissions/js/main.js"></script>
 	<title>General Assembly Admissions - Admissions Portal</title>
 </head>
 <body>
@@ -20,11 +21,9 @@
 				<button>update</button>
 			</li>
 		<% }) %>
-
 	</ul>
 
 	<h2>Instructors</h2>
-
 	<ul>
 		<% instructors.forEach(function(instuctor){ %>
 			<li><%= instuctor.name %></li>
@@ -37,7 +36,6 @@
 			<li><%= admiss.name %></li>
 		<% }) %>
 	</ul>
-	<a href="/admissions/status">View status</a>
-	<script type="text/javascript" src="/admissions/js/main.js"></script>
+
 </body>
 </html>

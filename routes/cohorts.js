@@ -20,5 +20,9 @@ router.get('/:id/remove-instructor', cohorts.removeInstructor);
 
 router.get('/:id/remove-student', cohorts.removeStudent);
 
+router.put('/:id/add-student', cohorts.addStudent);
+
+router.put('/:id/add-instructor', cohorts.addInstructor);
+
 
 module.exports = router;

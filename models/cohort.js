@@ -55,6 +55,26 @@ cohortSchema.methods.removeStudent = function(id){
   });
 };
 
+cohortSchema.methods.addStudent = function(student){
+  var cohort = this;
+  student.cohort = cohort._id;
+  cohort.students.push(student._id);
+  student.save(function(err){
+    if(err) return res.json(err);
+    return cohort.save();
+  });
+};
+
+cohortSchema.methods.addInstructor = function(instructor){
+  var cohort = this;
+  instructor.cohort = cohort._id;
+  cohort.instructors.push(instructor._id);
+  instructor.save(function(err){
+    if(err) return res.json(err);
+    return cohort.save();
+  });
+};
+
 var Cohort = mongoose.model('Cohort', cohortSchema);
 
 module.exports = Cohort;

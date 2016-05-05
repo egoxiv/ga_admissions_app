@@ -11,7 +11,7 @@ var mailer = function(userTo, subject, body, htmlBody){
   //set up email data
   var mailOptions = {
      from: "GA Admissions <"+ process.env.GMAIL_ADDRESS +">", // sender address
-     to: userTo, // list of receivers
+     to: userTo, // receiver
      subject: subject, // Subject line
      text: body, // plaintext body
      html: htmlBody // html body
