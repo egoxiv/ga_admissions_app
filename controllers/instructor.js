@@ -52,8 +52,8 @@ controller.update = function(req, res){
 		.catch(function(err){
 			throw err;
 		});
-
 };
+
 controller.show = function(req, res){
 	if(req.user.role !== 'instructor') res.redirect('/student');
 	var results;

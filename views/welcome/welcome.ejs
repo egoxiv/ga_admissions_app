@@ -13,11 +13,102 @@
   <div class="container">
     <img src="http://static-assets.generalassemb.ly/logos/generalassembly-open-graph.png" alt="General Assembly">
     <div class="text-center">
-      <a href="/student" class="btn btn-default">Students</a>
-      <a href="/instructor" class="btn btn-default">Instructors</a>
-      <a href="/auth/google" class="btn btn-default">Admissions</a>
-      <a href="/user" class="btn btn-default">Frontlines</a>
-      <a href="/admissions" class="btn btn-default">Admissions</a>
+
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#studentModal">
+        Students
+      </button>
+
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#instructorsModal">
+        Instructors
+      </button>
+
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#admissionsModal">
+        Admissions
+      </button>
+
+      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#frontlinesModal">
+        Frontlines
+      </button>
+
+      <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Submit Pre-Work Assignment</h4>
+            </div>
+            <div class="modal-body">
+              <p>If your prework is complete and you'd like to notify the admissions team at General Assembly, just click below and someone will follow up shortly.</p>
+              <a href="/auth/github" class="btn btn-block btn-social btn-github btn-md">
+                <i class="fa fa-github"></i> Sign in with GitHub</a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="instructorsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Instructor Login</h4>
+            </div>
+            <div class="modal-body">
+              <p>Instructors, log in with GitHub to view whats going on.</p>
+              <a href="/auth/github" class="btn btn-block btn-social btn-github btn-md">
+                <i class="fa fa-github"></i> Sign in with GitHub</a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="admissionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Admissions Login</h4>
+            </div>
+            <div class="modal-body">
+              <p>Login to view prospective students information</p>
+              <a href="/auth/github" class="btn btn-block btn-social btn-github btn-md">
+                <i class="fa fa-github"></i> Sign in with GitHub</a>
+              <a href="/auth/google" class="btn btn-default">Admissions</a> <!-- add google sign in -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="frontlinesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Frontlines</h4>
+            </div>
+            <div class="modal-body">
+              <p>View students at your campus</p>
+              <a href="/user" class="btn btn-default">Frontlines</a>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
