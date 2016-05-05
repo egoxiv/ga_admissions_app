@@ -8,9 +8,9 @@ User.remove({})
 	})
  	.then(function(){
   	return User.create([
-      {name:'Phil Lamplugh', email:'philco@ga.com', ga_email:'philco@ga.com',github:'https://github.com/phlco', role:'instructor' },
-      {name:'Kate Wood', email:'katewood611@gmail.com', ga_email:'katewood611@gmail.com',github:'https://github.com/KateWood', role:'instructor' },
-      {name:'Matt Gutierrez', email:'matthew.gutierrez@generalassemb.ly', ga_email:'matthew.gutierrez@generalassemb.ly',github:'https://github.com/fatchicken007', role:'instructor' },
+      {name:'Phil Lamplugh', email:'philco@ga.co', ga_email:'philco@ga.co',github:'https://github.com/phlco', github_username:'phlco', role:'instructor' },
+      {name:'Kate Wood', email:'kate.wood@ga.co', ga_email:'kate.wood@ga.co',github:'https://github.com/KateWood', github_username: 'KateWood', role:'instructor' },
+      {name:'Matt Gutierrez', email:'matthew.gutierrez@generalassemb.ly', ga_email:'matthew.gutierrez@generalassemb.ly',github:'https://github.com/fatchicken007', github_username:'fatchicken007', role:'instructor' },
       // {name:'Matt Parvinsmith', email:'mrparvinsmith@gmail.com', ga_email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role: 'student' },
       // {name:'Christina Regis', email:'christina.freeze@gmail.com', ga_email:'christina.freeze@gmail.com',github:'https://github.com/christina-regis', role:'student' },
       {name:'Evan Washington', email:'enavy04@gmail.com', ga_email:'enavy04@gmail.com',github:'https://github.com/Navyvet1125', role:'admissions' },

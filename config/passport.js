@@ -47,7 +47,7 @@ var passportGithub = function(passport){
 		profileFields: ['name', 'email']
 	}, function(access_token, refresh_token, profile, done){
 		process.nextTick(function(){
-			User.findOne({'email': profile._json.email})
+			User.findOne({'github_username': profile._json.login})
 				.then(function(user){
 					if(user){
 						return user;
@@ -58,6 +58,7 @@ var passportGithub = function(passport){
 						newUser.access_token =access_token;
 						newUser.name =profile._json.name;
 						newUser.email =profile._json.email;
+            newUser.github_username =profile._json.login;
 						newUser.github = profile._json.html_url;
 						newUser.city = profile._json.location;
 						newUser.avatar =profile._json.avatar_url;
