@@ -60,10 +60,10 @@ controller.show = function(req, res){
 	User.findById(req.params.id)
 		.then(function(student){
 			results = student;
-			return Cohort.findOne({students: student});
-		})
-		.then(function(cohort){
-			var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
+		// 	return Cohort.findOne({students: student});
+		// })
+		// .then(function(cohort){
+		// 	var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
 			res.render('instructor/student',{student:results, cohort: cohortName, user: req.user});
 		});
 };
@@ -81,12 +81,7 @@ controller.edit = function(req, res){
 	User.findById(req.params.id)
 		.then(function(student){
 			results = student;
-			return Cohort.findOne({students: student});
-		})
-		.then(function(cohort){
-			console.log(req.user);
-			var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
-			res.render('instructor/evaluation',{student:results, cohort: cohortName});
+			res.render('instructor/evaluation',{student:results});
 		});
 
 };

@@ -8,13 +8,13 @@ User.remove({})
 	})
  	.then(function(){
     	return User.create([
-	        {name:'Phil Lamplugh', email:'philco@ga.com', ga_email:'philco@ga.com',github:'https://github.com/phlco', role:'instructor' },
-	        {name:'Kate Wood', email:'katewood611@gmail.com', ga_email:'katewood611@gmail.com',github:'https://github.com/KateWood', role:'instructor' },
-	        // {name:'Matt Gutierrez', email:'matthew.gutierrez@generalassemb.ly', ga_email:'matthew.gutierrez@generalassemb.ly',github:'https://github.com/fatchicken007', role:'instructor' },
+	        {name:'Phil Lamplugh', email:'philco@ga.com', github_username:'phlco', ga_email:'philco@ga.co',github:'https://github.com/phlco', role:'instructor' },
+	        {name:'Kate Wood', email:'kate.wood@ga.co', github_username:'KateWood' , ga_email:'kate.wood@ga.co',github:'https://github.com/KateWood', role:'instructor' },
+	        // {name:'Matt Gutierrez', email:'matthew.gutierrez@generalassemb.ly', ga_email:'matthew.gutierrez@generalassemb.ly',github:'https://github.com/fatchicken007', github_username:'fatchicken007', role:'instructor' },
 	        {name:'Matt Parvinsmith', email:'mrparvinsmith@gmail.com', ga_email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role: 'student','application.status':'pre evaluation' },
 	        {name:'Christina Regis', email:'christina.freeze@gmail.com', ga_email:'christina.freeze@gmail.com',github:'https://github.com/christina-regis', role:'student','application.status':'evaluated' },
-          {name:'Evan Washington', email:'enavy04@gmail.com',ga_email: 'enavy04@gmail.com', github:'https://github.com/Navyvet1125', role:'admissions' },
-          {name:'Evan Washington', email:'inudoshi2016@gmail.com',ga_email: 'inudoshi2016@gmail.com', github:'https://github.com/Navyvet1125', role:'instructor' },
+          // {name:'Evan Washington', email:'enavy04@gmail.com', github_username: 'Navyvet1125', ga_email: 'enavy04@gmail.com', github:'https://github.com/Navyvet1125', role:'admissions' },
+          // {name:'Evan Washington', email:'inudoshi2016@gmail.com',ga_email: 'inudoshi2016@gmail.com', github:'https://github.com/Navyvet1125', role:'instructor' },
 	        {name:'Erik Gomez', email:'ego.xiv@gmail.com', ga_email:'ego.xiv@gmail.com',github:'https://github.com/egoxiv', role:'student','application.status':'new applicant' },
 	        {name:'Josh Fadem', email:'josh.fadem@generalassemb.ly', ga_email:'josh.fadem@generalassemb.ly',github:'https://github.com/jfadem82', role:'admissions' },
         ]);

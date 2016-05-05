@@ -17,6 +17,7 @@ var userSchema = new mongoose.Schema({
   access_token: String,
   phone: String,
   city: String,
+  github_username: String,
   github: String,
   avatar: String,
   staff_campus: String,

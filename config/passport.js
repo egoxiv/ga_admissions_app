@@ -5,12 +5,16 @@ var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 var passportGithub = function(passport){
 	passport.serializeUser( function(user,done){
-		done(null,user._id);
+		console.log('This is a user '+ user);
+		done(null,user.id);
 	});
 	passport.deserializeUser(function(id,done){
 		var newId;
-		if(typeof id!=='string') newId = id[0]._id;
-		else newId = id;
+		if(typeof id!=='string'){
+			newId = id[0]._id;
+		} else {
+			newId = id;
+		}
 		console.log(newId);
 		User.findById(newId, function(err,user){
 			console.log('deserializing user...',user);
@@ -29,19 +33,16 @@ var passportGithub = function(passport){
         User.findOne({'ga_email': profile.emails[0].value}, function(err, user){
           if (err){
           	return done(err);
-          }
-          else {
+          } else {
 	          if (user) {
 	            return done(null, user);
-	          }
-	          else {
+	          } else {
 	              return done(null, null);
 	          }
           	
           }
         });
   }));
-
 	passport.use('github', new GithubStrategy({
 		clientID: process.env.GITHUB_API_KEY,
 		clientSecret: process.env.GITHUB_API_SECRET,
@@ -51,18 +52,18 @@ var passportGithub = function(passport){
 		profileFields: ['name', 'email']
 	}, function(access_token, refresh_token, profile, done){
 		process.nextTick(function(){
-			User.findOne({'email': profile._json.email})
+			User.findOne({'github_username': profile._json.login})
 				.then(function(user){
 					if(user){
 						return user;
-					}
-					else{
+					} else{
 						console.log(profile);
 						var newUser = new User();
 						newUser.access_token =access_token;
 						newUser.name =profile._json.name;
+						newUser.github_username =profile._json.login;
 						newUser.email =profile._json.email;
-						newUser.github = profile._json.url;
+						newUser.github = profile._json.htmlurl;
 						newUser.city = profile._json.location;
 						newUser.avatar =profile._json.avatar_url;
 						newUser.role='student';
