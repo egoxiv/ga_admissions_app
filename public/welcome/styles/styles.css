@@ -3,15 +3,17 @@ body {
   min-height: 100%;
 }
 
-h1 {
-  font-size: 5em;
-  margin: 0 auto 30px;
-}
-
 img {
   display: block;
   margin: 0 auto;
-  width: 600px;
+  width: 60vw;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.btn {
+  margin: 5px auto;
+  width: 150px;
 }
 
 .btn-github {
@@ -23,6 +25,18 @@ img {
 }
 
 .btn-github:hover {
+  color: #fff;
+}
+
+.btn-google {
+  color: #fff;
+  background-color: #dd4b39;
+  border-color: rgba(0,0,0,0.2);
+  width: 200px;
+  margin: 0 auto;
+}
+
+.btn-google:hover {
   color: #fff;
 }
 

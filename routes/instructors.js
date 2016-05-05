@@ -10,9 +10,11 @@ router.route('/logout')
 	.get(instructorController.logout);
 
 router.route('/students/:id')
-	.get(require('connect-ensure-login').ensureLoggedIn('/instructor'), instructorController.show);
+	.get(instructorController.show);
+  // require('connect-ensure-login').ensureLoggedIn('/instructor'),
 
 router.route('/students/:id/evaluate')
-	.get(require('connect-ensure-login').ensureLoggedIn('/instructor'), instructorController.edit);
+	.get(instructorController.edit);
+  // require('connect-ensure-login').ensureLoggedIn('/instructor'),
 
 module.exports = router;
