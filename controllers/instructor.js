@@ -60,11 +60,11 @@ controller.show = function(req, res){
 	User.findById(req.params.id)
 		.then(function(student){
 			results = student;
-			return Cohort.findOne({students: student});
-		})
-		.then(function(cohort){
-			var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
-			res.render('instructor/student',{student:results, cohort: cohortName});
+		// 	return Cohort.findOne({students: student});
+		// })
+		// .then(function(cohort){
+		// 	var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
+			res.render('instructor/student',{ student:results });
 		});
 };
 
