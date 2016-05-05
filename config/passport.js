@@ -5,12 +5,7 @@ var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 var passportGithub = function(passport){
 	passport.serializeUser( function(user,done){
-<<<<<<< HEAD
-		console.log('This is a user '+ user);
-		done(null,user.id);
-=======
 		done(null, user.id);
->>>>>>> 51a614c79cfdbd5d3cccb64e5f3363d8d4d0dfad
 	});
 	passport.deserializeUser(function(id,done){
 		var newId;
