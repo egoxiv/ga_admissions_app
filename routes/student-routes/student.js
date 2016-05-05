@@ -3,9 +3,9 @@ var router = express.Router();
 var studentController = require('../../controllers/student-controllers/student');
 
 router.route('/')
-  .get(studentController.index);
+  .get(require('connect-ensure-login').ensureLoggedIn('/'),studentController.index);
 
 router.route('/logout')
-	.get(studentController.logout);
+	.get(require('connect-ensure-login').ensureLoggedIn('/'),studentController.logout);
 
 module.exports = router;

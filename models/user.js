@@ -19,6 +19,7 @@ var userSchema = new mongoose.Schema({
   city: String,
   github: String,
   avatar: String,
+  staff_campus: String,
   instructor: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   admissions: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   role: {type: 'String', enum: [
@@ -33,6 +34,7 @@ var userSchema = new mongoose.Schema({
     campus: String,
     program: {type: String, default:'WDI'},
     instructorEvaluation: {
+      dateAndTime :Date,
       whyGA: String, //Why did they choose GA?
       onTime: booleanNotesSchema,
       professionalism: notesSchema,
@@ -56,6 +58,21 @@ var userSchema = new mongoose.Schema({
 userSchema.statics.findByRole = function(role, cb){
   return this.find({role: role}, cb);
 };
+
+userSchema.statics.searchNameAndRole = function(name, role, cb){
+  this.find({role: role}, function(err, users){
+    if(err) return err;
+    var person;
+    users.forEach(function(user){
+      console.log(user.name);
+      if(user.name.toLowerCase() === name.toLowerCase()){
+        person = user;
+      }
+    });
+    return cb(err, person);
+  });
+};
+
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;

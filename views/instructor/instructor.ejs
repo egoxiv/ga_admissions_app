@@ -2,6 +2,7 @@
 <html>
 <head>
 	<% include ../partials/head %>
+	<link rel="stylesheet" type="text/css" href="/instructor/styles/styles.css">
 	<title>General Assembly Admissions - Instructor Portal</title>
 </head>
 <body>
@@ -11,25 +12,16 @@
 		<div>
 			<% if(user != undefined){ %>
 				<h2>Welcome <%= user.name %></h2>
-				<% if(cohorts){ %>
-					<h3>cohorts</h3>
 					<ul>
-						<% for(var item in cohorts){ %>
-						<li>
-							<%= cohorts[item].name %>
-							<ul>
-								<% cohorts[item].students.forEach(function(student){ %>
-									<li><a href ="/instructor/students/<%= student.id %>"><%= student.name %></a></li>
-								<% }) %>
-							</ul>
-						</li>
-						<% } %>
+						<% students.forEach(function(student){ %>
+							<li><a href ="/instructor/students/<%= student.id %>"><%= student.name %></a></li>
+						<% }) %>
 					</ul>
-				<% } %>
 				<a href="/instructor/logout">logout</a>
 			<% } else { %>
 				<h2>Login with Github to begin...</h2>
-				<a href="/auth/github">Login</a>
+				<a href="/auth/github" class="btn btn-block btn-social btn-github btn-md">
+		      <i class="fa fa-github"></i> Sign in with GitHub</a>
 			<% } %>
 		</div>
 	</div>
