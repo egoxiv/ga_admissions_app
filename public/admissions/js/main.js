@@ -14,34 +14,6 @@ $(document).ready(function(){
   var todayStr = yyyy+'-'+mm+'-'+dd;
   $('.date-picker').val(todayStr);
 
-<<<<<<< HEAD
-	
-	$('body').on('click','button',function(){
-		var student = $(this).prev().prev().prev().attr('id');
-		var instructor = $(this).prev().prev().prev().val();
-		var dateAndTime = $(this).prev().val()+' '+$(this).prev().prev().val();
-		console.log(student,instructor,dateAndTime);
-		if(instructor !=='add'){
-			var ids ={};
-			ids.instructor =instructor;
-			ids.student = student;
-			ids.time = dateAndTime;
-			// console.log(ids);
-			$.ajax({
-				method: "POST",
-				data: ids,
-				url: "/admissions/",
-				cache: false,
-				success:function(data){console.log(data);},
-				error: function(err){console.log(err);}
-			});
-			$(this).parent().hide();
-		}
-	});
-
-
-});
-=======
   $('body').on('click','button',function(){
     var student = $(this).prev().prev().prev().attr('id');
     var instructor = $(this).prev().prev().prev().val();
@@ -65,4 +37,3 @@ $(document).ready(function(){
     }
   });
 });
->>>>>>> 51a614c79cfdbd5d3cccb64e5f3363d8d4d0dfad

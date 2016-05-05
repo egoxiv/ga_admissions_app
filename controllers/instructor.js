@@ -64,11 +64,7 @@ controller.show = function(req, res){
 		// })
 		// .then(function(cohort){
 		// 	var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
-<<<<<<< HEAD
-			res.render('instructor/student',{student:results, cohort: cohortName, user: req.user});
-=======
 			res.render('instructor/student',{ student:results });
->>>>>>> 51a614c79cfdbd5d3cccb64e5f3363d8d4d0dfad
 		});
 };
 
