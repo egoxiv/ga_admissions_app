@@ -3,7 +3,7 @@ var router = express.Router();
 var admissionsController = require('../controllers/admissions.js');
 
 router.route('/')
-	.get(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.index)
+	.get(admissionsController.index)
 	.post(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.update);
 
 
