@@ -1,6 +1,9 @@
-<<<<<<< HEAD
 
 Click <a href = 'https://ga-admissions.herokuapp.com/'>**HERE**</a> to open our GA Admissions app!
+
+**Purpose of GA Admissions app**
+<br>
+This app has been built to help GA with the adimissions process by following the status of each prospective student.  After a prospective student finishes their pre-work they must create a github account to login.  Admissions will then login with gmail and assign the student to an instructor and schedule an interview.  An automatic email will be sent to both parties of the scheduled interview time.  After the interview the instructor will login and fill out an evaluation form for the student. When the evaluation is submitted an email will be sent to admissions.  Admissions will then look at the information and notify the student if they have been accepted or not.  If they were accepted they will then be assigned to a cohort.  Instructors can also login at anytime and see the students that are in their cohort.  Students can also login at anytime and see the status of their application.  
 
 **Our Approach**
 <br>
@@ -47,7 +50,3 @@ In approaching this project we began by talking to the Admissions Manager to und
 * Promise 7.1.1
 
 Descriptions of any unsolved problems or major hurdles your team had to overcome.
-=======
-This is an admissions helper app!  
-[View our app on Heroku](https://ga-admissions.herokuapp.com/)
->>>>>>> 51a614c79cfdbd5d3cccb64e5f3363d8d4d0dfad
