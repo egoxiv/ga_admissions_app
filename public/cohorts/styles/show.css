@@ -1,0 +1,20 @@
+body {
+  padding-left: 10px;
+}
+td {
+  width: 50%;
+}
+.hidden {
+  display: none;
+}
+.sidebar {
+  position: fixed;
+  background: #AAFFAA;
+  top: 20px;
+  right: 20px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.list {
+  width: 322px;
+}
