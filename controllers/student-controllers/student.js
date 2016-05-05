@@ -2,6 +2,7 @@ var studentController = {};
 
 studentController.index = function(req, res) {
   var user = req.user;
+  console.log(user);
   res.render('student/index', { student: user });
 };
 

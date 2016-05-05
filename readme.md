@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 Click <a href = 'https://ga-admissions.herokuapp.com/'>**HERE**</a> to open our GA Admissions app!
 
@@ -46,3 +47,7 @@ In approaching this project we began by talking to the Admissions Manager to und
 * Promise 7.1.1
 
 Descriptions of any unsolved problems or major hurdles your team had to overcome.
+=======
+This is an admissions helper app!  
+[View our app on Heroku](https://ga-admissions.herokuapp.com/)
+>>>>>>> 51a614c79cfdbd5d3cccb64e5f3363d8d4d0dfad

@@ -5,13 +5,12 @@ var cohorts = {};
 cohorts.index = function(req, res){
   Cohort.find({}, function(err, classes){
     if(err) return res.json(err);
-    things = classes;
-    res.render('cohorts/index');
+    res.render('cohorts/index', {sections: classes, user: req.user});
   });
 };
 
 cohorts.new = function(req, res){
-  res.render('cohorts/new');
+  res.render('cohorts/new', {user: req.user});
 };
 
 cohorts.create = function(req, res){
@@ -31,7 +30,7 @@ cohorts.create = function(req, res){
     cohort.number = biggest + 1;
     cohort.save(function(err){
       if(err) return res.json(err);
-      res.redirect('/cohorts/' + cohort._id);
+      res.redirect('cohorts/' + cohort._id);
     });
   });
 };
@@ -46,7 +45,7 @@ cohorts.show = function(req, res){
       cohort.populate('students', function(err){
         if(err) return res.json(err);
         section = cohort;
-        res.render('cohorts/show');
+        res.render('cohorts/show', {user: req.user});
       });
     });
   });
@@ -56,7 +55,7 @@ cohorts.edit = function(req, res){
   Cohort.findById(req.params.id, function(err, cohort){
     if(err) return res.json(err);
     section = cohort;
-    res.render('cohorts/edit');
+    res.render('cohorts/edit', {user: req.user});
   });
 };
 
@@ -143,6 +142,10 @@ cohorts.api = function(req, res){
       });
     });
   });
+};
+
+cohorts.error = function(req, res){
+  res.render('cohorts/error');
 };
 
 module.exports = cohorts;

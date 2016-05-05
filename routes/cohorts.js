@@ -2,27 +2,40 @@ var express = require('express');
 var router = express.Router();
 var cohorts = require('../controllers/cohorts');
 
-router.get('/', cohorts.index);
+// put bfore controller argument
+// require('connect-ensure-login').ensureLoggedIn('/error'),
 
-router.post('/', cohorts.create);
+router.route('/')
+  .get(require('connect-ensure-login').ensureLoggedIn('/cohorts/error'), cohorts.index)
+  .post(require('connect-ensure-login').ensureLoggedIn('/error'), cohorts.create);
 
-router.get('/new', cohorts.new);
+router.route('/new')
+  .get(require('connect-ensure-login').ensureLoggedIn('/cohorts/error'), cohorts.new);
 
-router.get('/api/:id', cohorts.api);
+router.route('/error')
+  .get(cohorts.error);
 
-router.get('/:id', cohorts.show);
+router.route('/api/:id')
+  .get(cohorts.api);
 
-router.put('/:id', cohorts.update);
+router.route('/:id')
+  .get(require('connect-ensure-login').ensureLoggedIn('/cohorts/error'), cohorts.show)
+  .put(require('connect-ensure-login').ensureLoggedIn('/cohorts/error'), cohorts.update);
 
-router.get('/:id/edit', cohorts.edit);
+router.route('/:id/edit')
+  .get(require('connect-ensure-login').ensureLoggedIn('/cohorts/error'), cohorts.edit);
 
-router.get('/:id/remove-instructor', cohorts.removeInstructor);
+router.route('/:id/remove-instructor')
+  .get(require('connect-ensure-login').ensureLoggedIn('/cohorts/error'), cohorts.removeInstructor);
 
-router.get('/:id/remove-student', cohorts.removeStudent);
+router.route('/:id/remove-student')
+  .get(require('connect-ensure-login').ensureLoggedIn('/cohorts/error'), cohorts.removeStudent);
 
-router.put('/:id/add-student', cohorts.addStudent);
+router.route('/:id/add-student')
+  .put(require('connect-ensure-login').ensureLoggedIn('/cohorts/error'), cohorts.addStudent);
 
-router.put('/:id/add-instructor', cohorts.addInstructor);
+router.route('/:id/add-instructor')
+  .put(require('connect-ensure-login').ensureLoggedIn('/cohorts/error'), cohorts.addInstructor);
 
 
 module.exports = router;
