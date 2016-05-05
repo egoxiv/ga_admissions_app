@@ -1,13 +1,11 @@
 var User       = require ('../models/user');
 var Cohort     = require ('../models/cohort');
-// var passport   = require('passport');
 var db         = require('../config/db');
+// var passport   = require('passport');
 // require('../config/passport-google2')(passport);
-
 // var mongoose = require('mongoose');
+
 var controller = {};
-
-
 
 controller.index = function(req,res){
 // if(req.user === undefined) res.redirect('/');
