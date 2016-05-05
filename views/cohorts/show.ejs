@@ -30,6 +30,13 @@
     <a href="/cohorts/">Back to index</a>
 
     <div class="hidden" id="cohort-id"><%= section._id %></div>
+
+    <div class="sidebar">
+      <h3>Accepted Students</h3>
+      <ul id="accepted">
+      </ul>
+    </div>
+
   <% } else { %>
     <h1>Access Denied</h1>
     <p>You don't have permission to view this page.</p>
@@ -40,7 +47,13 @@
 </html>
 
 <style>
-.hidden{
-  display: none;
-}
+  .hidden{
+    display: none;
+  }
+  .sidebar{
+    position: fixed;
+    background: #AAFFAA;
+    top: 20px;
+    right: 20px;
+  }
 </style>

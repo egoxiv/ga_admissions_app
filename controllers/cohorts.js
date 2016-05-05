@@ -115,7 +115,7 @@ cohorts.addStudent = function(req, res){
         return res.json({error: err});
       } else if (!student){
         return res.json({error: req.body.name + ' could not be found.'});
-      } else if(!student.cohort){
+      } else if(!student.cohort && student.application.status === 'accepted'){
         cohort.addStudent(student);
         res.json(cohort);
       } else {

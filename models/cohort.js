@@ -47,6 +47,7 @@ cohortSchema.methods.removeStudent = function(id){
     if(err) throw err;
     var index = cohort.students.indexOf(id);
     cohort.students.splice(index, 1);
+    student.application.status = 'accepted';
     student.cohort = null;
     student.save(function(err){
       if(err) throw err;
@@ -57,6 +58,7 @@ cohortSchema.methods.removeStudent = function(id){
 
 cohortSchema.methods.addStudent = function(student){
   var cohort = this;
+  student.application.status = 'enrolled';
   student.cohort = cohort._id;
   cohort.students.push(student._id);
   student.save(function(err){

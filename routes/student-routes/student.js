@@ -8,4 +8,7 @@ router.route('/')
 router.route('/logout')
 	.get(require('connect-ensure-login').ensureLoggedIn('/'),studentController.logout);
 
+router.route('/api')
+  .get(require('connect-ensure-login').ensureLoggedIn('/'), studentController.api);
+
 module.exports = router;
