@@ -10,8 +10,8 @@ router.route('/')
 	.get(admissionsController.index)
 	.post(admissionsController.update);
 
-router.route('/status')
-  .get(admissionsController.status);
+// router.route('/status')
+//   .get(admissionsController.status);
 
 // require('connect-ensure-login').ensureLoggedIn('/admissions'),
 
