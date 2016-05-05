@@ -12,7 +12,7 @@
     <div>
       <% if(student != undefined){ %>
         <h2>Student: <%= student.name %></h2>
-        <% if(!student.application.instructorEvaluation.completed) {%>
+        <% if(!student.application.status ==='pre evaluation') {%>
           <p>This prospective student has not been evaluated yet!</p>
       <% } %>
         <ul>
@@ -21,7 +21,9 @@
           <li>Email: <%= student.email %></li>
           <li>Github: <a href="<%= student.github %>"><%= student.github %></a></li>
         </ul>
-        <p>Evaluate <a href="/instructor/students/<%= student.id %>/evaluate"><%= student.name %></a></p>
+        <% if(user.role==='instructor'){ %>
+          <p>Evaluate <a href="/instructor/students/<%= student.id %>/evaluate"><%= student.name %></a></p>
+        <% } %>
         <a href="/instructor">Back</a> <br/>
         <a href="/student/logout">logout</a>
       <% } else { %>

@@ -8,20 +8,44 @@
 <body>
 	<h2>New Applicants</h2>
 	<ul>
-		<% students.forEach(function(student){ %>
+		<% applicants.forEach(function(applicant){ %>
 			<li>
-			<i><%= student.name %></i> Instructor:
-				<select id="<%= student.id %>">
+			<i><%= applicant.name %></i> Instructor:
+				<select id="<%= applicant.id %>">
   					<option value="add">Add Instructor:</option>
 					<% instructors.forEach(function(instuctor){ %>
   						<option value="<%= instuctor.id %>"><%= instuctor.name %></option>
 					<% }) %>
+				</select>
+				<select class="time">
+  					<option value="10:00">10:00</option>
+  					<option value="10:30">10:30</option>
+  					<option value="11:00">11:00</option>
+  					<option value="11:30">11:30</option>
+  					<option value="2:30">2:30</option>
+  					<option value="3:00">3:00</option>
+  					<option value="3:30">3:30</option>
+  					<option value="4:00">4:00</option>
+  					<option value="4:30">4:30</option>
 				</select>
 				<input type="date" class="date-picker"/>
 				<button>update</button>
 			</li>
 		<% }) %>
 	</ul>
+
+	<h2>cohorts</h2>
+	<a href="/cohorts">Cohorts</a>
+
+	<h2>Evaluated Students</h2>
+		<ul>
+			<% evaluated.forEach(function(evaluatee){ %>
+				<li>
+				<a href="/instructor/students/<%= evaluatee.id %>"><%= evaluatee.name %></a>
+				</li>
+			<% }) %>
+		</ul>
+
 
 	<h2>Instructors</h2>
 	<ul>
@@ -36,6 +60,6 @@
 			<li><%= admiss.name %></li>
 		<% }) %>
 	</ul>
-
+	<a href="/student/logout">logout</a>
 </body>
 </html>

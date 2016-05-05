@@ -19,6 +19,7 @@ $(document).ready(function(){
 		var student = $(this).prev().prev().prev().attr('id');
 		var instructor = $(this).prev().prev().prev().val();
 		var dateAndTime = $(this).prev().val()+' '+$(this).prev().prev().val();
+		console.log(student,instructor,dateAndTime);
 		if(instructor !=='add'){
 			var ids ={};
 			ids.instructor =instructor;
@@ -26,7 +27,7 @@ $(document).ready(function(){
 			ids.time = dateAndTime;
 			// console.log(ids);
 			$.ajax({
-				method: "PUT",
+				method: "POST",
 				data: ids,
 				url: "/admissions/",
 				cache: false,

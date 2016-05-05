@@ -10,7 +10,7 @@ controller.evaluated ={};
 
 controller.index = function(req,res){
 if(req.user !== undefined && req.user.role !=='instructor') res.redirect('/student');
-	User.find({instructor: req.user, role:'student','application.status':'pre evaluation'})
+	User.find({role:'student','application.status':'pre evaluation'})
 	.then(function(students){
 		res.render('instructor/instructor', {user:req.user, students:students});
 	})
@@ -55,7 +55,7 @@ controller.update = function(req, res){
 };
 
 controller.show = function(req, res){
-	if(req.user.role !== 'instructor') res.redirect('/student');
+	if(req.user.role !== 'instructor'&& req.user.role !== 'admissions') res.redirect('/student');
 	var results;
 	User.findById(req.params.id)
 		.then(function(student){
@@ -64,12 +64,19 @@ controller.show = function(req, res){
 		})
 		.then(function(cohort){
 			var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
-			res.render('instructor/student',{student:results, cohort: cohortName});
+			res.render('instructor/student',{student:results, cohort: cohortName, user: req.user});
 		});
 };
 
 controller.edit = function(req, res){
-	if(req.user.role !== 'instructor') res.redirect('/student');
+	switch(req.user.role){
+		case 'student': res.redirect('/student');
+		break;
+		case 'admissions': res.redirect('/admissions');
+		break;
+		default: break;
+	}
+
 	var results;
 	User.findById(req.params.id)
 		.then(function(student){
@@ -77,6 +84,7 @@ controller.edit = function(req, res){
 			return Cohort.findOne({students: student});
 		})
 		.then(function(cohort){
+			console.log(req.user);
 			var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
 			res.render('instructor/evaluation',{student:results, cohort: cohortName});
 		});

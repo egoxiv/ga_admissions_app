@@ -47,7 +47,7 @@ app.use('/admissions', admissionsRoutes);
 
 app.use('/auth', authRoutes);
 
-app.use('/cohorts', cohortsRoute);
+app.use('/cohorts', require('connect-ensure-login').ensureLoggedIn('/'),cohortsRoute);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {

@@ -27,19 +27,17 @@ var passportGithub = function(passport){
         console.log('This is where we are!!!');
         console.log(profile.emails[0].value);
         User.findOne({'ga_email': profile.emails[0].value}, function(err, user){
-          if (err) return done(err);
-          if (user) {
-            return done(null, user);
+          if (err){
+          	return done(err);
           }
           else {
-            var newUser = new User();
-            newUser.access_token = access_token;
-            newUser.name = profile.displayName;
-            newUser.save(function(err){
-              if (err)
-                throw err;
-              return done(null, newUser);
-            });
+	          if (user) {
+	            return done(null, user);
+	          }
+	          else {
+	              return done(null, null);
+	          }
+          	
           }
         });
   }));

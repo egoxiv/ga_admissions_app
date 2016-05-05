@@ -11,7 +11,7 @@ router.route('/')
 	.post(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.update);
 
 router.route('/logout')
-	.get(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.logout);
+	.get(admissionsController.logout);
 
 router.route('/:student')
 	.get(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.show);

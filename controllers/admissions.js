@@ -13,8 +13,13 @@ controller.index = function(req,res){
 	console.log(req.user);
 	var newApplicants;
 	var currentInstructors;
+	var theEvaluated;
 	// User.find({role: 'student', 'application.status':'new applicant', admissions:req.user})
-	User.find({role: 'student', 'application.status':'new applicant'})
+	User.find({role: 'student', 'application.status':'evaluated'})
+	.then(function(students){
+		theEvaluated = students;
+		return User.find({role: 'student', 'application.status':'new applicant'});
+	})
 	.then(function(students){
 		newApplicants = students;
 		return User.find({role: 'instructor'});
@@ -24,7 +29,7 @@ controller.index = function(req,res){
 		return User.find({role: 'admissions'});
 	})
 	.then(function(admissions){
-		res.render('admissions/admissions', {user:req.user, students:newApplicants, instructors:currentInstructors, admissions:admissions});
+		res.render('admissions/admissions', {user:req.user, applicants:newApplicants, instructors:currentInstructors, admissions:admissions, evaluated:theEvaluated});
 	})
 	.catch(function(err) {
 		throw err;
@@ -48,7 +53,7 @@ controller.update = function(req, res){
 			currentInstructor = instructor;
 			currentStudent.instructor = currentInstructor;
 			currentStudent.dateAndTime = dateAndTime;
-			// currentStudent.admissions = req.user;
+			currentStudent.admissions = req.user;
 			currentStudent.application.status = 'pre evaluation';
 			return currentStudent.save();
 		})
