@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+  <% include ../partials/head %>
   <title>Frontlines</title>
 </head>
 <body>
-  <% users.forEach(function(user){ %>
-   <div >
-    <img src="<%= user.avatar %>"> <div><%= user.name %></div>
-    </div>
-  <% }) %>
+  <div class="container">
+    <% users.forEach(function(user){ %>
+     <div>
+        <img src="<%= user.avatar %>">
+        <div><%= user.name %></div>
+      </div>
+    <% }) %>
+  </div>
 </body>
 </html>

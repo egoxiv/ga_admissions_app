@@ -5,8 +5,12 @@ var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 var passportGithub = function(passport){
 	passport.serializeUser( function(user,done){
+<<<<<<< HEAD
 		console.log('This is a user '+ user);
 		done(null,user.id);
+=======
+		done(null, user.id);
+>>>>>>> 51a614c79cfdbd5d3cccb64e5f3363d8d4d0dfad
 	});
 	passport.deserializeUser(function(id,done){
 		var newId;
@@ -25,29 +29,27 @@ var passportGithub = function(passport){
   passport.use('google', new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://127.0.0.1:3000/auth/google/callback',
+    callbackURL: process.env.GOOGLE_CALLBACK_URL,
     passReqToCallback: true,
   }, function(request, accessToken, refreshToken, profile, done){
-        console.log('This is where we are!!!');
-        console.log(profile.emails[0].value);
-        User.findOne({'ga_email': profile.emails[0].value}, function(err, user){
-          if (err){
-          	return done(err);
+      console.log('This is where we are!!!');
+      console.log(profile.emails[0].value);
+      User.findOne({'ga_email': profile.emails[0].value}, function(err, user){
+        if (err) {
+          return done(err);
+        } else {
+          if (user) {
+            return done(null, user);
           } else {
-	          if (user) {
-	            return done(null, user);
-	          } else {
-	              return done(null, null);
-	          }
-          	
+            return done(null, null);
           }
-        });
+        }
+      });
   }));
 	passport.use('github', new GithubStrategy({
 		clientID: process.env.GITHUB_API_KEY,
 		clientSecret: process.env.GITHUB_API_SECRET,
-		// callbackURL: process.env.APP_URL+"/auth/github/callback",
-		callbackURL: "http://127.0.0.1:3000/auth/github/callback",
+		callbackURL: process.env.GITHUB_CALLBACK_URL,
 		enableProof: true,
 		profileFields: ['name', 'email']
 	}, function(access_token, refresh_token, profile, done){
@@ -63,7 +65,8 @@ var passportGithub = function(passport){
 						newUser.name =profile._json.name;
 						newUser.github_username =profile._json.login;
 						newUser.email =profile._json.email;
-						newUser.github = profile._json.htmlurl;
+			            newUser.github_username =profile._json.login;
+						newUser.github = profile._json.html_url;
 						newUser.city = profile._json.location;
 						newUser.avatar =profile._json.avatar_url;
 						newUser.role='student';
@@ -79,8 +82,6 @@ var passportGithub = function(passport){
 				});
 		});
 	}));
-
-
 };
 
 module.exports = passportGithub;

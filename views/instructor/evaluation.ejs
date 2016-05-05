@@ -7,16 +7,16 @@
 	<h1>General Assembly Admissions - Evaluation for <%= student.name %> </h1>
 	<div>
 		<div>
-			<% if(student.avatar){ %> 
+			<% if(student.avatar){ %>
 				<img src="<%= student.avatar %>" width="200">
-			<% } else { %> 
+			<% } else { %>
 				<p>No image on file...</p>
 			<% } %>
 		</div>
 		<div>
-			<% if(student.github){ %> 
+			<% if(student.github){ %>
 				<a href="<%= student.github %>"><%= student.github %></a>
-			<% } else { %> 
+			<% } else { %>
 				<p>No repos indicated...</p>
 			<% } %>
 		</div>
