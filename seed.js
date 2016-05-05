@@ -9,7 +9,7 @@ User.remove({})
  	.then(function(){
   	return User.create([
       {name:'Phil Lamplugh', email:'philco@ga.com', ga_email:'philco@ga.com',github:'https://github.com/phlco', role:'instructor' },
-      // {name:'Kate Wood', email:'katewood611@gmail.com', ga_email:'katewood611@gmail.com',github:'https://github.com/KateWood', role:'instructor' },
+      {name:'Kate Wood', email:'katewood611@gmail.com', ga_email:'katewood611@gmail.com',github:'https://github.com/KateWood', role:'instructor' },
       {name:'Matt Gutierrez', email:'matthew.gutierrez@generalassemb.ly', ga_email:'matthew.gutierrez@generalassemb.ly',github:'https://github.com/fatchicken007', role:'instructor' },
       // {name:'Matt Parvinsmith', email:'mrparvinsmith@gmail.com', ga_email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role: 'student' },
       // {name:'Christina Regis', email:'christina.freeze@gmail.com', ga_email:'christina.freeze@gmail.com',github:'https://github.com/christina-regis', role:'student' },
