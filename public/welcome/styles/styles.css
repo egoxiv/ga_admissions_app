@@ -26,6 +26,18 @@ img {
   color: #fff;
 }
 
+.btn-google {
+  color: #fff;
+  background-color: #dd4b39;
+  border-color: rgba(0,0,0,0.2);
+  width: 200px;
+  margin: 0 auto;
+}
+
+.btn-google:hover {
+  color: #fff;
+}
+
 .btn-social {
   position: relative;
   padding-left: 44px;
