@@ -16,10 +16,9 @@ $(document).ready(function(){
 
 	
 	$('body').on('click','button',function(){
-		console.log($(this).parent().serialize());
-		var student = $(this).prev().prev().attr('id');
-		var instructor = $(this).prev().prev().val();
-		var dateAndTime = $(this).prev().val();
+		var student = $(this).prev().prev().prev().attr('id');
+		var instructor = $(this).prev().prev().prev().val();
+		var dateAndTime = $(this).prev().val()+' '+$(this).prev().prev().val();
 		if(instructor !=='add'){
 			var ids ={};
 			ids.instructor =instructor;
@@ -27,7 +26,7 @@ $(document).ready(function(){
 			ids.time = dateAndTime;
 			// console.log(ids);
 			$.ajax({
-				method: "POST",
+				method: "PUT",
 				data: ids,
 				url: "/admissions/",
 				cache: false,
