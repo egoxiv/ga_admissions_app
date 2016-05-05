@@ -25,23 +25,19 @@ var passportGithub = function(passport){
     // callbackURL: "https://ga-admissions.herokuapp.com/auth/google/callback",
     passReqToCallback: true,
   }, function(request, accessToken, refreshToken, profile, done){
-        console.log('This is where we are!!!');
-        console.log(profile.emails[0].value);
-        User.findOne({'ga_email': profile.emails[0].value}, function(err, user){
-          if (err) return done(err);
+      console.log('This is where we are!!!');
+      console.log(profile.emails[0].value);
+      User.findOne({'ga_email': profile.emails[0].value}, function(err, user){
+        if (err) {
+          return done(err);
+        } else {
           if (user) {
             return done(null, user);
           } else {
-            var newUser = new User();
-            newUser.access_token = access_token;
-            newUser.name = profile.displayName;
-            newUser.save(function(err){
-              if (err)
-                throw err;
-              return done(null, newUser);
-            });
+            return done(null, null);
           }
-        });
+        }
+      });
   }));
 
 	passport.use('github', new GithubStrategy({
@@ -80,8 +76,6 @@ var passportGithub = function(passport){
 				});
 		});
 	}));
-
-
 };
 
 module.exports = passportGithub;

@@ -10,20 +10,21 @@
 
   <div class="container">
 
-	<% if(student != undefined){ %>
-		<h1>Student Profile</h1>
+  	<% if(student != undefined){ %>
+
+  		<h1>Student Profile</h1>
 	    <img src="<%= student.avatar %>">
 	    <p>Name: <%= student.name %></p>
 	    <p>Email: <a href="mailto:<%= student.email %>"><%= student.email %></a></p>
 	    <p><a href="<%= student.github %>">GitHub</a></p>
 	    <p><a href="/">Go back</a></p>
-		<a href="/student/logout">logout</a>
-	<% } else { %>
-    <img src="https://generalassemb.ly/online/assets/ga-lockup-logo-9d95d5d0a1c966540edaedcb440b1963.png" alt="General Assembly logo">
-		<h1>Click to begin</h1>
-    <a href="/auth/github" class="btn btn-block btn-social btn-github btn-md">
-      <i class="fa fa-github"></i> Sign in with GitHub</a>
-	<% } %>
+  		<a href="/student/logout" class="btn btn-danger btn-sm">logout</a>
+  	<% } else { %>
+      <img src="https://generalassemb.ly/online/assets/ga-lockup-logo-9d95d5d0a1c966540edaedcb440b1963.png" alt="General Assembly logo">
+  		<h1>Click to begin</h1>
+      <a href="/auth/github" class="btn btn-block btn-social btn-github btn-md">
+        <i class="fa fa-github"></i> Sign in with GitHub</a>
+  	<% } %>
 
   </div>
 
