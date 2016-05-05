@@ -31,8 +31,7 @@ var passportGithub = function(passport){
           if (err) return done(err);
           if (user) {
             return done(null, user);
-          }
-          else {
+          } else {
             var newUser = new User();
             newUser.access_token = access_token;
             newUser.name = profile.displayName;
