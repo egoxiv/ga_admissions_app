@@ -6,10 +6,10 @@ ul {
   list-style: none;
 }
 
-#wpm {
+/*#wpm {
   border: none;
   background-color: transparent;
-}
+}*/
 
 #submitButton {
   display: block;

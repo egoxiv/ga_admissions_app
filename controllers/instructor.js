@@ -55,7 +55,7 @@ controller.update = function(req, res){
 };
 
 controller.show = function(req, res){
-	if(req.user.role !== 'instructor') res.redirect('/student');
+	if(req.user.role !== 'instructor' && req.user.role !== 'admissions') res.redirect('/student');
 	var results;
 	User.findById(req.params.id)
 		.then(function(student){
