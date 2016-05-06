@@ -13,7 +13,7 @@ User.remove({})
       // {name:'Matt Gutierrez', email:'matthew.gutierrez@generalassemb.ly', ga_email:'matthew.gutierrez@generalassemb.ly',github:'https://github.com/fatchicken007', github_username:'fatchicken007', role:'instructor' },
       // {name:'Matt Parvinsmith', email:'mrparvinsmith@gmail.com', ga_email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role: 'student' },
       {name:'Erik Gomez', email:'ego.xiv@gmail.com', ga_email:'ego.xiv@gmail.com',github:'https://github.com/egoxiv', github_username: 'egoxiv', role:'instructor' },
-      // {name:'Christina Regis', email:'christina.freeze@gmail.com', ga_email:'christina.freeze@gmail.com', github:'https://github.com/christina-regis', github_username: 'christina-regis', role:'student', 'application.status': 'pre evaluation' },
+      {name:'Christina Regis', email:'christina.freeze@gmail.com', ga_email:'christina.freeze@gmail.com', github:'https://github.com/christina-regis', github_username: 'christina-regis', role:'student', 'application.status': 'pre evaluation' },
       {name:'Evan Washington', email:'enavy04@gmail.com', ga_email:'enavy04@gmail.com',github:'https://github.com/Navyvet1125', role:'admissions' },
       {name:'Josh Fadem', email:'josh.fadem@generalassemb.ly', ga_email:'josh.fadem@generalassemb.ly', github:'https://github.com/jfadem82', role:'admissions' },
     ]);
