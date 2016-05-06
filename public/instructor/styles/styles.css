@@ -1,3 +1,22 @@
+textarea {
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+/*#wpm {
+  border: none;
+  background-color: transparent;
+}*/
+
+#submitButton {
+  display: block;
+  width: 150px;
+  margin: 50px auto 20px;
+}
+
 .btn-github {
   color: #fff;
   background-color: #444;
