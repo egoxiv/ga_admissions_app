@@ -42,12 +42,13 @@ controller.update = function(req, res){
 		})
 		.then(function(student){
 			currentStudent = student;
-			return User.findById(student.admissions);
+			console.log(currentStudent.admissions);
+			return User.findById(currentStudent.admissions);
 		})
 		.then(function(admissions){
-			var admissionsEmail =req.user.email; //When ready, set to admissions.ga_email;
+			var admissionsEmail = admissions.ga_email;
 			require('../config/nodemailer')(admissionsEmail,"Student Evaluated",currentStudent.name + " has been evaluated by "+req.user.name+"." ,"<p>" + currentStudent.name + " has been evaluated by "+req.user.name+".</p>");
-			res.redirect('/instructor/students/'+req.body.student_id);
+			res.redirect('/instructor/');
 		})
 		.catch(function(err){
 			throw err;
@@ -60,11 +61,8 @@ controller.show = function(req, res){
 	User.findById(req.params.id)
 		.then(function(student){
 			results = student;
-		// 	return Cohort.findOne({students: student});
-		// })
-		// .then(function(cohort){
-		// 	var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
-			res.render('instructor/student',{ student:results });
+			var interview = ['onTime', 'professionalism', 'motivation', 'commitment', 'timeCommit', 'experience', 'attitude', 'wpm', 'skill', 'hasMac', 'overall'];
+			res.render('instructor/student',{ student:results, user:req.user, interview: interview });
 		});
 };
 

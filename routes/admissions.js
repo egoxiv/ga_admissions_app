@@ -8,11 +8,17 @@ var admissionsController = require('../controllers/admissions.js');
 
 router.route('/')
 	.get(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.index)
-	.post(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.update);
+	.put(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.update);
 
 router.route('/logout')
 	.get(admissionsController.logout);
 
+router.route('/delete/:id')
+	.delete(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.destroy);
+
+router.route('/accepted/:id')
+	.put(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.accepted);
+	
 router.route('/:student')
 	.get(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.show);
 
