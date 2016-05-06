@@ -16,6 +16,10 @@ img {
   max-width: 600px;
 }
 
+.frontlines-set {
+  display: none;
+}
+
 .btn {
   margin: 5px auto;
   width: 150px;
