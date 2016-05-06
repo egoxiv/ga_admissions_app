@@ -26,7 +26,7 @@ $(document).ready(function(){
       ids.time = dateAndTime;
       // console.log(ids);
       $.ajax({
-        method: "POST",
+        method: "PUT",
         data: ids,
         url: "/admissions/",
         cache: false,

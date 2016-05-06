@@ -7,12 +7,18 @@ var admissionsController = require('../controllers/admissions.js');
 ****************/
 
 router.route('/')
-	.get(admissionsController.index)
-	.post(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.update);
+	.get(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.index)
+	.put(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.update);
 
 router.route('/logout')
-	.get(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.logout);
+	.get(admissionsController.logout);
 
+router.route('/delete/:id')
+	.delete(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.destroy);
+
+router.route('/accepted/:id')
+	.put(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.accepted);
+	
 router.route('/:student')
 	.get(require('connect-ensure-login').ensureLoggedIn('/'),admissionsController.show);
 
