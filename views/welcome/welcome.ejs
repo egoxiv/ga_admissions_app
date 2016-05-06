@@ -12,6 +12,7 @@
 <body>
   <% if(!user) { %>
     <div class="container">
+    <div class="jumbotron">
 
       <img src="http://static-assets.generalassemb.ly/logos/generalassembly-open-graph.png" alt="General Assembly">
 
@@ -29,7 +30,7 @@
           Admissions
         </button>
 
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#frontlinesModal">
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#frontlinesModal" class="display-hide">
           Frontlines
         </button>
 
@@ -89,7 +90,7 @@
           </div>
         </div>
 
-        <div class="modal fade" id="frontlinesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade hide" id="frontlinesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -108,14 +109,15 @@
         </div>
 
       </div>
+      <% } else { %>
+        <img src="http://static-assets.generalassemb.ly/logos/generalassembly-open-graph.png" alt="General Assembly">
+        <div class="text-center">
+          <h3>You're already signed in as <%= user.name %>.</h3>
+          <p>If you would like to sign in as someone else, <a href="/student/logout">logout</a>.</p>
+        </div>
+      <% } %>
+      </div>
     </div>
-  <% } else { %>
-    <img src="http://static-assets.generalassemb.ly/logos/generalassembly-open-graph.png" alt="General Assembly">
-    <div class="text-center">
-      <h3>You're already signed in as <%= user.name %>.</h3>
-      <p>If you would like to sign in as someone else, <a href="/student/logout">logout</a>.</p>
-    </div>
-  <% } %>
 
 </body>
 </html>
