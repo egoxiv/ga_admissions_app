@@ -89,10 +89,18 @@ controller.logout = function(req,res){
 };
 
 controller.destroy = function(req, res){
-  console.log(req.params.id);
+  var currentStudent;
   User.findByIdAndRemove(req.params.id)
+    .then(function(student){
+      currentStudent = student;
+      return User.findById(student.admissions);
+    })
+    .then(function(admissions){
+      var studentMessage ="Dear, " + currentStudent.name + ".  I regret to inform you that you have not met the criteria to enter into our program.  Please feel free to contact us again in 6 months after you have spent some time familiarizing yourself with HTML and CSS.  If you have any questions please contact your Admissions representative.  Best wishes,"+admissions.name+'Admissions';
+      var studentHTML ="<h1>Dear, " + currentStudent.name + ".</h1><p>I regret to inform you that you have not met the criteria to enter into our program.  Please feel free to contact us again in 6 months after you have spent some time familiarizing yourself with HTML and CSS.  If you have any questions please contact your Admissions representative.</p><p>Best wishes,<br/>"+admissions.name+'<br/>Admissions';
+      return require('../config/nodemailer')(currentStudent.email,"Notice from GA!",studentMessage, studentHTML);
+    })
     .then(function(results){
-      console.log(results);
       res.status(200).send(results);
     })
     .catch(function(err){
@@ -101,7 +109,6 @@ controller.destroy = function(req, res){
 };
 
 controller.accepted = function(req, res){
-  console.log(req.params.id);
   var currentStudent;
   User.findById(req.params.id)
     .then(function(student){
