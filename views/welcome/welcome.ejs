@@ -10,8 +10,10 @@
 
 </head>
 <body>
-  <div class="container">
-  <div class="jumbotron">
+  <% if(!user) { %>
+    <div class="container">
+    <div class="jumbotron">
+
       <img src="http://static-assets.generalassemb.ly/logos/generalassembly-open-graph.png" alt="General Assembly">
 
       <div class="text-center">
@@ -107,8 +109,15 @@
         </div>
 
       </div>
+      <% } else { %>
+        <img src="http://static-assets.generalassemb.ly/logos/generalassembly-open-graph.png" alt="General Assembly">
+        <div class="text-center">
+          <h3>You're already signed in as <%= user.name %>.</h3>
+          <p>If you would like to sign in as someone else, <a href="/student/logout">logout</a>.</p>
+        </div>
+      <% } %>
+      </div>
     </div>
-  </div>
 
 </body>
 </html>

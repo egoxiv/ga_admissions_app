@@ -33,7 +33,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', function(req, res) {
-  res.render('welcome/welcome');
+  res.render('welcome/welcome', {user: req.user});
 });
 
 app.use('/student', studentRoutes);

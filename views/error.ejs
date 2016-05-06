@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ./partials/head %>
+  <link rel="stylesheet" type="text/css" href="/error.css">
+  <title>Error</title>
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>ACCESS DENIED!</h1>
+      <p>YOU ARE NOT AN <%= role %></p>
+      <p><a href="/">GO BACK</a> AND LOGIN</p>
+      <h4>Or make sure you're logged in <a href="<%= siteUrl %>" target="_blank"><%= siteName %></a> and try again.</h4>
+    </div>
+  </div>
+</body>
+</html>

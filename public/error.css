@@ -1,0 +1,14 @@
+body{
+  background-color: #eee;
+  text-align: center;
+}
+
+.jumbotron {
+  background-color: white;
+}
+
+.jumbotron h1 {
+  margin: 0 auto;
+  font-size: 4em;
+}
+
