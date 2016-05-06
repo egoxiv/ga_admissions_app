@@ -9,8 +9,11 @@ var passportGithub = function(passport){
 	});
 	passport.deserializeUser(function(id,done){
 		var newId;
-		if(typeof id!=='string') newId = id[0]._id;
-		else newId = id;
+		if(typeof id!=='string'){
+			newId = id[0]._id;
+		} else {
+			newId = id;
+		}
 		console.log(newId);
 		User.findById(newId, function(err,user){
 			console.log('deserializing user...',user);
@@ -38,7 +41,6 @@ var passportGithub = function(passport){
         }
       });
   }));
-
 	passport.use('github', new GithubStrategy({
 		clientID: process.env.GITHUB_API_KEY,
 		clientSecret: process.env.GITHUB_API_SECRET,
@@ -51,14 +53,14 @@ var passportGithub = function(passport){
 				.then(function(user){
 					if(user){
 						return user;
-					}
-					else{
+					} else{
 						console.log(profile);
 						var newUser = new User();
 						newUser.access_token =access_token;
 						newUser.name =profile._json.name;
+						newUser.github_username =profile._json.login;
 						newUser.email =profile._json.email;
-            newUser.github_username =profile._json.login;
+			            newUser.github_username =profile._json.login;
 						newUser.github = profile._json.html_url;
 						newUser.city = profile._json.location;
 						newUser.avatar =profile._json.avatar_url;

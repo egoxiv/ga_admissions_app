@@ -11,8 +11,9 @@
   	<h1>General Assembly Admissions - Student Access</h1>
     <div>
       <% if(student != undefined){ %>
+        <input type="hidden" value ="<%= student.id %>" id="student-id">
         <h2>Student: <%= student.name %></h2>
-        <% if(!student.application.instructorEvaluation.completed) {%>
+        <% if(!student.application.status ==='pre evaluation') {%>
           <p>This prospective student has not been evaluated yet!</p>
       <% } %>
         <ul>
@@ -20,13 +21,130 @@
           <li>Email: <%= student.email %></li>
           <li>Github: <a href="<%= student.github %>"><%= student.github %></a></li>
         </ul>
-        <p>Evaluate <a href="/instructor/students/<%= student.id %>/evaluate"><%= student.name %></a></p>
+        <% if(user.role==='instructor'){ %>
+          <p>Evaluate <a href="/instructor/students/<%= student.id %>/evaluate"><%= student.name %></a></p>
+        <% } %>
+        <% if(user.role==='admissions'){ %>
+        <hr>
+        <ul>
+            <li>Why did <%=student.name %> choose GA?
+              <ul>
+                <li>Notes: <%= student.application.instructorEvaluation.whyGA %></li>
+              </ul>
+            </li>
+            <li>Was <%=student.name %> on time?
+              <ul>
+                <% if(student.application.instructorEvaluation.onTime.rating) {%>
+                  <li> <%=student.name %> was on time.</li>
+                <% } else { %>
+                  <li> <%=student.name %> was late.</li>
+                <% } %>
+                <% if(student.application.instructorEvaluation.onTime.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.onTime.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+            <li>How professional was <%=student.name %>?
+              <ul>
+                  <li><%= student.application.instructorEvaluation.professionalism.rating %></li>
+                <% if(student.application.instructorEvaluation.professionalism.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.professionalism.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+            <li>How motivated was <%=student.name %>?
+              <ul>
+                  <li><%= student.application.instructorEvaluation.motivation.rating %></li>
+                <% if(student.application.instructorEvaluation.motivation.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.motivation.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+            <li>How committed was <%=student.name %>?
+              <ul>
+                  <li><%= student.application.instructorEvaluation.commitment.rating %></li>
+                <% if(student.application.instructorEvaluation.commitment.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.commitment.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+            <li>Can <%=student.name %> meet the time commitment?
+              <ul>
+                <% if(student.application.instructorEvaluation.timeCommit.rating) {%>
+                  <li> <%=student.name %> can meet the time commitment.</li>
+                <% } else { %>
+                  <li> <%=student.name %> CANNOT meet the time commitment.</li>
+                <% } %>
+                <% if(student.application.instructorEvaluation.timeCommit.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.timeCommit.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+            <li>How much experience did <%=student.name %> have?
+              <ul>
+                  <li><%= student.application.instructorEvaluation.experience.rating %></li>
+                <% if(student.application.instructorEvaluation.experience.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.experience.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+            <li>How positive an attitude did <%=student.name %> have?
+              <ul>
+                  <li><%= student.application.instructorEvaluation.attitude.rating %></li>
+                <% if(student.application.instructorEvaluation.attitude.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.attitude.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+            <li>How fast could <%=student.name %> type?
+              <ul>
+                  <li><%= student.application.instructorEvaluation.wpm.rating %> WPM</li>
+                <% if(student.application.instructorEvaluation.wpm.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.wpm.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+            <li>How computer saavy was <%=student.name %>?
+              <ul>
+                  <li><%= student.application.instructorEvaluation.skill.rating %></li>
+                <% if(student.application.instructorEvaluation.skill.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.skill.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+            <li>Does <%=student.name %> own a Mac?
+              <ul>
+                <% if(student.application.instructorEvaluation.hasMac.rating) {%>
+                  <li> <%=student.name %> has a Mac.</li>
+                <% } else { %>
+                  <li> <%=student.name %> DOES NOT have a Mac.</li>
+                <% } %>
+                <% if(student.application.instructorEvaluation.hasMac.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.hasMac.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+            <li>What was the overall score for <%=student.name %>?
+              <ul>
+                  <li><%= student.application.instructorEvaluation.overall.rating %></li>
+                <% if(student.application.instructorEvaluation.overall.notes!="") {%>
+                  <li><%= student.application.instructorEvaluation.overall.notes%> </li>
+                <% } %>
+              </ul>
+            </li>
+        </ul>
+          <p>
+            <a class="btn btn-success" id="enroll-button">Enroll</a>
+            <a class="btn btn-danger" id="delete-button">Delete</a>
+          </p>
+        <% } %>
         <a href="/instructor">Back</a> <br/>
         <a href="/student/logout">logout</a>
       <% } else { %>
         <h2>An error has occured...</h2>
-        <a href="/instructor">Back</a>
+        <a href="/<%= user.role %>">Home</a>
       <% } %>
+      <script type="text/javascript" src="/instructor/js/main.js"></script>
     </div>
   </div>
 

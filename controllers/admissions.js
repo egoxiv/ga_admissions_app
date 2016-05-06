@@ -58,11 +58,11 @@ controller.update = function(req, res){
       return currentStudent.save();
     })
     .then(function(student){
-      var studentMessage ="Hi, " + student.name + "!  You have been scheduled for an interview with instructor "+currentInstructor.name+".  The time of the interview will be: " +dateAndTime+".  If you have an issue with the time then please let us know as soon as possible.";
+      var studentMessage ="Hi, " + student.name + "!  You have been scheduled for an interview with instructor "+currentInstructor.name+".  The time of the interview will be: " +dateAndTime+".  If you have an issue with the time then please let us know as soon as possible";
       return require('../config/nodemailer')(student.email,"You have an interview!!!",studentMessage,"<p>" + studentMessage +".</p>");
     })
     .then(function(student){
-      var instructorMessage ="Hi, " + currentInstructor.name + "!  You have been scheduled for an interview with a new prospective student name: "+currentStudent.name+".  The time of the interview will be: " +dateAndTime+".  If you have an issue with the time then please let us know as soon as possible.";
+      var instructorMessage ="Hi, " + currentInstructor.name + "!  You have been scheduled for an interview with a new prospective student name: "+currentStudent.name+".  The time of the interview will be: " +dateAndTime+".  If you have an issue with the time then please let us know as soon as possible";
       return require('../config/nodemailer')(currentInstructor.ga_email,"You have an interview!!!",instructorMessage,"<p>" + instructorMessage +".</p>");
     })
     .catch(function(err){
@@ -87,5 +87,50 @@ controller.logout = function(req,res){
   req.logout();
   res.redirect('/');
 };
+
+controller.destroy = function(req, res){
+  var currentStudent;
+  User.findByIdAndRemove(req.params.id)
+    .then(function(student){
+      currentStudent = student;
+      return User.findById(student.admissions);
+    })
+    .then(function(admissions){
+      var studentMessage ="Dear, " + currentStudent.name + ".  I regret to inform you that you have not met the criteria to enter into our program.  Please feel free to contact us again in 6 months after you have spent some time familiarizing yourself with HTML and CSS.  If you have any questions please contact your Admissions representative.  Best wishes,"+admissions.name+'Admissions';
+      var studentHTML ="<h1>Dear, " + currentStudent.name + ".</h1><p>I regret to inform you that you have not met the criteria to enter into our program.  Please feel free to contact us again in 6 months after you have spent some time familiarizing yourself with HTML and CSS.  If you have any questions please contact your Admissions representative.</p><p>Best wishes,<br/>"+admissions.name+'<br/>Admissions';
+      return require('../config/nodemailer')(currentStudent.email,"Notice from GA!",studentMessage, studentHTML);
+    })
+    .then(function(results){
+      res.status(200).send(results);
+    })
+    .catch(function(err){
+      res.send(500).send(err);
+    });
+};
+
+controller.accepted = function(req, res){
+  var currentStudent;
+  User.findById(req.params.id)
+    .then(function(student){
+      student.application.status='accepted';
+      return student.save();
+    })
+    .then(function(student){
+      currentStudent = student;
+      return User.findById(student.admissions);
+    })
+    .then(function(admissions){
+      var studentMessage ="Congratulations, " + currentStudent.name + "!  You have been accepted into the WDI program.  We will be contacting you shortly with information on the cohort you'll be assigned to.  If you have any questions please contact your Admissions representative.  Good luck;"+admissions.name+'Admissions';
+      var studentHTML ="<h1>Congratulations, " + currentStudent.name + "!</h1><p>  You have been accepted into the WDI program.  We will be contacting you shortly with information on the cohort you'll be assigned to.  If you have any questions please contact your Admissions representative.</p><p>Good luck;<br/>"+admissions.name+'<br/>Admissions';
+      return require('../config/nodemailer')(currentStudent.email,"Welcome to GA!",studentMessage, studentHTML);
+    })
+    .then(function(results){
+      res.status(200).send(results);
+    })
+    .catch(function(err){
+      res.send(500).send(err);
+    });
+};
+
 
 module.exports = controller;

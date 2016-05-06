@@ -10,7 +10,7 @@ controller.evaluated ={};
 
 controller.index = function(req,res){
 if(req.user !== undefined && req.user.role !=='instructor') res.redirect('/student');
-	User.find({instructor: req.user, role:'student','application.status':'pre evaluation'})
+	User.find({role:'student','application.status':'pre evaluation'})
 	.then(function(students){
 		res.render('instructor/instructor', {user:req.user, students:students});
 	})
@@ -42,12 +42,13 @@ controller.update = function(req, res){
 		})
 		.then(function(student){
 			currentStudent = student;
-			return User.findById(student.admissions);
+			console.log(currentStudent.admissions);
+			return User.findById(currentStudent.admissions);
 		})
 		.then(function(admissions){
-			var admissionsEmail =req.user.email; //When ready, set to admissions.ga_email;
+			var admissionsEmail = admissions.ga_email;
 			require('../config/nodemailer')(admissionsEmail,"Student Evaluated",currentStudent.name + " has been evaluated by "+req.user.name+"." ,"<p>" + currentStudent.name + " has been evaluated by "+req.user.name+".</p>");
-			res.redirect('/instructor/students/'+req.body.student_id);
+			res.redirect('/instructor/');
 		})
 		.catch(function(err){
 			throw err;
@@ -65,7 +66,14 @@ controller.show = function(req, res){
 };
 
 controller.edit = function(req, res){
-	if(req.user.role !== 'instructor') res.redirect('/student');
+	switch(req.user.role){
+		case 'student': res.redirect('/student');
+		break;
+		case 'admissions': res.redirect('/admissions');
+		break;
+		default: break;
+	}
+
 	var results;
 	User.findById(req.params.id)
 		.then(function(student){
