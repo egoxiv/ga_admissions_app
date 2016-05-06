@@ -20,26 +20,25 @@ User.remove({})
     ]);
   })
   .then(function(users){
-    var cohort = new Cohort();
-    cohort.program = 'WDI';
-    cohort.campus = 'SM';
-    cohort.number = 22;
-    cohort.city = 'Santa Monica, CA';
-    cohort.start = new Date('March 7, 2016');
-    cohort.end = new Date('May 27, 2016');
-    users.forEach(function(user){
-      if (user.role==='instructor' && cohort.instructors.length < 3) {
-        user.cohort = cohort._id;
-        user.save();
-        cohort.instructors.push(user._id);
-      } else if (user.role==='student') {
-        user.instructor = cohort.instructors[cohort.instructors.length-1];
-        user.cohort = cohort._id;
-        user.save();
-        cohort.students.push(user._id);
-      }
-    });
-    return cohort.save();
+      var cohort = new Cohort();
+      cohort.program = 'WDI';
+      cohort.campus = 'SM';
+      cohort.number = 22;
+      cohort.city = 'Santa Monica, CA';
+      cohort.start = new Date('March 7, 2016');
+      cohort.end = new Date('May 27, 2016');
+      users.forEach(function(user){
+          if (user.role==='instructor' && cohort.instructors.length < 3) {
+            user.cohort = cohort._id;
+            user.save();
+            cohort.instructors.push(user._id);
+          } else if (user.role==='student') {
+            user.cohort = cohort._id;
+            user.save();
+            cohort.students.push(user._id);
+          }
+      });
+      return cohort.save();
   })
   .catch(function(err){
     console.log(err);
