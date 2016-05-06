@@ -11,7 +11,8 @@ User.remove({})
       {name:'Phil Lamplugh', email:'philco@ga.co', ga_email:'philco@ga.co',github:'https://github.com/phlco', github_username:'phlco', role:'instructor' },
       {name:'Kate Wood', email:'kate.wood@ga.co', ga_email:'kate.wood@ga.co',github:'https://github.com/KateWood', github_username: 'KateWood', role:'instructor' },
       // {name:'Matt Gutierrez', email:'matthew.gutierrez@generalassemb.ly', ga_email:'matthew.gutierrez@generalassemb.ly',github:'https://github.com/fatchicken007', github_username:'fatchicken007', role:'instructor' },
-      // {name:'Evan Washington', email:'inudoshi2016@gmail.com', ga_email:'inudoshi2016@gmail.com',github:'https://github.com/Navyvet1125', role:'instructor', github_username:'navyvet1125' },
+      {name:'Evan Washington', email:'inudoshi2016@gmail.com', ga_email:'inudoshi2016@gmail.com',github:'https://github.com/Navyvet1125', role:'instructor', github_username:'navyvet1125' },
+      {name:'Evan Washington', email:'enavy04@gmail.com', ga_email:'enavy04@gmail.com', role:'admissions' },
       // {name:'Matt Parvinsmith', email:'mrparvinsmith@gmail.com', ga_email:'mrparvinsmith@gmail.com',github:'https://github.com/mrparvinsmith', role: 'student' },
       {name:'Erik Gomez', email:'p3223er@yahoo.com', ga_email:'p3223er@yahoo.com',github:'https://github.com/egoxiv', github_username: 'egoxiv', role:'instructor' },
       {name:'Erik Gomez', email:'ego.xiv@gmail.com', ga_email:'ego.xiv@gmail.com', role:'admissions' }

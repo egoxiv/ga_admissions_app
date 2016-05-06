@@ -9,7 +9,7 @@ var passportFunction = function(passport){
 	});
 	passport.deserializeUser(function(id,done){
 		var newId;
-		// Code to handle the diffences between github oauth1 and google oauth2 
+		// Code to handle the diffences between github oauth1 and google oauth2
 		//oath1 id is a string id but oauth2 id is an object
 		//mongoose needs a string for findById to work
 		if(typeof id!=='string'){
@@ -23,7 +23,7 @@ var passportFunction = function(passport){
 		});
 	});
 
-	// Login for Admissions.  
+	// Login for Admissions.
 	// WARNING, ONLY USERS SEEDED IN THE DB CAN LOGIN THROUGH GOOGLE
   passport.use('google', new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -66,12 +66,12 @@ var passportFunction = function(passport){
 						newUser.name =profile._json.name;
 						newUser.github_username =profile._json.login;
 						newUser.email =profile._json.email;
-			            newUser.github_username =profile._json.login;
+            newUser.github_username =profile._json.login;
 						newUser.github = profile._json.html_url;
 						newUser.city = profile._json.location;
 						newUser.avatar =profile._json.avatar_url;
 						newUser.role='student';
-						newUser.student_status= 'new applicant';
+						newUser.application.status= 'new applicant';
 						return newUser.save();
 					}
 				})
