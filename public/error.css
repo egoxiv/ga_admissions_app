@@ -1,0 +1,12 @@
+body{
+  background-color: black;
+  color: red;
+  text-align: center;
+}
+h1 {
+  margin-top: 150px;
+  font-size: 125px;
+}
+h3 {
+  font-size: 40px;
+}
