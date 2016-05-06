@@ -17,9 +17,8 @@ var passportFunction = function(passport){
 		} else {
 			newId = id;
 		}
-		console.log(newId);
 		User.findById(newId, function(err,user){
-			console.log('deserializing user...',user);
+			console.log('deserializing user...');
 			done(err, user);
 		});
 	});
@@ -32,8 +31,6 @@ var passportFunction = function(passport){
     callbackURL: process.env.GOOGLE_CALLBACK_URL,
     passReqToCallback: true,
   }, function(request, accessToken, refreshToken, profile, done){
-      console.log('This is where we are!!!');
-      console.log(profile.emails[0].value);
       User.findOne({'ga_email': profile.emails[0].value}, function(err, user){
         if (err) {
           return done(err);
