@@ -2,13 +2,16 @@ var User = require('../models/user');
 var GithubStrategy = require('passport-github').Strategy;
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
-
-var passportGithub = function(passport){
+// Wrap it in a function to make it callable
+var passportFunction = function(passport){
 	passport.serializeUser( function(user,done){
 		done(null, user.id);
 	});
 	passport.deserializeUser(function(id,done){
 		var newId;
+		// Code to handle the diffences between github oauth1 and google oauth2 
+		//oath1 id is a string id but oauth2 id is an object
+		//mongoose needs a string for findById to work
 		if(typeof id!=='string'){
 			newId = id[0]._id;
 		} else {
@@ -21,6 +24,8 @@ var passportGithub = function(passport){
 		});
 	});
 
+	// Login for Admissions.  
+	// WARNING, ONLY USERS SEEDED IN THE DB CAN LOGIN THROUGH GOOGLE
   passport.use('google', new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -41,6 +46,10 @@ var passportGithub = function(passport){
         }
       });
   }));
+
+  // Login for students and instructors.
+  // Only instructors already in the system will be logged in as instructors
+  // All others will be made new students.
 	passport.use('github', new GithubStrategy({
 		clientID: process.env.GITHUB_API_KEY,
 		clientSecret: process.env.GITHUB_API_SECRET,
@@ -54,7 +63,7 @@ var passportGithub = function(passport){
 					if(user){
 						return user;
 					} else{
-						console.log(profile);
+						// Creates a new student based on info from Github
 						var newUser = new User();
 						newUser.access_token =access_token;
 						newUser.name =profile._json.name;
@@ -79,4 +88,4 @@ var passportGithub = function(passport){
 	}));
 };
 
-module.exports = passportGithub;
+module.exports = passportFunction;

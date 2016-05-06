@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 var cohorts = require('../controllers/cohorts');
 
-// put bfore controller argument
-// require('connect-ensure-login').ensureLoggedIn('/error'),
 
 router.route('/')
   .get(require('connect-ensure-login').ensureLoggedIn('/cohorts/error'), cohorts.index)
