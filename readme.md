@@ -49,4 +49,4 @@ In approaching this project we began by talking to the Admissions Manager to und
 * Path 0.12.7
 * Promise 7.1.1
 
-Descriptions of any unsolved problems or major hurdles your team had to overcome.
+At this time we are not aware of any issues.  Please let us know if you have any problems using our app.   
