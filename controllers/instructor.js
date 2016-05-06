@@ -61,7 +61,7 @@ controller.show = function(req, res){
 	User.findById(req.params.id)
 		.then(function(student){
 			results = student;
-			res.render('instructor/student',{ student:results });
+			res.render('instructor/student',{ student: results, user: req.user });
 	});
 };
 
@@ -89,7 +89,7 @@ controller.logout = function(req,res){
 
 // Shows all evaluated students
 controller.evaluated.show= function(req,res){
-  
+
   User.find({role: 'student', 'application.status':'evaluated'})
     .then(function(student) {
       res.render('admissions/status', {student: student});
