@@ -118,8 +118,10 @@ cohorts.addStudent = function(req, res){
       } else if(!student.cohort && student.application.status === 'accepted'){
         cohort.addStudent(student);
         res.json(cohort);
-      } else {
+      } else if(student.application.status === 'enrolled'){
         res.json({error: 'That student has already been assigned to a cohort.'});
+      } else {
+        res.json({error: 'That student has not been accepted yet.'});
       }
     });
   });
