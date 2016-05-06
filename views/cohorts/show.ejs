@@ -2,8 +2,8 @@
 <html>
 <head>
   <title><%= section.name() %></title>
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+  <% include ../partials/head.ejs %>
+  <link rel="stylesheet" type="text/css" href="/cohorts/styles/show.css">
 </head>
 <body>
   <% if(user.role === 'admissions'){ %>
@@ -13,15 +13,15 @@
 
     <div id="error"></div>
 
-    <p>Instructors:</p>
-    <table id="instructors"></table>
+    <h3>Instructors:</h3>
+    <table id="instructors" class="table table-hover list"></table>
 
     <div id="add-instructor">
       <input type="text" id="new-instructor"><button id="add-instructor-button">Add Instructor</button>
     </div>
 
-    <p>Students:</p>
-    <table id="students"></table>
+    <h3>Students:</h3>
+    <table id="students" class="table table-hover list"></table>
     <div id="add-student">
       <input type="text" id="new-student"><button id="add-student-button">Add Student</button>
     </div>
@@ -30,17 +30,18 @@
     <a href="/cohorts/">Back to index</a>
 
     <div class="hidden" id="cohort-id"><%= section._id %></div>
+
+    <div class="sidebar">
+      <h3>Accepted Students</h3>
+      <ul id="accepted">
+      </ul>
+    </div>
+
   <% } else { %>
-    <h1>Access Denied</h1>
-    <p>You don't have permission to view this page.</p>
+    <h1 class="error">Access Denied</h1>
+    <p class="error">You don't have permission to view this page.</p>
   <% } %>
 
   <script src="/cohorts/js/show.js"></script>
 </body>
 </html>
-
-<style>
-.hidden{
-  display: none;
-}
-</style>

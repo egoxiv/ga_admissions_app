@@ -2,40 +2,6 @@ console.log('hello from show.js');
 
 var id = $('#cohort-id').text();
 
-$('body').on('click', 'button', function(){
-  $('#error').hide();
-});
-
-$('body').on('click', '.remove-instructor-button', function(){
-  var trtag = $(this).parent().parent();
-  var data = $(this).closest('td').data();
-  $.ajax({
-    url: '/cohorts/' + id + '/remove-instructor',
-    data: {
-      instructorId: data.id,
-    },
-    success: function(){
-      trtag.hide();
-      $('#add-instructor').show();
-    }
-  });
-});
-
-$('body').on('click', '.remove-student-button', function(){
-  var trtag = $(this).parent().parent();
-  var data = $(this).closest('td').data();
-  $.ajax({
-    url: '/cohorts/' + id + '/remove-student',
-    data: {
-      studentId: data.id,
-    },
-    success: function(){
-      trtag.hide();
-      $('#add-student').show();
-    }
-  });
-});
-
 var addInstructorRemoveButton = function(element){
   var $button = $('<button>');
   $button.addClass('remove-instructor-button');
@@ -96,8 +62,26 @@ var populateStudent = function(){
   });
 };
 
+var populateAccepted = function(){
+  $.ajax({
+    url: '/student/api',
+    success: function(data){
+      $('#accepted').html('');
+      data.forEach(function(student){
+        if(student.application.status === 'accepted'){
+          var $litag = $('<li>');
+          $litag.text(student.name);
+          $litag.data({id: student._id});
+          $('#accepted').append($litag);
+        }
+      });
+    }
+  });
+};
+
 populateInstructor();
 populateStudent();
+populateAccepted();
 
 $('#add-instructor-button').on('click', function(event){
   $.ajax({
@@ -132,18 +116,46 @@ $('#add-student-button').on('click', function(event){
       } else {
         $('#new-student').val('');
         populateStudent();
+        populateAccepted();
       }
     }
   });
 });
 
+$('body').on('click', 'button', function(){
+  $('#error').hide();
+});
 
+$('body').on('click', '.remove-instructor-button', function(){
+  var trtag = $(this).parent().parent();
+  var data = $(this).closest('td').data();
+  $.ajax({
+    url: '/cohorts/' + id + '/remove-instructor',
+    data: {
+      instructorId: data.id,
+    },
+    success: function(){
+      trtag.hide();
+      $('#add-instructor').show();
+    }
+  });
+});
 
-
-
-
-
-
+$('body').on('click', '.remove-student-button', function(){
+  var trtag = $(this).parent().parent();
+  var data = $(this).closest('td').data();
+  $.ajax({
+    url: '/cohorts/' + id + '/remove-student',
+    data: {
+      studentId: data.id,
+    },
+    success: function(){
+      trtag.hide();
+      $('#add-student').show();
+      populateAccepted();
+    }
+  });
+});
 
 
 
