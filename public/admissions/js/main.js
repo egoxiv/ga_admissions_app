@@ -29,10 +29,10 @@ $(document).ready(function(){
         method: "PUT",
         data: ids,
         url: "/admissions/",
-        cache: false,
-        success:function(data){
-          $(this).parent().hide();
-        }
+        cache: false
+      })
+      .done(function(data) {
+        $(this).parent().hide();
       });
     }
   });
