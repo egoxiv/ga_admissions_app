@@ -1,20 +1,15 @@
 var User       = require ('../models/user');
 var Cohort     = require ('../models/cohort');
 var db         = require('../config/db');
-// var passport   = require('passport');
-// require('../config/passport-google2')(passport);
-// var mongoose = require('mongoose');
-
 var controller = {};
 
 controller.index = function(req,res){
-// if(req.user === undefined) res.redirect('/');
-// if(req.user !== undefined && req.user.role !=='admissions') res.redirect('/');
-  console.log(req.user);
+  // Index gathers all new applicants, instructors, evaluated applicants,
+  // and admissions people and sends them to the view for rendering
   var newApplicants;
   var currentInstructors;
   var theEvaluated;
-  // User.find({role: 'student', 'application.status':'new applicant', admissions:req.user})
+
   User.find({role: 'student', 'application.status':'evaluated'})
   .then(function(students){
     theEvaluated = students;
@@ -36,11 +31,12 @@ controller.index = function(req,res){
   });
 };
 
-controller.instructorIndex = function(req, res){
-};
 
+
+// Updates new applicant to pre evaluation status
+// Assigns an instructor and admissions rep to applicant
+//Notifies applicant and instructor of scheduled meeting
 controller.update = function(req, res){
-  console.log(req.body);
   var currentInstructor = req.body.instructor;
   var currentStudent = req.body.student;
   var dateAndTime = req.body.time;
@@ -88,6 +84,8 @@ controller.logout = function(req,res){
   res.redirect('/');
 };
 
+// Admissions has the authorization to remove students
+//Once a student is removed he or she will receive a rejection email.
 controller.destroy = function(req, res){
   var currentStudent;
   User.findByIdAndRemove(req.params.id)
@@ -96,6 +94,7 @@ controller.destroy = function(req, res){
       return User.findById(student.admissions);
     })
     .then(function(admissions){
+      // Text and HTML formatted emails
       var studentMessage ="Dear, " + currentStudent.name + ".  I regret to inform you that you have not met the criteria to enter into our program.  Please feel free to contact us again in 6 months after you have spent some time familiarizing yourself with HTML and CSS.  If you have any questions please contact your Admissions representative.  Best wishes,"+admissions.name+'Admissions';
       var studentHTML ="<h1>Dear, " + currentStudent.name + ".</h1><p>I regret to inform you that you have not met the criteria to enter into our program.  Please feel free to contact us again in 6 months after you have spent some time familiarizing yourself with HTML and CSS.  If you have any questions please contact your Admissions representative.</p><p>Best wishes,<br/>"+admissions.name+'<br/>Admissions';
       return require('../config/nodemailer')(currentStudent.email,"Notice from GA!",studentMessage, studentHTML);
@@ -108,6 +107,7 @@ controller.destroy = function(req, res){
     });
 };
 
+//Accepted students will be marked accepted and sent an acceptance email
 controller.accepted = function(req, res){
   var currentStudent;
   User.findById(req.params.id)
@@ -120,6 +120,7 @@ controller.accepted = function(req, res){
       return User.findById(student.admissions);
     })
     .then(function(admissions){
+      // Text and HTML formatted emails
       var studentMessage ="Congratulations, " + currentStudent.name + "!  You have been accepted into the WDI program.  We will be contacting you shortly with information on the cohort you'll be assigned to.  If you have any questions please contact your Admissions representative.  Good luck;"+admissions.name+'Admissions';
       var studentHTML ="<h1>Congratulations, " + currentStudent.name + "!</h1><p>  You have been accepted into the WDI program.  We will be contacting you shortly with information on the cohort you'll be assigned to.  If you have any questions please contact your Admissions representative.</p><p>Good luck;<br/>"+admissions.name+'<br/>Admissions';
       return require('../config/nodemailer')(currentStudent.email,"Welcome to GA!",studentMessage, studentHTML);

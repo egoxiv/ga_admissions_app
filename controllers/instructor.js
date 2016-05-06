@@ -3,7 +3,6 @@ var Cohort     = require ('../models/cohort');
 var passport   = require('passport');
 var db         = require('../config/db');
 require('../config/passport')(passport);
-// var mongoose = require('mongoose');
 
 var controller = {};
 controller.evaluated ={};
@@ -19,6 +18,7 @@ if(req.user !== undefined && req.user.role !=='instructor') res.redirect('/stude
 	});
 };
 
+// Instructor notes from the interview are added into the applicant file.
 controller.update = function(req, res){
 	var currentStudent;
 	User.findById(req.body.student_id)
@@ -87,9 +87,9 @@ controller.logout = function(req,res){
 	res.redirect('/');
 };
 
-controller.evaluated.index= function(req,res){};
-
+// Shows all evaluated students
 controller.evaluated.show= function(req,res){
+  
   User.find({role: 'student', 'application.status':'evaluated'})
     .then(function(student) {
       res.render('admissions/status', {student: student});
@@ -97,8 +97,5 @@ controller.evaluated.show= function(req,res){
       res.json({ error: error });
     });
 };
-
-controller.evaluated.update= function(req,res){};
-controller.evaluated.delete= function(req,res){};
 
 module.exports = controller;
