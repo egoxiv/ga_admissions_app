@@ -1,165 +1,153 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<% include ../partials/head %>
+	<script src="/instructor/js/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="/instructor/styles/styles.css">
 	<title>General Assembly Admissions - Student Evaluation</title>
 </head>
 <body>
-	<h1>General Assembly Admissions - Evaluation for <%= student.name %> </h1>
-	<div>
+	<div class="container">
+		<h1>Evaluation form: <%= student.name %> </h1>
 		<div>
-			<% if(student.avatar){ %>
-				<img src="<%= student.avatar %>" width="200">
-			<% } else { %>
-				<p>No image on file...</p>
-			<% } %>
-		</div>
-		<div>
-			<% if(student.github){ %>
-				<a href="<%= student.github %>"><%= student.github %></a>
-			<% } else { %>
-				<p>No repos indicated...</p>
-			<% } %>
-		</div>
-	</div>
-	<form method="POST" action="/instructor">
-		<input type="hidden" value ="<%= student.id %>" name="student_id"/>
-		<h2>Why GA?</h2>
-		<hr>
-		<h3>The student chose GA because:</h3>
-		<textarea name ="why_ga" placeholder="Notes..."></textarea>
-
-		<h2>Punctuality</h2>
-		<hr>
-		<h3>The student was on time</h3>
-		<div>
-			<input type="radio" value="true" name="on_time" checked>Yes
-			<input type="radio" value="false" name="on_time">No
-		</div>
-		<div>
-			<textarea name ="on_time_notes" placeholder="Notes..."></textarea>
+			<div>
+				<% if(student.avatar){ %>
+					<img src="<%= student.avatar %>" width="200">
+				<% } else { %>
+					<p>Image not available</p>
+				<% } %>
+			</div>
+			<div>
+				<% if(student.github){ %>
+					<p><a href="<%= student.github %>">Click here to view <%= student.name %> GitHub</a></p>
+				<% } else { %>
+					<p>No GitHub link available</p>
+				<% } %>
+			</div>
 		</div>
 
-		<h2>Professionalism</h2>
-		<hr>
-		<h3>The Student was</h3>
-		<div>
-			<input type="radio" value="1" name="professionalism">Not professional at all
-			<input type="radio" value="2" name="professionalism">not really professional
-			<input type="radio" value="3" name="professionalism" checked >somewhat professional
-			<input type="radio" value="4" name="professionalism">professional
-			<input type="radio" value="5" name="professionalism">very professional
-		</div>
-		<div>
-			<textarea name ="professionalism_notes" placeholder="Notes..."></textarea>
-		</div>
+		<form method="POST" action="/instructor">
+			<input type="hidden" value ="<%= student.id %>" name="student_id"/>
+			<hr>
 
-		<h2>Motivated</h2>
-		<hr>
-		<h3>The Student was</h3>
-		<div>
-			<input type="radio" value="1" name="motivated">not motivated at all
-			<input type="radio" value="2" name="motivated">not really motivated
-			<input type="radio" value="3" name="motivated" checked >somewhat motivated
-			<input type="radio" value="4" name="motivated">motivated
-			<input type="radio" value="5" name="motivated">very motivated
-		</div>
-		<div>
-			<textarea name ="motivated_notes" placeholder="Notes..."></textarea>
-		</div>
-		<h2>Commitment</h2>
-		<hr>
-		<h3>The Student was</h3>
-		<div>
-			<input type="radio" value="1" name="commitment">not committed at all
-			<input type="radio" value="2" name="commitment">not really committed
-			<input type="radio" value="3" name="commitment" checked >somewhat committed
-			<input type="radio" value="4" name="commitment">committed
-			<input type="radio" value="5" name="commitment">very committed
-		</div>
-		<div>
-			<textarea name ="commitment_notes" placeholder="Notes..."></textarea>
-		</div>
+			  <h2>Why GA?</h2>
+			  <textarea class="form-control" name="why_ga" rows="5"></textarea>
+			<hr>
 
-		<h3>The student can handle the time commitment</h3>
-		<div>
-			<input type="radio" value="true" name="can_commit" checked>Yes
-			<input type="radio" value="false" name="can_commit">No
-		</div>
-		<div>
-			<textarea name ="can_commit_notes" placeholder="Notes..."></textarea>
-		</div>
+			<div class="form-group">
+				<h2>Punctuality</h2>
+				<h4>Was student was on time?</h4>
+				<div class="radio">
+					<label><input type="radio" value="true" name="on_time">Yes</label>
+				  <label><input type="radio" value="false" name="on_time">No</label>
+				</div>
+				<textarea class="form-control" name="on_time_notes" rows="5"></textarea>
+			</div>
+			<hr>
 
-		<h2>Experienced</h2>
-		<hr>
-		<h3>The Student was</h3>
-		<div>
-			<input type="radio" value="1" name="experienced">not experienced at all
-			<input type="radio" value="2" name="experienced">not really experienced
-			<input type="radio" value="3" name="experienced" checked >somewhat experienced
-			<input type="radio" value="4" name="experienced">experienced
-			<input type="radio" value="5" name="experienced">very experienced
-		</div>
-		<div>
-			<textarea name ="experienced_notes" placeholder="Notes..."></textarea>
-		</div>
-		<h2>Attitude</h2>
-		<hr>
-		<h3>The Student had a</h3>
-		<div>
-			<input type="radio" value="1" name="attitude">poor attitude
-			<input type="radio" value="2" name="attitude">not very positive attitude
-			<input type="radio" value="3" name="attitude" checked >somewhat positive attitude
-			<input type="radio" value="4" name="attitude">positive attitude
-			<input type="radio" value="5" name="attitude">very positive attidude
-		</div>
-		<div>
-			<textarea name ="attitude_notes" placeholder="Notes..."></textarea>
-		</div>
-		<h2>Computer Proficency</h2>
-		<hr>
-		<h3>The student's proficiency level was</h3>
-		<div>
-			<input type="radio" value="1" name="skill">None
-			<input type="radio" value="2" name="skill">Beginner
-			<input type="radio" value="3" name="skill" checked >Intermediate
-			<input type="radio" value="4" name="skill">Advanced
-			<input type="radio" value="5" name="skill">Exceptional
-		</div>
-		<div>
-			<textarea name ="skill_notes" placeholder="Notes..."></textarea>
-		</div>
-		<h3>Student Typing speed was:</h3>
-		<div>
-			<input type="number" min="1" max="999" name="wpm" value="15">WPM
-		</div>
-		<div>
-			<textarea name ="wpm_notes" placeholder="Notes..."></textarea>
-		</div>
-		<h3>Does the student have a mac?</h3>
-		<div>
+			<div class="form-group">
+				<h2>Professionalism</h2>
+				<h4>The Student was...</h4>
+				<ul class="radio">
+					<li><label><input type="radio" value="1" name="professionalism">Not professional at all</label></li>
+					<li><label><input type="radio" value="2" name="professionalism">Not really professional</label></li>
+					<li><label><input type="radio" value="3" name="professionalism" checked >Somewhat professional</label></li>
+					<li><label><input type="radio" value="4" name="professionalism">Professional</label></li>
+					<li><label><input type="radio" value="5" name="professionalism">Very professional</label></li>
+				</ul>
+				<textarea name="professionalism_notes" rows="5" class="form-control"></textarea>
+			</div>
+			<hr>
+
+			<h2>Motivation</h2>
+			<h4>The student was...</h4>
+			<ul class="radio">
+				<li><label><input type="radio" value="1" name="motivated">Not motivated at all</label></li>
+				<li><label><input type="radio" value="1" name="motivated">Not motivated at all</label></li>
+				<li><label><input type="radio" value="3" name="motivated" checked>Somewhat motivated</label></li>
+				<li><label><input type="radio" value="4" name="motivated">Motivated</label></li>
+				<li><label><input type="radio" value="5" name="motivated">Very motivated</label></li>
+			</ul>
+			<textarea name="motivated_notes" rows="5" class="form-control"></textarea>
+			<hr>
+
+			<h2>Commitment</h2>
+			<h4>The student was...</h4>
+			<ul class="radio">
+				<li><label><input type="radio" value="1" name="commitment">Not committed at all</label></li>
+				<li><label><input type="radio" value="2" name="commitment">Not really committed</label></li>
+				<li><label><input type="radio" value="3" name="commitment" checked >Somewhat committed</label></li>
+				<li><label><input type="radio" value="4" name="commitment">Committed</label></li>
+				<li><label><input type="radio" value="5" name="commitment">Very committed</label></li>
+			</ul>
+			<textarea name="commitment_notes" rows="5" class="form-control"></textarea>
+
+			<h4>Can the student can handle the time commitment? (50+ hours a week)</h4>
+			<div class="radio">
+				<label><input type="radio" value="true" name="can_commit" checked>Yes</label>
+				<label><input type="radio" value="false" name="can_commit">No</label>
+			</div>
+			<textarea name="can_commit_notes" rows="5" class="form-control" placeholder="If no, why?"></textarea>
+			<hr>
+
+			<h2>Experience</h2>
+			<h4>The student was...</h4>
+			<ul class="radio">
+				<li><label><input type="radio" value="1" name="experienced">Not experienced at all</label></li>
+				<li><label><input type="radio" value="2" name="experienced">Not really experienced</label></li>
+				<li><label><input type="radio" value="3" name="experienced" checked >Somewhat experienced</label></li>
+				<li><label><input type="radio" value="4" name="experienced">Experienced</label></li>
+				<li><label><input type="radio" value="5" name="experienced">Very experienced</label></li>
+			</ul>
+			<textarea name ="experienced_notes" rows="5" class="form-control"></textarea>
+			<hr>
+
+			<h2>Attitude</h2>
+			<h4>The students attitude was..</h4>
+			<ul class="radio">
+				<li><label><input type="radio" value="1" name="attitude">Very poor</label></li>
+				<li><label><input type="radio" value="2" name="attitude">Somewhat poor</label></li>
+				<li><label><input type="radio" value="3" name="attitude" checked >Okay</label></li>
+				<li><label><input type="radio" value="4" name="attitude">Positive</label></li>
+				<li><label><input type="radio" value="5" name="attitude">Very positive</label></li>
+			</ul>
+			<textarea name ="attitude_notes" rows="5" class="form-control"></textarea>
+			<hr>
+
+			<h2>Computer Proficiency</h2>
+			<h4>The student's computer proficiency level was</h4>
+			<ul class="radio">
+				<li><label><input type="radio" value="1" name="skill">None</label></li>
+				<li><label><input type="radio" value="2" name="skill">Beginner</label></li>
+				<li><label><input type="radio" value="3" name="skill" checked >Intermediate</label></li>
+				<li><label><input type="radio" value="4" name="skill">Advanced</label></li>
+				<li><label><input type="radio" value="5" name="skill">Exceptional</label></li>
+			</ul>
+			<textarea name ="skill_notes" rows="2" class="form-control"></textarea>
+
+			<h4>Type test results</h4>
+			<input type="number" min="1" max="999" name="wpm" value="15" id="wpm">WPM
+			<textarea name ="wpm_notes" rows="2" class="form-control"></textarea>
+
+			<h4>Does the student own a mac?</h4>
 			<input type="radio" value="true" name="have_mac" checked >Yes
 			<input type="radio" value="false" name="have_mac">No
-		</div>
-		<div>
-			<textarea name ="mac_notes" placeholder="Notes..."></textarea>
-		</div>
-		<h2>Overall Score</h2>
-		<hr>
-		<h3>The student's overall score was:</h3>
-		<div>
-			<input type="radio" value="1" name="overall">1
-			<input type="radio" value="2" name="overall">2
-			<input type="radio" value="3" name="overall" checked >3
-			<input type="radio" value="4" name="overall">4
-			<input type="radio" value="5" name="overall">5
-		</div>
-		<div>
-			<p>If the student's score was a one or two, then please indicate why below.</p>
-			<textarea name ="overall_notes" placeholder="Notes..."></textarea>
-		</div>
-		<div>
-			<input type = "submit" />
-		</div>
-	</form>
+			<textarea name ="mac_notes" rows="2" class="form-control"></textarea>
+			<hr>
+
+			<h2>Overall Score</h2>
+			<h4>The student's overall score was:</h4>
+			<ul>
+				<li><input type="radio" value="1" name="overall">  1</li>
+				<li><input type="radio" value="2" name="overall">  2</li>
+				<li><input type="radio" value="3" name="overall" checked >  3</li>
+				<li><input type="radio" value="4" name="overall">  4</li>
+				<li><input type="radio" value="5" name="overall">  5</li>
+			</ul>
+			<p>Final notes?</p>
+			<textarea name ="overall_notes" rows="5" class="form-control"></textarea>
+			<input type="submit" class="btn btn-success" id="submitButton">
+		</form>
+	</div>
 </body>
 </html>

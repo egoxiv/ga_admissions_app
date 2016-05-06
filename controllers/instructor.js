@@ -3,8 +3,8 @@ var Cohort     = require ('../models/cohort');
 var passport   = require('passport');
 var db         = require('../config/db');
 require('../config/passport')(passport);
-
 // var mongoose = require('mongoose');
+
 var controller = {};
 controller.evaluated ={};
 
@@ -55,17 +55,13 @@ controller.update = function(req, res){
 };
 
 controller.show = function(req, res){
-	if(req.user.role !== 'instructor') res.redirect('/student');
+	if(req.user.role !== 'instructor' && req.user.role !== 'admissions') res.redirect('/student');
 	var results;
 	User.findById(req.params.id)
 		.then(function(student){
 			results = student;
-		// 	return Cohort.findOne({students: student});
-		// })
-		// .then(function(cohort){
-		// 	var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
 			res.render('instructor/student',{ student:results });
-		});
+	});
 };
 
 controller.edit = function(req, res){
@@ -74,13 +70,8 @@ controller.edit = function(req, res){
 	User.findById(req.params.id)
 		.then(function(student){
 			results = student;
-		// 	return Cohort.findOne({students: student});
-		// })
-		// .then(function(cohort){
-		// 	var cohortName = cohort.program+'-'+cohort.campus+'-'+cohort.number;
 			res.render('instructor/evaluation',{ student:results });
 		});
-
 };
 
 controller.logout = function(req,res){
@@ -90,7 +81,7 @@ controller.logout = function(req,res){
 
 controller.evaluated.index= function(req,res){};
 
-controller.evaluated.show= function(req,res){  //  Status: In /admissions user can click on 'View status' and then be routed to /admissions/status which will run controller.status and render a list of all students with 'application.status': 'evaluated', if any errors are caught in catch and rendered as JSON.
+controller.evaluated.show= function(req,res){
   User.find({role: 'student', 'application.status':'evaluated'})
     .then(function(student) {
       res.render('admissions/status', {student: student});
