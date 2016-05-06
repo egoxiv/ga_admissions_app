@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <% include ../partials/head.ejs %>
   <title>Cohorts Index</title>
+  <link rel="stylesheet" type="text/css" href="/cohorts/styles/index.css">
 </head>
 <body>
   <% if(user.role === 'admissions'){ %>
     <% sections.forEach(function(cohort){ %>
-      <p><a href="/cohorts/<%= cohort._id %>"><%= cohort.name() %></a></p>
-      <li><%= cohort.instructors.length %>/3 Instructors</li>
-      <li><%= cohort.students.length %>/20 Students</li>
-      <li>Start: <%= cohort.start.toDateString() %></li>
-      <li>End: <%= cohort.end.toDateString() %></li>
+      <div>
+        <p><a href="/cohorts/<%= cohort._id %>"><%= cohort.name() %></a></p>
+        <li><%= cohort.instructors.length %>/3 Instructors</li>
+        <li><%= cohort.students.length %>/20 Students</li>
+        <li>Start: <%= cohort.start.toDateString() %></li>
+        <li>End: <%= cohort.end.toDateString() %></li>
+      </div>
     <% }) %>
-    <a href="/cohorts/new">Make a new cohort</a>
+    <p class="bottom-link"><a href="/cohorts/new">Make a new cohort</a></p>
   <% } else { %>
     <h1>Access Denied</h1>
     <p>You don't have permission to view this page.</p>

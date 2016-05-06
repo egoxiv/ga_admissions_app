@@ -30,7 +30,7 @@ cohorts.create = function(req, res){
     cohort.number = biggest + 1;
     cohort.save(function(err){
       if(err) return res.json(err);
-      res.redirect('cohorts/' + cohort._id);
+      res.redirect('/cohorts/' + cohort._id);
     });
   });
 };
