@@ -78,11 +78,7 @@ controller.edit = function(req, res){
 	User.findById(req.params.id)
 		.then(function(student){
 			results = student;
-<<<<<<< HEAD
-			res.render('instructor/evaluation',{student:results});
-=======
 			res.render('instructor/evaluation',{ student:results });
->>>>>>> a7a76d04063d7205ebc415a766236aa9d97b6ad8
 		});
 };
 
