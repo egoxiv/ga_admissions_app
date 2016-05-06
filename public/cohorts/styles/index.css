@@ -1,0 +1,17 @@
+body {
+  margin-left: 10px;
+}
+h1 {
+  text-align: center;
+}
+p {
+  text-align: center;
+}
+div {
+  border: 1px solid black;
+  display: inline-block;
+  padding: 10px;
+}
+.bottom-link {
+  text-align: left;
+}
